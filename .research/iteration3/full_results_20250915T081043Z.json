@@ -1,0 +1,11 @@
+{
+  "num_samples": 5,
+  "predictions": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "avg_latency_ms": 0.014591217041015625
+}

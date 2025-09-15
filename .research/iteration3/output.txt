@@ -1,0 +1,13 @@
+=== [PHASE 2/2] Full experiment start Mon Sep 15 08:10:41 AM UTC 2025 ===
+{
+  "num_samples": 5,
+  "predictions": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "avg_latency_ms": 0.014591217041015625
+}
+=== [PHASE 2/2] Full experiment end Mon Sep 15 08:10:43 AM UTC 2025 ===
