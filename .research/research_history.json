@@ -1,0 +1,10 @@
+{
+  "research_topic": "パラメータ効率的な敵対的訓練（C-AdvUL）の有用性を保持しながらの堅牢性スコア改善を目的とし、完全な敵対的訓練は計算的に禁止的であり既存の軽量手法では十分な堅牢性向上が得られないという問題に対して、C-AdvUL連続敵対的訓練によるASR削減を15%未満に抑制しつつ下流タスクで95%以上の有用性を維持することを具体的目標とし、利用可能なリソースとしてAdvGLUEマルチタスク堅牢性評価をベンチマークとし、C-AdvULが16GB V100環境で7Bモデル上で動作可能であることをベースラインとし、実装としては研究手法がarXiv:2405.15589に詳述され、指標としてASR、有用性保持、訓練効率を用い、研究の革新性としてモデル規模全体での効率的な堅牢性改善を可能にする連続空間敵対的訓練とLoRAアダプターの組み合わせにある。",
+  "queries": [
+    "parameter-efficient adversarial training",
+    "C-AdvUL adversarial training",
+    "continuous adversarial training",
+    "LoRA adapter adversarial robustness",
+    "AdvGLUE multitask robustness"
+  ]
+}
