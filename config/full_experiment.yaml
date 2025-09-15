@@ -1,0 +1,19 @@
+# config/full_experiment.yaml
+seed: 7
+
+exp1:
+  max_samples: 500  # still synthetic but bigger than smoke
+  embed_model: "simple"  # keep offline-safe; swap with real model if available
+
+exp2:
+  num_docs: 1000
+
+exp3:
+  languages:
+    - "am"
+    - "id"
+    - "sw"
+    - "yo"
+    - "hi-en"
+    - "es-en"
+    - "en"

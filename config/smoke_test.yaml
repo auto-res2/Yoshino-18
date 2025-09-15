@@ -1,0 +1,12 @@
+# config/smoke_test.yaml
+seed: 42
+
+exp1:
+  max_samples: 30  # quick dataset slice
+  embed_model: "simple"
+
+exp2:
+  num_docs: 50
+
+exp3:
+  languages: ["en", "id"]
