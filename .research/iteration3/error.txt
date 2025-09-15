@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 75, in <module>
+    main()
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 71, in main
+    _run(cfg)
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 53, in _run
+    run_experiment_1(cfg)
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/evaluate.py", line 132, in run_experiment_1
+    waterbench = waterbench.select(range(cfg["exp1"]["max_samples"]))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 560, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/fingerprint.py", line 442, in wrapper
+    out = func(dataset, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 4075, in select
+    return self._select_contiguous(start, length, new_fingerprint=new_fingerprint)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 560, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/fingerprint.py", line 442, in wrapper
+    out = func(dataset, *args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 4136, in _select_contiguous
+    _check_valid_indices_value(start + length - 1, len(self))
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 622, in _check_valid_indices_value
+    raise IndexError(f"Index {index} out of range for dataset of size {size}.")
+IndexError: Index 499 out of range for dataset of size 60.
