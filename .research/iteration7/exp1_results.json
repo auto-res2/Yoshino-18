@@ -1,0 +1,11 @@
+{
+  "description": "Experiment #1 \u2013 Long-Context, High-Entropy Robustness Test (DADS).",
+  "stats": {
+    "mean_c_asr": 0.05480425756663901,
+    "n_samples": 2
+  },
+  "samples": [
+    0,
+    1
+  ]
+}

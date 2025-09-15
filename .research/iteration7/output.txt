@@ -1,0 +1,108 @@
+=== [PHASE 2/2] Full experiment start Mon Sep 15 06:01:36 AM UTC 2025 ===
+Experiment #1 – Long-Context, High-Entropy Robustness Test (DADS).
+WARNING: could not load tokenizer for mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7abc6-4ca8de511e89be8b29c3548c;dec2d116-8cd8-4740-ae05-e17109f39e1e)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2 tokenizer.
+WARNING: could not load mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7abc7-13941e192cfb1cd062d74fc7;beabb294-e374-449d-906b-5bfeb0f6a8a9)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2.
+Downloading dataset SafetyResearch/HarmBench split=train
+WARNING: failed to download SafetyResearch/HarmBench (Dataset 'SafetyResearch/HarmBench' doesn't exist on the Hub or cannot be accessed.). Using dummy dataset instead.
+{
+  "description": "Experiment #1 \u2013 Long-Context, High-Entropy Robustness Test (DADS).",
+  "stats": {
+    "mean_c_asr": 0.05480425756663901,
+    "n_samples": 2
+  },
+  "samples": [
+    0,
+    1
+  ]
+}
+{
+  "description": "Experiment #1 \u2013 Long-Context, High-Entropy Robustness Test (DADS).",
+  "stats": {
+    "mean_c_asr": 0.05480425756663901,
+    "n_samples": 2
+  },
+  "figures": [
+    "exp1_c_asr.pdf"
+  ]
+}
+Experiment #2 – Expert-Diversified Attacker Stress Test (ExDAR).
+WARNING: could not load tokenizer for mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7abda-581915531bde7fc600ff2f19;61728fc6-3423-42c5-9644-6f727f61bb33)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2 tokenizer.
+WARNING: could not load mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7abdb-7d82231a24d3cc8450726a18;cc2c5a42-7db8-4e3d-af59-6f4838faca5f)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2.
+Downloading dataset OpenAssistant/UltraChat split=train
+WARNING: failed to download OpenAssistant/UltraChat (Dataset 'OpenAssistant/UltraChat' doesn't exist on the Hub or cannot be accessed.). Using dummy dataset instead.
+{
+  "description": "Experiment #2 \u2013 Expert-Diversified Attacker Stress Test (ExDAR).",
+  "stats": {
+    "throughput_tok_s_mean": 422.10122486260536
+  }
+}
+{
+  "description": "Experiment #2 \u2013 Expert-Diversified Attacker Stress Test (ExDAR).",
+  "stats": {
+    "throughput_tok_s_mean": 422.10122486260536
+  },
+  "figures": [
+    "exp2_throughput.pdf"
+  ]
+}
+Experiment #3 – Edge-Budget Auto-Tuning Challenge (BuMS).
+{
+  "description": "Experiment #3 \u2013 Edge-Budget Auto-Tuning Challenge (BuMS).",
+  "stats": {
+    "best_cfg": {
+      "eps": 0.05,
+      "sigma": 0.05,
+      "r": 4.0,
+      "T": 0.7889166063629091,
+      "p": 0.6886655170470476,
+      "k": 4.7440149650210515
+    },
+    "best_score": 1.16
+  }
+}
+{
+  "description": "Experiment #3 \u2013 Edge-Budget Auto-Tuning Challenge (BuMS).",
+  "stats": {
+    "best_cfg": {
+      "eps": 0.05,
+      "sigma": 0.05,
+      "r": 4.0,
+      "T": 0.7889166063629091,
+      "p": 0.6886655170470476,
+      "k": 4.7440149650210515
+    },
+    "best_score": 1.16
+  },
+  "figures": [
+    "exp3_bums.pdf"
+  ]
+}
+=== [PHASE 2/2] Full experiment end Mon Sep 15 06:02:09 AM UTC 2025 ===
