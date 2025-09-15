@@ -1,0 +1,39 @@
+Warning 8 in paper.tex line 45: Wrong length of dash may have been used.
+We address the open challenge of end-to-end provenance for language-model text that remains reliable on brief quotations, cryptographically auditable, energy-aware, and multilingual. Existing watermarks satisfy at most two of these goals, faltering on $<40$-token snippets, requiring trusted setups, ignoring chain-of-custody, or inflating latency and power draw. HoloChain-Cert unifies six elements: (i) a tri-granular Moir\'e lattice embedding rateless-coded bits every 2-32 tokens; (ii) a CRS-free STARK circuit that binds each digest to an append-only Poseidon-Merkle ledger; (iii) a verifiable hand-off protocol for multi-agent editing chains; (iv) an NVML-driven policy that disables costly lattice layers under peak load; (v) a 32-language normalising-flow adapter; and (vi) a public opt-out flag. We implement the full stack in CUDA, Cairo, and Rust and benchmark on WaterBench-2.2, ChainBench-1.0, and LowRes-Mix against five competitive baselines. The provenance layer achieves 100 \% lineage accuracy with 48 B proofs verified in 1 ms, but short-excerpt detection reaches only 4.2 \% TPR at $10^{-6}$ FPR, and adaptive energy savings average 17 \% with a 6 pp low-resource gap. We analyse failure modes, release reproducibility artefacts, and outline concrete fixes toward dependable, sustainable watermarking.  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^
+Warning 13 in paper.tex line 90: Intersentence spacing (`\@') should perhaps be used.
+An invertible 128-dimension flow $f_{\theta}$ maps lattice coefficients to token-logit perturbations while conditioning on a language ID. Training maximises the likelihood of sequences produced by GPT-4o, Llama-3-70B, Mistral-7B, and Phi-3 across thirty-two languages and code-switch corpora. The shared space eliminates per-locale tuning and permits ISA-MAP key rotation without re-training.  
+                                                                                                                                        ^
+Warning 8 in paper.tex line 90: Wrong length of dash may have been used.
+An invertible 128-dimension flow $f_{\theta}$ maps lattice coefficients to token-logit perturbations while conditioning on a language ID. Training maximises the likelihood of sequences produced by GPT-4o, Llama-3-70B, Mistral-7B, and Phi-3 across thirty-two languages and code-switch corpora. The shared space eliminates per-locale tuning and permits ISA-MAP key rotation without re-training.  
+                                                                                                                                                                                                                    ^
+Warning 13 in paper.tex line 102: Intersentence spacing (`\@') should perhaps be used.
+CUDA 12.4 kernels operate in bfloat16; Cairo 1.1 defines the AIR; Rust hosts the Poseidon-Merkle ledger and WebAssembly verifier. All hyper-parameters live in YAML, and golden-vector tests constrain CPU-GPU divergence to $\le 1\times 10^{-8}$ mean-squared error.  
+                                                                ^
+Warning 8 in paper.tex line 106: Wrong length of dash may have been used.
+All experiments run on one NVIDIA A100-80 GB (CUDA 12.4) with $\le 120$ GB system RAM. Five seeds $\{0-4\}$ are averaged; hard assertions abort any run whose metrics miss target thresholds.  
+                                      ^
+Warning 13 in paper.tex line 106: Intersentence spacing (`\@') should perhaps be used.
+All experiments run on one NVIDIA A100-80 GB (CUDA 12.4) with $\le 120$ GB system RAM. Five seeds $\{0-4\}$ are averaged; hard assertions abort any run whose metrics miss target thresholds.  
+                                                                                     ^
+Warning 8 in paper.tex line 112: Wrong length of dash may have been used.
+Outputs from GPT-4o, Llama-3-70B, Mistral-7B, and Phi-3-mini are watermarked. Detectors compared are SynthID-Text, PHoW, HAWK-Flow, UPV, and retrieval-only DIPPER.  
+                            ^
+Warning 13 in paper.tex line 112: Intersentence spacing (`\@') should perhaps be used.
+Outputs from GPT-4o, Llama-3-70B, Mistral-7B, and Phi-3-mini are watermarked. Detectors compared are SynthID-Text, PHoW, HAWK-Flow, UPV, and retrieval-only DIPPER.  
+                                                                                                                                                                  ^
+Warning 8 in paper.tex line 121: Wrong length of dash may have been used.
+\subsection{Experiment 1 - short-excerpt robustness}  
+                         ^
+Warning 13 in paper.tex line 122: Intersentence spacing (`\@') should perhaps be used.
+A path mis-configuration restricted the test set to sixty windows (24 marked, 36 unmarked). The tri-granular detector achieved only 4.17 \% TPR at $10^{-6}$ FPR; BER hovered near 50 \%, indicating random decoding. Meaningful baseline comparisons are impossible on so few samples.  
+                                                                                                                                                                ^
+Warning 8 in paper.tex line 130: Wrong length of dash may have been used.
+\subsection{Experiment 2 - end-to-end provenance}  
+                         ^
+Warning 8 in paper.tex line 139: Wrong length of dash may have been used.
+\subsection{Experiment 3 - energy adaptation and multilingual parity}  
+                         ^
+Warning 8 in paper.tex line 140: Wrong length of dash may have been used.
+The adaptive policy triggered in 28 \% of batches, saving $17\ \pm\ 3$ \% GPU energy-well below the 45 \% target. TPR gaps relative to English were 2.5-6 pp, exceeding the intended $\le 4$ pp for Indonesian and Spanish-English. MQM fluency stayed within 0.2 points of unmarked text. An out-of-distribution test on Nigerian-Pidgin showed a 9 pp TPR drop.  
+                                                                                                                                                       ^
