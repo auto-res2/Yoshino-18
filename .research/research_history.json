@@ -6,5 +6,157 @@
     "hierarchical prompt filtering",
     "low-latency LLM guard",
     "ML-based prompt analysis"
+  ],
+  "research_study_list": [
+    {
+      "title": "PARDEN, Can You Repeat That? Defending against Jailbreaks via Repetition"
+    },
+    {
+      "title": "A StrongREJECT for Empty Jailbreaks"
+    },
+    {
+      "title": "Detecting Rewards Deterioration in Episodic Reinforcement Learning"
+    },
+    {
+      "title": "When LLM Meets DRL: Advancing Jailbreaking Efficiency via DRL-guided Search"
+    },
+    {
+      "title": "JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models"
+    },
+    {
+      "title": "Improved Few-Shot Jailbreaking Can Circumvent Aligned Language Models and Their Defenses"
+    },
+    {
+      "title": "Refusal in Language Models Is Mediated by a Single Direction"
+    },
+    {
+      "title": "CBD: A Certified Backdoor Detector Based on Local Dominant Probability"
+    },
+    {
+      "title": "Backdoor Scanning for Deep Neural Networks through K-Arm Optimization"
+    },
+    {
+      "title": "Universal Jailbreak Backdoors from Poisoned Human Feedback"
+    },
+    {
+      "title": "Fight Back Against Jailbreaking via Prompt Adversarial Tuning"
+    },
+    {
+      "title": "Protecting Your LLMs with Information Bottleneck"
+    },
+    {
+      "title": "Flocks of Stochastic Parrots: Differentially Private Prompt Learning for Large Language Models"
+    },
+    {
+      "title": "BadPrompt: Backdoor Attacks on Continuous Prompts"
+    },
+    {
+      "title": "An LLM can Fool Itself: A Prompt-Based Adversarial Attack"
+    },
+    {
+      "title": "Moderate-fitting as a Natural Backdoor Defender for Pre-trained Language Models"
+    },
+    {
+      "title": "ParaFuzz: An Interpretability-Driven Technique for Detecting Poisoned Samples in NLP"
+    },
+    {
+      "title": "BadChain: Backdoor Chain-of-Thought Prompting for Large Language Models"
+    },
+    {
+      "title": "AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models"
+    },
+    {
+      "title": "Improved Generation of Adversarial Examples Against Safety-aligned LLMs"
+    },
+    {
+      "title": "TransHP: Image Classification with Hierarchical Prompting"
+    },
+    {
+      "title": "Hierarchical Prompt Learning for Multi-Task Learning"
+    },
+    {
+      "title": "ProTeCt: Prompt Tuning for Taxonomic Open Set Classification"
+    },
+    {
+      "title": "Rethinking Decision Transformer via Hierarchical Reinforcement Learning"
+    },
+    {
+      "title": "Hierarchical Selective Classification"
+    },
+    {
+      "title": "Efficient Prompt Optimization Through the Lens of Best Arm Identification"
+    },
+    {
+      "title": "Can discrete information extraction prompts generalize across language models?"
+    },
+    {
+      "title": "Evoke: Evoking Critical Thinking Abilities in LLMs via Reviewer-Author Prompt Editing"
+    },
+    {
+      "title": "Hard Prompts Made Easy: Gradient-Based Discrete Optimization for Prompt Tuning and Discovery"
+    },
+    {
+      "title": "CHiLS: Zero-Shot Image Classification with Hierarchical Label Sets"
+    },
+    {
+      "title": "WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs"
+    },
+    {
+      "title": "RigorLLM: Resilient Guardrails for Large Language Models against Undesired Content"
+    },
+    {
+      "title": "Online Cascade Learning for Efficient Inference over Streams"
+    },
+    {
+      "title": "Position: Building Guardrails for Large Language Models Requires Systematic Design"
+    },
+    {
+      "title": "PARDEN, Can You Repeat That? Defending against Jailbreaks via Repetition"
+    },
+    {
+      "title": "MoGU: A Framework for Enhancing Safety of LLMs While Preserving Their Usability"
+    },
+    {
+      "title": "Towards Optimal Caching and Model Selection for Large Model Inference"
+    },
+    {
+      "title": "SGLang: Efficient Execution of Structured Language Model Programs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Can discrete information extraction prompts generalize across language models?"
+    },
+    {
+      "title": "Fairness-guided Few-shot Prompting for Large Language Models"
+    },
+    {
+      "title": "PromptCoT: Align Prompt Distribution via Adapted Chain-of-Thought"
+    },
+    {
+      "title": "Toxicity Detection for Free"
+    },
+    {
+      "title": "BadPrompt: Backdoor Attacks on Continuous Prompts"
+    },
+    {
+      "title": "Hard Prompts Made Easy: Gradient-Based Discrete Optimization for Prompt Tuning and Discovery"
+    },
+    {
+      "title": "Prompt Risk Control: A Rigorous Framework for Responsible Deployment of Large Language Models"
+    },
+    {
+      "title": "Co-training Improves Prompt-based Learning for Large Language Models"
+    },
+    {
+      "title": "Co-training Improves Prompt-based Learning for Large Language Models"
+    },
+    {
+      "title": "Localized Zeroth-Order Prompt Optimization"
+    }
   ]
 }
