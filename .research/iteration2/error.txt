@@ -1,0 +1,24 @@
+Using CPython 3.11.13
+Creating virtual environment at: .venv
+  × No solution found when resolving dependencies for split (markers:
+  │ python_full_version >= '3.12'):
+  ╰─▶ Because only bloom-filter2<=2.0.0.post1 is available and
+      haguard-demo[full] depends on bloom-filter2>=2.5, we can conclude that
+      haguard-demo[full]'s requirements are unsatisfiable.
+      And because your project requires haguard-demo[full], we can conclude
+      that your project's requirements are unsatisfiable.
+
+      hint: While the active Python version is 3.11, the resolution failed for
+      other Python versions supported by your project. Consider limiting your
+      project's supported Python versions using `requires-python`.
+  × No solution found when resolving dependencies for split (markers:
+  │ python_full_version >= '3.12'):
+  ╰─▶ Because only bloom-filter2<=2.0.0.post1 is available and
+      haguard-demo[full] depends on bloom-filter2>=2.5, we can conclude that
+      haguard-demo[full]'s requirements are unsatisfiable.
+      And because your project requires haguard-demo[full], we can conclude
+      that your project's requirements are unsatisfiable.
+
+      hint: While the active Python version is 3.11, the resolution failed for
+      other Python versions supported by your project. Consider limiting your
+      project's supported Python versions using `requires-python`.
