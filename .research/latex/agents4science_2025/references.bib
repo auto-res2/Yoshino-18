@@ -5,3 +5,1241 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{arditi-2024-refusal,
+ abstract = {Conversational large language models are fine-tuned for both
+instruction-following and safety, resulting in models that obey benign requests
+but refuse harmful ones. While this refusal behavior is widespread across chat
+models, its underlying mechanisms remain poorly understood. In this work, we
+show that refusal is mediated by a one-dimensional subspace, across 13 popular
+open-source chat models up to 72B parameters in size. Specifically, for each
+model, we find a single direction such that erasing this direction from the
+model's residual stream activations prevents it from refusing harmful
+instructions, while adding this direction elicits refusal on even harmless
+instructions. Leveraging this insight, we propose a novel white-box jailbreak
+method that surgically disables refusal with minimal effect on other
+capabilities. Finally, we mechanistically analyze how adversarial suffixes
+suppress propagation of the refusal-mediating direction. Our findings
+underscore the brittleness of current safety fine-tuning methods. More broadly,
+our work showcases how an understanding of model internals can be leveraged to
+develop practical methods for controlling model behavior.},
+ arxiv_url = {https://arxiv.org/pdf/2406.11717v3.pdf},
+ author = {Andy Arditi and Oscar Obeso and Aaquib Syed and Daniel Paleka and Nina Panickssery and Wes Gurnee and Neel Nanda},
+ github_url = {https://github.com/andyrdt/refusal_direction},
+ title = {Refusal in Language Models Is Mediated by a Single Direction},
+ year = {2024}
+}
+
+@article{author-year-hierarchical,
+ title = {Hierarchical Prompt Learning for Multi-Task Learning}
+}
+
+@article{author-year-moderate,
+ title = {Moderate-fitting as a Natural Backdoor Defender for Pre-trained Language Models}
+}
+
+@article{author-year-promptcot,
+ title = {PromptCoT: Align Prompt Distribution via Adapted Chain-of-Thought}
+}
+
+@article{author-year-towards,
+ title = {Towards Optimal Caching and Model Selection for Large Model Inference}
+}
+
+@article{cai-2022-badprompt,
+ abstract = {The prompt-based learning paradigm has gained much research attention
+recently. It has achieved state-of-the-art performance on several NLP tasks,
+especially in the few-shot scenarios. While steering the downstream tasks, few
+works have been reported to investigate the security problems of the
+prompt-based models. In this paper, we conduct the first study on the
+vulnerability of the continuous prompt learning algorithm to backdoor attacks.
+We observe that the few-shot scenarios have posed a great challenge to backdoor
+attacks on the prompt-based models, limiting the usability of existing NLP
+backdoor methods. To address this challenge, we propose BadPrompt, a
+lightweight and task-adaptive algorithm, to backdoor attack continuous prompts.
+Specially, BadPrompt first generates candidate triggers which are indicative
+for predicting the targeted label and dissimilar to the samples of the
+non-targeted labels. Then, it automatically selects the most effective and
+invisible trigger for each sample with an adaptive trigger optimization
+algorithm. We evaluate the performance of BadPrompt on five datasets and two
+continuous prompt models. The results exhibit the abilities of BadPrompt to
+effectively attack continuous prompts while maintaining high performance on the
+clean test sets, outperforming the baseline models by a large margin. The
+source code of BadPrompt is publicly available at
+https://github.com/papersPapers/BadPrompt.},
+ arxiv_url = {https://arxiv.org/pdf/2211.14719v1.pdf},
+ author = {Xiangrui Cai and Haidong Xu and Sihan Xu and Ying Zhang and Xiaojie Yuan},
+ github_url = {https://github.com/papersPapers/BadPrompt},
+ title = {BadPrompt: Backdoor Attacks on Continuous Prompts},
+ year = {2022}
+}
+
+@article{chao-2024-jailbreakbench,
+ abstract = {Jailbreak attacks cause large language models (LLMs) to generate harmful,
+unethical, or otherwise objectionable content. Evaluating these attacks
+presents a number of challenges, which the current collection of benchmarks and
+evaluation techniques do not adequately address. First, there is no clear
+standard of practice regarding jailbreaking evaluation. Second, existing works
+compute costs and success rates in incomparable ways. And third, numerous works
+are not reproducible, as they withhold adversarial prompts, involve
+closed-source code, or rely on evolving proprietary APIs. To address these
+challenges, we introduce JailbreakBench, an open-sourced benchmark with the
+following components: (1) an evolving repository of state-of-the-art
+adversarial prompts, which we refer to as jailbreak artifacts; (2) a
+jailbreaking dataset comprising 100 behaviors -- both original and sourced from
+prior work (Zou et al., 2023; Mazeika et al., 2023, 2024) -- which align with
+OpenAI's usage policies; (3) a standardized evaluation framework at
+https://github.com/JailbreakBench/jailbreakbench that includes a clearly
+defined threat model, system prompts, chat templates, and scoring functions;
+and (4) a leaderboard at https://jailbreakbench.github.io/ that tracks the
+performance of attacks and defenses for various LLMs. We have carefully
+considered the potential ethical implications of releasing this benchmark, and
+believe that it will be a net positive for the community.},
+ arxiv_url = {https://arxiv.org/pdf/2404.01318v5.pdf},
+ author = {Patrick Chao and Edoardo Debenedetti and Alexander Robey and Maksym Andriushchenko and Francesco Croce and Vikash Sehwag and Edgar Dobriban and Nicolas Flammarion and George J. Pappas and Florian Tramer and Hamed Hassani and Eric Wong},
+ github_url = {https://github.com/JailbreakBench/jailbreakbench},
+ title = {JailbreakBench: An Open Robustness Benchmark for Jailbreaking Large Language Models},
+ year = {2024}
+}
+
+@article{chen-2024-when,
+ abstract = {Recent studies developed jailbreaking attacks, which construct jailbreaking
+prompts to fool LLMs into responding to harmful questions. Early-stage
+jailbreaking attacks require access to model internals or significant human
+efforts. More advanced attacks utilize genetic algorithms for automatic and
+black-box attacks. However, the random nature of genetic algorithms
+significantly limits the effectiveness of these attacks. In this paper, we
+propose RLbreaker, a black-box jailbreaking attack driven by deep reinforcement
+learning (DRL). We model jailbreaking as a search problem and design an RL
+agent to guide the search, which is more effective and has less randomness than
+stochastic search, such as genetic algorithms. Specifically, we design a
+customized DRL system for the jailbreaking problem, including a novel reward
+function and a customized proximal policy optimization (PPO) algorithm. Through
+extensive experiments, we demonstrate that RLbreaker is much more effective
+than existing jailbreaking attacks against six state-of-the-art (SOTA) LLMs. We
+also show that RLbreaker is robust against three SOTA defenses and its trained
+agents can transfer across different LLMs. We further validate the key design
+choices of RLbreaker via a comprehensive ablation study.},
+ arxiv_url = {https://arxiv.org/pdf/2406.08705v4.pdf},
+ author = {Xuan Chen and Yuzhou Nie and Wenbo Guo and Xiangyu Zhang},
+ github_url = {https://github.com/ucsb-mlsec/RLbreaker},
+ journal = {NeurIPS 2024},
+ title = {When LLM Meets DRL: Advancing Jailbreaking Efficiency via DRL-guided Search},
+ year = {2024}
+}
+
+@article{dong-2024-position,
+ abstract = {As Large Language Models (LLMs) become more integrated into our daily lives,
+it is crucial to identify and mitigate their risks, especially when the risks
+can have profound impacts on human users and societies. Guardrails, which
+filter the inputs or outputs of LLMs, have emerged as a core safeguarding
+technology. This position paper takes a deep look at current open-source
+solutions (Llama Guard, Nvidia NeMo, Guardrails AI), and discusses the
+challenges and the road towards building more complete solutions. Drawing on
+robust evidence from previous research, we advocate for a systematic approach
+to construct guardrails for LLMs, based on comprehensive consideration of
+diverse contexts across various LLMs applications. We propose employing
+socio-technical methods through collaboration with a multi-disciplinary team to
+pinpoint precise technical requirements, exploring advanced neural-symbolic
+implementations to embrace the complexity of the requirements, and developing
+verification and testing to ensure the utmost quality of the final product.},
+ arxiv_url = {https://arxiv.org/pdf/2402.01822v2.pdf},
+ author = {Yi Dong and Ronghui Mu and Gaojie Jin and Yi Qi and Jinwei Hu and Xingyu Zhao and Jie Meng and Wenjie Ruan and Xiaowei Huang},
+ title = {Position: Building Guardrails for Large Language Models Requires Systematic Design},
+ year = {2024}
+}
+
+@article{du-2024-mogu,
+ abstract = {Large Language Models (LLMs) are increasingly deployed in various
+applications. As their usage grows, concerns regarding their safety are rising,
+especially in maintaining harmless responses when faced with malicious
+instructions. Many defense strategies have been developed to enhance the safety
+of LLMs. However, our research finds that existing defense strategies lead LLMs
+to predominantly adopt a rejection-oriented stance, thereby diminishing the
+usability of their responses to benign instructions. To solve this problem, we
+introduce the MoGU framework, designed to enhance LLMs' safety while preserving
+their usability. Our MoGU framework transforms the base LLM into two variants:
+the usable LLM and the safe LLM, and further employs dynamic routing to balance
+their contribution. When encountering malicious instructions, the router will
+assign a higher weight to the safe LLM to ensure that responses are harmless.
+Conversely, for benign instructions, the router prioritizes the usable LLM,
+facilitating usable and helpful responses. On various open-sourced LLMs, we
+compare multiple defense strategies to verify the superiority of our MoGU
+framework. Besides, our analysis provides key insights into the effectiveness
+of MoGU and verifies that our designed routing mechanism can effectively
+balance the contribution of each variant by assigning weights. Our work
+released the safer Llama2, Vicuna, Falcon, Dolphin, and Baichuan2.},
+ arxiv_url = {https://arxiv.org/pdf/2405.14488v1.pdf},
+ author = {Yanrui Du and Sendong Zhao and Danyang Zhao and Ming Ma and Yuhan Chen and Liangyu Huo and Qing Yang and Dongliang Xu and Bing Qin},
+ github_url = {https://github.com/DYR1/MoGU},
+ title = {MoGU: A Framework for Enhancing Safety of LLMs While Preserving Their Usability},
+ year = {2024}
+}
+
+@article{duan-2023-flocks,
+ abstract = {Large language models (LLMs) are excellent in-context learners. However, the
+sensitivity of data contained in prompts raises privacy concerns. Our work
+first shows that these concerns are valid: we instantiate a simple but highly
+effective membership inference attack against the data used to prompt LLMs. To
+address this vulnerability, one could forego prompting and resort to
+fine-tuning LLMs with known algorithms for private gradient descent. However,
+this comes at the expense of the practicality and efficiency offered by
+prompting. Therefore, we propose to privately learn to prompt. We first show
+that soft prompts can be obtained privately through gradient descent on
+downstream data. However, this is not the case for discrete prompts. Thus, we
+orchestrate a noisy vote among an ensemble of LLMs presented with different
+prompts, i.e., a flock of stochastic parrots. The vote privately transfers the
+flock's knowledge into a single public prompt. We show that LLMs prompted with
+our private algorithms closely match the non-private baselines. For example,
+using GPT3 as the base model, we achieve a downstream accuracy of 92.7% on the
+sst2 dataset with ($\epsilon=0.147, \delta=10^{-6}$)-differential privacy vs.
+95.2% for the non-private baseline. Through our experiments, we also show that
+our prompt-based approach is easily deployed with existing commercial APIs.},
+ arxiv_url = {https://arxiv.org/pdf/2305.15594v1.pdf},
+ author = {Haonan Duan and Adam Dziedzic and Nicolas Papernot and Franziska Boenisch},
+ title = {Flocks of Stochastic Parrots: Differentially Private Prompt Learning for Large Language Models},
+ year = {2023}
+}
+
+@article{goren-2024-hierarchical,
+ abstract = {Deploying deep neural networks for risk-sensitive tasks necessitates an
+uncertainty estimation mechanism. This paper introduces hierarchical selective
+classification, extending selective classification to a hierarchical setting.
+Our approach leverages the inherent structure of class relationships, enabling
+models to reduce the specificity of their predictions when faced with
+uncertainty. In this paper, we first formalize hierarchical risk and coverage,
+and introduce hierarchical risk-coverage curves. Next, we develop algorithms
+for hierarchical selective classification (which we refer to as "inference
+rules"), and propose an efficient algorithm that guarantees a target accuracy
+constraint with high probability. Lastly, we conduct extensive empirical
+studies on over a thousand ImageNet classifiers, revealing that training
+regimes such as CLIP, pretraining on ImageNet21k and knowledge distillation
+boost hierarchical selective performance.},
+ arxiv_url = {https://arxiv.org/pdf/2405.11533v2.pdf},
+ author = {Shani Goren and Ido Galil and Ran El-Yaniv},
+ github_url = {https://github.com/shanigoren/Hierarchical-Selective-Classification},
+ title = {Hierarchical Selective Classification},
+ year = {2024}
+}
+
+@article{greenberg-2020-detecting,
+ abstract = {In many RL applications, once training ends, it is vital to detect any
+deterioration in the agent performance as soon as possible. Furthermore, it
+often has to be done without modifying the policy and under minimal assumptions
+regarding the environment. In this paper, we address this problem by focusing
+directly on the rewards and testing for degradation. We consider an episodic
+framework, where the rewards within each episode are not independent, nor
+identically-distributed, nor Markov. We present this problem as a multivariate
+mean-shift detection problem with possibly partial observations. We define the
+mean-shift in a way corresponding to deterioration of a temporal signal (such
+as the rewards), and derive a test for this problem with optimal statistical
+power. Empirically, on deteriorated rewards in control problems (generated
+using various environment modifications), the test is demonstrated to be more
+powerful than standard tests - often by orders of magnitude. We also suggest a
+novel Bootstrap mechanism for False Alarm Rate control (BFAR), applicable to
+episodic (non-i.i.d) signal and allowing our test to run sequentially in an
+online manner. Our method does not rely on a learned model of the environment,
+is entirely external to the agent, and in fact can be applied to detect changes
+or drifts in any episodic signal.},
+ arxiv_url = {https://arxiv.org/pdf/2010.11660v3.pdf},
+ author = {Ido Greenberg and Shie Mannor},
+ title = {Detecting Rewards Deterioration in Episodic Reinforcement Learning},
+ year = {2020}
+}
+
+@article{han-2024-wildguard,
+ abstract = {We introduce WildGuard -- an open, light-weight moderation tool for LLM
+safety that achieves three goals: (1) identifying malicious intent in user
+prompts, (2) detecting safety risks of model responses, and (3) determining
+model refusal rate. Together, WildGuard serves the increasing needs for
+automatic safety moderation and evaluation of LLM interactions, providing a
+one-stop tool with enhanced accuracy and broad coverage across 13 risk
+categories. While existing open moderation tools such as Llama-Guard2 score
+reasonably well in classifying straightforward model interactions, they lag far
+behind a prompted GPT-4, especially in identifying adversarial jailbreaks and
+in evaluating models' refusals, a key measure for evaluating safety behaviors
+in model responses.
+  To address these challenges, we construct WildGuardMix, a large-scale and
+carefully balanced multi-task safety moderation dataset with 92K labeled
+examples that cover vanilla (direct) prompts and adversarial jailbreaks, paired
+with various refusal and compliance responses. WildGuardMix is a combination of
+WildGuardTrain, the training data of WildGuard, and WildGuardTest, a
+high-quality human-annotated moderation test set with 5K labeled items covering
+broad risk scenarios. Through extensive evaluations on WildGuardTest and ten
+existing public benchmarks, we show that WildGuard establishes state-of-the-art
+performance in open-source safety moderation across all the three tasks
+compared to ten strong existing open-source moderation models (e.g., up to
+26.4% improvement on refusal detection). Importantly, WildGuard matches and
+sometimes exceeds GPT-4 performance (e.g., up to 3.9% improvement on prompt
+harmfulness identification). WildGuard serves as a highly effective safety
+moderator in an LLM interface, reducing the success rate of jailbreak attacks
+from 79.8% to 2.4%.},
+ arxiv_url = {https://arxiv.org/pdf/2406.18495v3.pdf},
+ author = {Seungju Han and Kavel Rao and Allyson Ettinger and Liwei Jiang and Bill Yuchen Lin and Nathan Lambert and Yejin Choi and Nouha Dziri},
+ github_url = {https://github.com/allenai/wildguard},
+ title = {WildGuard: Open One-stop Moderation Tools for Safety Risks, Jailbreaks, and Refusals of LLMs},
+ year = {2024}
+}
+
+@article{hu-2023-evoke,
+ abstract = {Large language models (LLMs) have made impressive progress in natural
+language processing. These models rely on proper human instructions (or
+prompts) to generate suitable responses. However, the potential of LLMs are not
+fully harnessed by commonly-used prompting methods: many human-in-the-loop
+algorithms employ ad-hoc procedures for prompt selection; while auto prompt
+generation approaches are essentially searching all possible prompts randomly
+and inefficiently. We propose Evoke, an automatic prompt refinement framework.
+In Evoke, there are two instances of a same LLM: one as a reviewer
+(LLM-Reviewer), it scores the current prompt; the other as an author
+(LLM-Author), it edits the prompt by considering the edit history and the
+reviewer's feedback. Such an author-reviewer feedback loop ensures that the
+prompt is refined in each iteration. We further aggregate a data selection
+approach to Evoke, where only the hard samples are exposed to the LLM. The hard
+samples are more important because the LLM can develop deeper understanding of
+the tasks out of them, while the model may already know how to solve the easier
+cases. Experimental results show that Evoke significantly outperforms existing
+methods. For instance, in the challenging task of logical fallacy detection,
+Evoke scores above 80, while all other baseline methods struggle to reach 20.},
+ arxiv_url = {https://arxiv.org/pdf/2310.13855v1.pdf},
+ author = {Xinyu Hu and Pengfei Tang and Simiao Zuo and Zihan Wang and Bowen Song and Qiang Lou and Jian Jiao and Denis Charles},
+ title = {Evoke: Evoking Critical Thinking Abilities in LLMs via Reviewer-Author Prompt Editing},
+ year = {2023}
+}
+
+@article{hu-2024-localized,
+ abstract = {The efficacy of large language models (LLMs) in understanding and generating
+natural language has aroused a wide interest in developing prompt-based methods
+to harness the power of black-box LLMs. Existing methodologies usually
+prioritize a global optimization for finding the global optimum, which however
+will perform poorly in certain tasks. This thus motivates us to re-think the
+necessity of finding a global optimum in prompt optimization. To answer this,
+we conduct a thorough empirical study on prompt optimization and draw two major
+insights. Contrasting with the rarity of global optimum, local optima are
+usually prevalent and well-performed, which can be more worthwhile for
+efficient prompt optimization (Insight I). The choice of the input domain,
+covering both the generation and the representation of prompts, affects the
+identification of well-performing local optima (Insight II). Inspired by these
+insights, we propose a novel algorithm, namely localized zeroth-order prompt
+optimization (ZOPO), which incorporates a Neural Tangent Kernel-based derived
+Gaussian process into standard zeroth-order optimization for an efficient
+search of well-performing local optima in prompt optimization. Remarkably, ZOPO
+outperforms existing baselines in terms of both the optimization performance
+and the query efficiency, which we demonstrate through extensive experiments.},
+ arxiv_url = {https://arxiv.org/pdf/2403.02993v1.pdf},
+ author = {Wenyang Hu and Yao Shu and Zongmin Yu and Zhaoxuan Wu and Xiangqiang Lin and Zhongxiang Dai and See-Kiong Ng and Bryan Kian Hsiang Low},
+ title = {Localized Zeroth-Order Prompt Optimization},
+ year = {2024}
+}
+
+@article{hu-2024-toxicity,
+ abstract = {Current LLMs are generally aligned to follow safety requirements and tend to
+refuse toxic prompts. However, LLMs can fail to refuse toxic prompts or be
+overcautious and refuse benign examples. In addition, state-of-the-art toxicity
+detectors have low TPRs at low FPR, incurring high costs in real-world
+applications where toxic examples are rare. In this paper, we introduce
+Moderation Using LLM Introspection (MULI), which detects toxic prompts using
+the information extracted directly from LLMs themselves. We found we can
+distinguish between benign and toxic prompts from the distribution of the first
+response token's logits. Using this idea, we build a robust detector of toxic
+prompts using a sparse logistic regression model on the first response token
+logits. Our scheme outperforms SOTA detectors under multiple metrics.},
+ arxiv_url = {https://arxiv.org/pdf/2405.18822v2.pdf},
+ author = {Zhanhao Hu and Julien Piet and Geng Zhao and Jiantao Jiao and David Wagner},
+ github_url = {https://github.com/WhoTHU/detection_logits},
+ title = {Toxicity Detection for Free},
+ year = {2024}
+}
+
+@article{lang-2022-training,
+ abstract = {We demonstrate that co-training (Blum & Mitchell, 1998) can improve the
+performance of prompt-based learning by using unlabeled data. While prompting
+has emerged as a promising paradigm for few-shot and zero-shot learning, it is
+often brittle and requires much larger models compared to the standard
+supervised setup. We find that co-training makes it possible to improve the
+original prompt model and at the same time learn a smaller, downstream
+task-specific model. In the case where we only have partial access to a prompt
+model (e.g., output probabilities from GPT-3 (Brown et al., 2020)) we learn a
+calibration model over the prompt outputs. When we have full access to the
+prompt model's gradients but full finetuning remains prohibitively expensive
+(e.g., T0 (Sanh et al., 2021)), we learn a set of soft prompt continuous
+vectors to iteratively update the prompt model. We find that models trained in
+this manner can significantly improve performance on challenging datasets where
+there is currently a large gap between prompt-based learning and
+fully-supervised models.},
+ arxiv_url = {https://arxiv.org/pdf/2202.00828v1.pdf},
+ author = {Hunter Lang and Monica Agrawal and Yoon Kim and David Sontag},
+ title = {Co-training Improves Prompt-based Learning for Large Language Models},
+ year = {2022}
+}
+
+@article{li-2024-improved,
+ abstract = {Adversarial prompts generated using gradient-based methods exhibit
+outstanding performance in performing automatic jailbreak attacks against
+safety-aligned LLMs. Nevertheless, due to the discrete nature of texts, the
+input gradient of LLMs struggles to precisely reflect the magnitude of loss
+change that results from token replacements in the prompt, leading to limited
+attack success rates against safety-aligned LLMs, even in the white-box
+setting. In this paper, we explore a new perspective on this problem,
+suggesting that it can be alleviated by leveraging innovations inspired in
+transfer-based attacks that were originally proposed for attacking black-box
+image classification models. For the first time, we appropriate the ideologies
+of effective methods among these transfer-based attacks, i.e., Skip Gradient
+Method and Intermediate Level Attack, into gradient-based adversarial prompt
+generation and achieve significant performance gains without introducing
+obvious computational cost. Meanwhile, by discussing mechanisms behind the
+gains, new insights are drawn, and proper combinations of these methods are
+also developed. Our empirical results show that 87% of the query-specific
+adversarial suffixes generated by the developed combination can induce
+Llama-2-7B-Chat to produce the output that exactly matches the target string on
+AdvBench. This match rate is 33% higher than that of a very strong baseline
+known as GCG, demonstrating advanced discrete optimization for adversarial
+prompt generation against LLMs. In addition, without introducing obvious cost,
+the combination achieves >30% absolute increase in attack success rates
+compared with GCG when generating both query-specific (38% -> 68%) and
+universal adversarial prompts (26.68% -> 60.32%) for attacking the
+Llama-2-7B-Chat model on AdvBench. Code at:
+https://github.com/qizhangli/Gradient-based-Jailbreak-Attacks.},
+ arxiv_url = {https://arxiv.org/pdf/2405.20778v2.pdf},
+ author = {Qizhang Li and Yiwen Guo and Wangmeng Zuo and Hao Chen},
+ title = {Improved Generation of Adversarial Examples Against Safety-aligned LLMs},
+ year = {2024}
+}
+
+@article{liu-2023-autodan,
+ abstract = {The aligned Large Language Models (LLMs) are powerful language understanding
+and decision-making tools that are created through extensive alignment with
+human feedback. However, these large models remain susceptible to jailbreak
+attacks, where adversaries manipulate prompts to elicit malicious outputs that
+should not be given by aligned LLMs. Investigating jailbreak prompts can lead
+us to delve into the limitations of LLMs and further guide us to secure them.
+Unfortunately, existing jailbreak techniques suffer from either (1) scalability
+issues, where attacks heavily rely on manual crafting of prompts, or (2)
+stealthiness problems, as attacks depend on token-based algorithms to generate
+prompts that are often semantically meaningless, making them susceptible to
+detection through basic perplexity testing. In light of these challenges, we
+intend to answer this question: Can we develop an approach that can
+automatically generate stealthy jailbreak prompts? In this paper, we introduce
+AutoDAN, a novel jailbreak attack against aligned LLMs. AutoDAN can
+automatically generate stealthy jailbreak prompts by the carefully designed
+hierarchical genetic algorithm. Extensive evaluations demonstrate that AutoDAN
+not only automates the process while preserving semantic meaningfulness, but
+also demonstrates superior attack strength in cross-model transferability, and
+cross-sample universality compared with the baseline. Moreover, we also compare
+AutoDAN with perplexity-based defense methods and show that AutoDAN can bypass
+them effectively.},
+ arxiv_url = {https://arxiv.org/pdf/2310.04451v2.pdf},
+ author = {Xiaogeng Liu and Nan Xu and Muhao Chen and Chaowei Xiao},
+ github_url = {https://github.com/SheltonLiu-N/AutoDAN},
+ title = {AutoDAN: Generating Stealthy Jailbreak Prompts on Aligned Large Language Models},
+ year = {2023}
+}
+
+@article{liu-2024-protecting,
+ abstract = {The advent of large language models (LLMs) has revolutionized the field of
+natural language processing, yet they might be attacked to produce harmful
+content. Despite efforts to ethically align LLMs, these are often fragile and
+can be circumvented by jailbreaking attacks through optimized or manual
+adversarial prompts. To address this, we introduce the Information Bottleneck
+Protector (IBProtector), a defense mechanism grounded in the information
+bottleneck principle, and we modify the objective to avoid trivial solutions.
+The IBProtector selectively compresses and perturbs prompts, facilitated by a
+lightweight and trainable extractor, preserving only essential information for
+the target LLMs to respond with the expected answer. Moreover, we further
+consider a situation where the gradient is not visible to be compatible with
+any LLM. Our empirical evaluations show that IBProtector outperforms current
+defense methods in mitigating jailbreak attempts, without overly affecting
+response quality or inference speed. Its effectiveness and adaptability across
+various attack methods and target LLMs underscore the potential of IBProtector
+as a novel, transferable defense that bolsters the security of LLMs without
+requiring modifications to the underlying models.},
+ arxiv_url = {https://arxiv.org/pdf/2404.13968v3.pdf},
+ author = {Zichuan Liu and Zefan Wang and Linjie Xu and Jinyu Wang and Lei Song and Tianchun Wang and Chunlin Chen and Wei Cheng and Jiang Bian},
+ github_url = {https://github.com/zichuan-liu/IB4LLMs},
+ title = {Protecting Your LLMs with Information Bottleneck},
+ year = {2024}
+}
+
+@article{ma-2023-fairness,
+ abstract = {Large language models have demonstrated surprising ability to perform
+in-context learning, i.e., these models can be directly applied to solve
+numerous downstream tasks by conditioning on a prompt constructed by a few
+input-output examples. However, prior research has shown that in-context
+learning can suffer from high instability due to variations in training
+examples, example order, and prompt formats. Therefore, the construction of an
+appropriate prompt is essential for improving the performance of in-context
+learning. In this paper, we revisit this problem from the view of predictive
+bias. Specifically, we introduce a metric to evaluate the predictive bias of a
+fixed prompt against labels or a given attributes. Then we empirically show
+that prompts with higher bias always lead to unsatisfactory predictive quality.
+Based on this observation, we propose a novel search strategy based on the
+greedy search to identify the near-optimal prompt for improving the performance
+of in-context learning. We perform comprehensive experiments with
+state-of-the-art mainstream models such as GPT-3 on various downstream tasks.
+Our results indicate that our method can enhance the model's in-context
+learning performance in an effective and interpretable manner.},
+ arxiv_url = {https://arxiv.org/pdf/2303.13217v3.pdf},
+ author = {Huan Ma and Changqing Zhang and Yatao Bian and Lemao Liu and Zhirui Zhang and Peilin Zhao and Shu Zhang and Huazhu Fu and Qinghua Hu and Bingzhe Wu},
+ title = {Fairness-guided Few-shot Prompting for Large Language Models},
+ year = {2023}
+}
+
+@article{ma-2023-rethinking,
+ abstract = {Decision Transformer (DT) is an innovative algorithm leveraging recent
+advances of the transformer architecture in reinforcement learning (RL).
+However, a notable limitation of DT is its reliance on recalling trajectories
+from datasets, losing the capability to seamlessly stitch sub-optimal
+trajectories together. In this work we introduce a general sequence modeling
+framework for studying sequential decision making through the lens of
+Hierarchical RL. At the time of making decisions, a high-level policy first
+proposes an ideal prompt for the current state, a low-level policy subsequently
+generates an action conditioned on the given prompt. We show DT emerges as a
+special case of this framework with certain choices of high-level and low-level
+policies, and discuss the potential failure of these choices. Inspired by these
+observations, we study how to jointly optimize the high-level and low-level
+policies to enable the stitching ability, which further leads to the
+development of new offline RL algorithms. Our empirical results clearly show
+that the proposed algorithms significantly surpass DT on several control and
+navigation benchmarks. We hope our contributions can inspire the integration of
+transformer architectures within the field of RL.},
+ arxiv_url = {https://arxiv.org/pdf/2311.00267v1.pdf},
+ author = {Yi Ma and Chenjun Xiao and Hebin Liang and Jianye Hao},
+ title = {Rethinking Decision Transformer via Hierarchical Reinforcement Learning},
+ year = {2023}
+}
+
+@article{mo-2024-fight,
+ abstract = {While Large Language Models (LLMs) have achieved tremendous success in
+various applications, they are also susceptible to jailbreaking attacks.
+Several primary defense strategies have been proposed to protect LLMs from
+producing harmful information, mostly focusing on model fine-tuning or
+heuristical defense designs. However, how to achieve intrinsic robustness
+through prompt optimization remains an open problem. In this paper, motivated
+by adversarial training paradigms for achieving reliable robustness, we propose
+an approach named Prompt Adversarial Tuning (PAT) that trains a prompt control
+attached to the user prompt as a guard prefix. To achieve our defense goal
+whilst maintaining natural performance, we optimize the control prompt with
+both adversarial and benign prompts. Comprehensive experiments show that our
+method is effective against both grey-box and black-box attacks, reducing the
+success rate of advanced attacks to nearly 0%, while maintaining the model's
+utility on the benign task and incurring only negligible computational
+overhead, charting a new perspective for future explorations in LLM security.
+Our code is available at https://github.com/PKU-ML/PAT.},
+ arxiv_url = {https://arxiv.org/pdf/2402.06255v4.pdf},
+ author = {Yichuan Mo and Yuji Wang and Zeming Wei and Yisen Wang},
+ github_url = {https://github.com/PKU-ML/PAT},
+ title = {Fight Back Against Jailbreaking via Prompt Adversarial Tuning},
+ year = {2024}
+}
+
+@article{nie-2024-online,
+ abstract = {Large Language Models (LLMs) have a natural role in answering complex queries
+about data streams, but the high computational cost of LLM inference makes them
+infeasible in many such tasks. We propose online cascade learning, the first
+approach to address this challenge. The objective here is to learn a "cascade"
+of models, starting with lower-capacity models (such as logistic regression)
+and ending with a powerful LLM, along with a deferral policy that determines
+the model to be used on a given input. We formulate the task of learning
+cascades online as an imitation-learning problem, where smaller models are
+updated over time imitating the collected LLM demonstrations, and give a
+no-regret algorithm for the problem. Experimental results across four
+benchmarks show that our method parallels LLMs in accuracy while cutting down
+inference costs by as much as 90% with strong robustness against input
+distribution shifts, underscoring its efficacy and adaptability in stream
+processing.},
+ arxiv_url = {https://arxiv.org/pdf/2402.04513v3.pdf},
+ author = {Lunyiu Nie and Zhimin Ding and Erdong Hu and Christopher Jermaine and Swarat Chaudhuri},
+ title = {Online Cascade Learning for Efficient Inference over Streams},
+ year = {2024}
+}
+
+@article{novack-2023-chils,
+ abstract = {Open vocabulary models (e.g. CLIP) have shown strong performance on zero-shot
+classification through their ability generate embeddings for each class based
+on their (natural language) names. Prior work has focused on improving the
+accuracy of these models through prompt engineering or by incorporating a small
+amount of labeled downstream data (via finetuning). However, there has been
+little focus on improving the richness of the class names themselves, which can
+pose issues when class labels are coarsely-defined and are uninformative. We
+propose Classification with Hierarchical Label Sets (or CHiLS), an alternative
+strategy for zero-shot classification specifically designed for datasets with
+implicit semantic hierarchies. CHiLS proceeds in three steps: (i) for each
+class, produce a set of subclasses, using either existing label hierarchies or
+by querying GPT-3; (ii) perform the standard zero-shot CLIP procedure as though
+these subclasses were the labels of interest; (iii) map the predicted subclass
+back to its parent to produce the final prediction. Across numerous datasets
+with underlying hierarchical structure, CHiLS leads to improved accuracy in
+situations both with and without ground-truth hierarchical information. CHiLS
+is simple to implement within existing zero-shot pipelines and requires no
+additional training cost. Code is available at:
+https://github.com/acmi-lab/CHILS.},
+ arxiv_url = {https://arxiv.org/pdf/2302.02551v3.pdf},
+ author = {Zachary Novack and Julian McAuley and Zachary C. Lipton and Saurabh Garg},
+ title = {CHiLS: Zero-Shot Image Classification with Hierarchical Label Sets},
+ year = {2023}
+}
+
+@article{park-2024-any,
+ abstract = {Recently, considerable efforts have been directed towards compressing Large
+Language Models (LLMs), which showcase groundbreaking capabilities across
+diverse applications but entail significant deployment costs due to their large
+sizes. Meanwhile, much less attention has been given to mitigating the costs
+associated with deploying multiple LLMs of varying sizes despite its practical
+significance. Thus, this paper introduces \emph{any-precision LLM}, extending
+the concept of any-precision DNN to LLMs. Addressing challenges in
+any-precision LLM, we propose a lightweight method for any-precision
+quantization of LLMs, leveraging a post-training quantization framework, and
+develop a specialized software engine for its efficient serving. As a result,
+our solution significantly reduces the high costs of deploying multiple,
+different-sized LLMs by overlaying LLMs quantized to varying bit-widths, such
+as 3, 4, ..., $n$ bits, into a memory footprint comparable to a single $n$-bit
+LLM. All the supported LLMs with varying bit-widths demonstrate
+state-of-the-art model quality and inference throughput, proving itself to be a
+compelling option for deployment of multiple, different-sized LLMs. Our code is
+open-sourced and available online.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10517v4.pdf},
+ author = {Yeonhong Park and Jake Hyun and SangLyul Cho and Bonggeun Sim and Jae W. Lee},
+ title = {Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs},
+ year = {2024}
+}
+
+@article{rakotonirina-2023-can,
+ abstract = {We study whether automatically-induced prompts that effectively extract
+information from a language model can also be used, out-of-the-box, to probe
+other language models for the same information. After confirming that discrete
+prompts induced with the AutoPrompt algorithm outperform manual and semi-manual
+prompts on the slot-filling task, we demonstrate a drop in performance for
+AutoPrompt prompts learned on a model and tested on another. We introduce a way
+to induce prompts by mixing language models at training time that results in
+prompts that generalize well across models. We conduct an extensive analysis of
+the induced prompts, finding that the more general prompts include a larger
+proportion of existing English words and have a less order-dependent and more
+uniform distribution of information across their component tokens. Our work
+provides preliminary evidence that it's possible to generate discrete prompts
+that can be induced once and used with a number of different models, and gives
+insights on the properties characterizing such prompts.},
+ arxiv_url = {https://arxiv.org/pdf/2302.09865v2.pdf},
+ author = {Nathanaël Carraz Rakotonirina and Roberto Dessì and Fabio Petroni and Sebastian Riedel and Marco Baroni},
+ title = {Can discrete information extraction prompts generalize across language models?},
+ year = {2023}
+}
+
+@article{rando-2023-universal,
+ abstract = {Reinforcement Learning from Human Feedback (RLHF) is used to align large
+language models to produce helpful and harmless responses. Yet, prior work
+showed these models can be jailbroken by finding adversarial prompts that
+revert the model to its unaligned behavior. In this paper, we consider a new
+threat where an attacker poisons the RLHF training data to embed a "jailbreak
+backdoor" into the model. The backdoor embeds a trigger word into the model
+that acts like a universal "sudo command": adding the trigger word to any
+prompt enables harmful responses without the need to search for an adversarial
+prompt. Universal jailbreak backdoors are much more powerful than previously
+studied backdoors on language models, and we find they are significantly harder
+to plant using common backdoor attack techniques. We investigate the design
+decisions in RLHF that contribute to its purported robustness, and release a
+benchmark of poisoned models to stimulate future research on universal
+jailbreak backdoors.},
+ arxiv_url = {https://arxiv.org/pdf/2311.14455v4.pdf},
+ author = {Javier Rando and Florian Tramèr},
+ github_url = {https://github.com/ethz-spylab/rlhf-poisoning},
+ title = {Universal Jailbreak Backdoors from Poisoned Human Feedback},
+ year = {2023}
+}
+
+@article{shen-2021-backdoor,
+ abstract = {Back-door attack poses a severe threat to deep learning systems. It injects
+hidden malicious behaviors to a model such that any input stamped with a
+special pattern can trigger such behaviors. Detecting back-door is hence of
+pressing need. Many existing defense techniques use optimization to generate
+the smallest input pattern that forces the model to misclassify a set of benign
+inputs injected with the pattern to a target label. However, the complexity is
+quadratic to the number of class labels such that they can hardly handle models
+with many classes. Inspired by Multi-Arm Bandit in Reinforcement Learning, we
+propose a K-Arm optimization method for backdoor detection. By iteratively and
+stochastically selecting the most promising labels for optimization with the
+guidance of an objective function, we substantially reduce the complexity,
+allowing to handle models with many classes. Moreover, by iteratively refining
+the selection of labels to optimize, it substantially mitigates the uncertainty
+in choosing the right labels, improving detection accuracy. At the time of
+submission, the evaluation of our method on over 4000 models in the IARPA
+TrojAI competition from round 1 to the latest round 4 achieves top performance
+on the leaderboard. Our technique also supersedes three state-of-the-art
+techniques in terms of accuracy and the scanning time needed.},
+ arxiv_url = {https://arxiv.org/pdf/2102.05123v3.pdf},
+ author = {Guangyu Shen and Yingqi Liu and Guanhong Tao and Shengwei An and Qiuling Xu and Siyuan Cheng and Shiqing Ma and Xiangyu Zhang},
+ title = {Backdoor Scanning for Deep Neural Networks through K-Arm Optimization},
+ year = {2021}
+}
+
+@article{shi-2024-efficient,
+ abstract = {The remarkable instruction-following capability of large language models
+(LLMs) has sparked a growing interest in automatically finding good prompts,
+i.e., prompt optimization. Most existing works follow the scheme of selecting
+from a pre-generated pool of candidate prompts. However, these designs mainly
+focus on the generation strategy, while limited attention has been paid to the
+selection method. Especially, the cost incurred during the selection (e.g.,
+accessing LLM and evaluating the responses) is rarely explicitly considered. To
+overcome this limitation, this work provides a principled framework, TRIPLE, to
+efficiently perform prompt selection under an explicit budget constraint.
+TRIPLE is built on a novel connection established between prompt optimization
+and fixed-budget best arm identification (BAI-FB) in multi-armed bandits (MAB);
+thus, it is capable of leveraging the rich toolbox from BAI-FB systematically
+and also incorporating unique characteristics of prompt optimization. Extensive
+experiments on multiple well-adopted tasks using various LLMs demonstrate the
+remarkable performance improvement of TRIPLE over baselines while satisfying
+the limited budget constraints. As an extension, variants of TRIPLE are
+proposed to efficiently select examples for few-shot prompts, also achieving
+superior empirical performance.},
+ arxiv_url = {https://arxiv.org/pdf/2402.09723v3.pdf},
+ author = {Chengshuai Shi and Kun Yang and Zihan Chen and Jundong Li and Jing Yang and Cong Shen},
+ title = {Efficient Prompt Optimization Through the Lens of Best Arm Identification},
+ year = {2024}
+}
+
+@article{souly-2024-strongreject,
+ abstract = {Most jailbreak papers claim the jailbreaks they propose are highly effective,
+often boasting near-100% attack success rates. However, it is perhaps more
+common than not for jailbreak developers to substantially exaggerate the
+effectiveness of their jailbreaks. We suggest this problem arises because
+jailbreak researchers lack a standard, high-quality benchmark for evaluating
+jailbreak performance, leaving researchers to create their own. To create a
+benchmark, researchers must choose a dataset of forbidden prompts to which a
+victim model will respond, along with an evaluation method that scores the
+harmfulness of the victim model's responses. We show that existing benchmarks
+suffer from significant shortcomings and introduce the StrongREJECT benchmark
+to address these issues. StrongREJECT's dataset contains prompts that victim
+models must answer with specific, harmful information, while its automated
+evaluator measures the extent to which a response gives useful information to
+forbidden prompts. In doing so, the StrongREJECT evaluator achieves
+state-of-the-art agreement with human judgments of jailbreak effectiveness.
+Notably, we find that existing evaluation methods significantly overstate
+jailbreak effectiveness compared to human judgments and the StrongREJECT
+evaluator. We describe a surprising and novel phenomenon that explains this
+discrepancy: jailbreaks bypassing a victim model's safety fine-tuning tend to
+reduce its capabilities. Together, our findings underscore the need for
+researchers to use a high-quality benchmark, such as StrongREJECT, when
+developing new jailbreak attacks. We release the StrongREJECT code and data at
+https://strong-reject.readthedocs.io/en/latest/.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10260v2.pdf},
+ author = {Alexandra Souly and Qingyuan Lu and Dillon Bowen and Tu Trinh and Elvis Hsieh and Sana Pandey and Pieter Abbeel and Justin Svegliato and Scott Emmons and Olivia Watkins and Sam Toyer},
+ title = {A StrongREJECT for Empty Jailbreaks},
+ year = {2024}
+}
+
+@article{wang-2023-transhp,
+ abstract = {This paper explores a hierarchical prompting mechanism for the hierarchical
+image classification (HIC) task. Different from prior HIC methods, our
+hierarchical prompting is the first to explicitly inject ancestor-class
+information as a tokenized hint that benefits the descendant-class
+discrimination. We think it well imitates human visual recognition, i.e.,
+humans may use the ancestor class as a prompt to draw focus on the subtle
+differences among descendant classes. We model this prompting mechanism into a
+Transformer with Hierarchical Prompting (TransHP). TransHP consists of three
+steps: 1) learning a set of prompt tokens to represent the coarse (ancestor)
+classes, 2) on-the-fly predicting the coarse class of the input image at an
+intermediate block, and 3) injecting the prompt token of the predicted coarse
+class into the intermediate feature. Though the parameters of TransHP maintain
+the same for all input images, the injected coarse-class prompt conditions
+(modifies) the subsequent feature extraction and encourages a dynamic focus on
+relatively subtle differences among the descendant classes. Extensive
+experiments show that TransHP improves image classification on accuracy (e.g.,
+improving ViT-B/16 by +2.83% ImageNet classification accuracy), training data
+efficiency (e.g., +12.69% improvement under 10% ImageNet training data), and
+model explainability. Moreover, TransHP also performs favorably against prior
+HIC methods, showing that TransHP well exploits the hierarchical information.
+The code is available at: https://github.com/WangWenhao0716/TransHP.},
+ arxiv_url = {https://arxiv.org/pdf/2304.06385v5.pdf},
+ author = {Wenhao Wang and Yifan Sun and Wei Li and Yi Yang},
+ github_url = {https://github.com/WangWenhao0716/TransHP},
+ title = {TransHP: Image Classification with Hierarchical Prompting},
+ year = {2023}
+}
+
+@article{wen-2023-hard,
+ abstract = {The strength of modern generative models lies in their ability to be
+controlled through text-based prompts. Typical "hard" prompts are made from
+interpretable words and tokens, and must be hand-crafted by humans. There are
+also "soft" prompts, which consist of continuous feature vectors. These can be
+discovered using powerful optimization methods, but they cannot be easily
+interpreted, re-used across models, or plugged into a text-based interface.
+  We describe an approach to robustly optimize hard text prompts through
+efficient gradient-based optimization. Our approach automatically generates
+hard text-based prompts for both text-to-image and text-to-text applications.
+In the text-to-image setting, the method creates hard prompts for diffusion
+models, allowing API users to easily generate, discover, and mix and match
+image concepts without prior knowledge on how to prompt the model. In the
+text-to-text setting, we show that hard prompts can be automatically discovered
+that are effective in tuning LMs for classification.},
+ arxiv_url = {https://arxiv.org/pdf/2302.03668v2.pdf},
+ author = {Yuxin Wen and Neel Jain and John Kirchenbauer and Micah Goldblum and Jonas Geiping and Tom Goldstein},
+ title = {Hard Prompts Made Easy: Gradient-Based Discrete Optimization for Prompt Tuning and Discovery},
+ year = {2023}
+}
+
+@article{wu-2023-protect,
+ abstract = {Visual-language foundation models, like CLIP, learn generalized
+representations that enable zero-shot open-set classification. Few-shot
+adaptation methods, based on prompt tuning, have been shown to further improve
+performance on downstream datasets. However, these methods do not fare well in
+the taxonomic open set (TOS) setting, where the classifier is asked to make
+predictions from label sets across different levels of semantic granularity.
+Frequently, they infer incorrect labels at coarser taxonomic class levels, even
+when the inference at the leaf level (original class labels) is correct. To
+address this problem, we propose a prompt tuning technique that calibrates the
+hierarchical consistency of model predictions. A set of metrics of hierarchical
+consistency, the Hierarchical Consistent Accuracy (HCA) and the Mean Treecut
+Accuracy (MTA), are first proposed to evaluate TOS model performance. A new
+Prompt Tuning for Hierarchical Consistency (ProTeCt) technique is then proposed
+to calibrate classification across label set granularities. Results show that
+ProTeCt can be combined with existing prompt tuning methods to significantly
+improve TOS classification without degrading the leaf level classification
+performance.},
+ arxiv_url = {https://arxiv.org/pdf/2306.02240v2.pdf},
+ author = {Tz-Ying Wu and Chih-Hui Ho and Nuno Vasconcelos},
+ github_url = {https://github.com/gina9726/ProTeCt},
+ title = {ProTeCt: Prompt Tuning for Taxonomic Open Set Classification},
+ year = {2023}
+}
+
+@article{xiang-2023-cbd,
+ abstract = {Backdoor attack is a common threat to deep neural networks. During testing,
+samples embedded with a backdoor trigger will be misclassified as an
+adversarial target by a backdoored model, while samples without the backdoor
+trigger will be correctly classified. In this paper, we present the first
+certified backdoor detector (CBD), which is based on a novel, adjustable
+conformal prediction scheme based on our proposed statistic local dominant
+probability. For any classifier under inspection, CBD provides 1) a detection
+inference, 2) the condition under which the attacks are guaranteed to be
+detectable for the same classification domain, and 3) a probabilistic upper
+bound for the false positive rate. Our theoretical results show that attacks
+with triggers that are more resilient to test-time noise and have smaller
+perturbation magnitudes are more likely to be detected with guarantees.
+Moreover, we conduct extensive experiments on four benchmark datasets
+considering various backdoor types, such as BadNet, CB, and Blend. CBD achieves
+comparable or even higher detection accuracy than state-of-the-art detectors,
+and it in addition provides detection certification. Notably, for backdoor
+attacks with random perturbation triggers bounded by $\ell_2\leq0.75$ which
+achieves more than 90\% attack success rate, CBD achieves 100\% (98\%), 100\%
+(84\%), 98\% (98\%), and 72\% (40\%) empirical (certified) detection true
+positive rates on the four benchmark datasets GTSRB, SVHN, CIFAR-10, and
+TinyImageNet, respectively, with low false positive rates.},
+ arxiv_url = {https://arxiv.org/pdf/2310.17498v2.pdf},
+ author = {Zhen Xiang and Zidi Xiong and Bo Li},
+ github_url = {https://github.com/zhenxianglance/CBD},
+ title = {CBD: A Certified Backdoor Detector Based on Local Dominant Probability},
+ year = {2023}
+}
+
+@article{xiang-2024-badchain,
+ abstract = {Large language models (LLMs) are shown to benefit from chain-of-thought (COT)
+prompting, particularly when tackling tasks that require systematic reasoning
+processes. On the other hand, COT prompting also poses new vulnerabilities in
+the form of backdoor attacks, wherein the model will output unintended
+malicious content under specific backdoor-triggered conditions during
+inference. Traditional methods for launching backdoor attacks involve either
+contaminating the training dataset with backdoored instances or directly
+manipulating the model parameters during deployment. However, these approaches
+are not practical for commercial LLMs that typically operate via API access. In
+this paper, we propose BadChain, the first backdoor attack against LLMs
+employing COT prompting, which does not require access to the training dataset
+or model parameters and imposes low computational overhead. BadChain leverages
+the inherent reasoning capabilities of LLMs by inserting a backdoor reasoning
+step into the sequence of reasoning steps of the model output, thereby altering
+the final response when a backdoor trigger exists in the query prompt.
+Empirically, we show the effectiveness of BadChain for two COT strategies
+across four LLMs (Llama2, GPT-3.5, PaLM2, and GPT-4) and six complex benchmark
+tasks encompassing arithmetic, commonsense, and symbolic reasoning. Moreover,
+we show that LLMs endowed with stronger reasoning capabilities exhibit higher
+susceptibility to BadChain, exemplified by a high average attack success rate
+of 97.0% across the six benchmark tasks on GPT-4. Finally, we propose two
+defenses based on shuffling and demonstrate their overall ineffectiveness
+against BadChain. Therefore, BadChain remains a severe threat to LLMs,
+underscoring the urgency for the development of robust and effective future
+defenses.},
+ arxiv_url = {https://arxiv.org/pdf/2401.12242v1.pdf},
+ author = {Zhen Xiang and Fengqing Jiang and Zidi Xiong and Bhaskar Ramasubramanian and Radha Poovendran and Bo Li},
+ github_url = {https://github.com/Django-Jiang/BadChain},
+ title = {BadChain: Backdoor Chain-of-Thought Prompting for Large Language Models},
+ year = {2024}
+}
+
+@article{xu-2023-llm,
+ abstract = {The wide-ranging applications of large language models (LLMs), especially in
+safety-critical domains, necessitate the proper evaluation of the LLM's
+adversarial robustness. This paper proposes an efficient tool to audit the
+LLM's adversarial robustness via a prompt-based adversarial attack
+(PromptAttack). PromptAttack converts adversarial textual attacks into an
+attack prompt that can cause the victim LLM to output the adversarial sample to
+fool itself. The attack prompt is composed of three important components: (1)
+original input (OI) including the original sample and its ground-truth label,
+(2) attack objective (AO) illustrating a task description of generating a new
+sample that can fool itself without changing the semantic meaning, and (3)
+attack guidance (AG) containing the perturbation instructions to guide the LLM
+on how to complete the task by perturbing the original sample at character,
+word, and sentence levels, respectively. Besides, we use a fidelity filter to
+ensure that PromptAttack maintains the original semantic meanings of the
+adversarial examples. Further, we enhance the attack power of PromptAttack by
+ensembling adversarial examples at different perturbation levels. Comprehensive
+empirical results using Llama2 and GPT-3.5 validate that PromptAttack
+consistently yields a much higher attack success rate compared to AdvGLUE and
+AdvGLUE++. Interesting findings include that a simple emoji can easily mislead
+GPT-3.5 to make wrong predictions.},
+ arxiv_url = {https://arxiv.org/pdf/2310.13345v1.pdf},
+ author = {Xilie Xu and Keyi Kong and Ning Liu and Lizhen Cui and Di Wang and Jingfeng Zhang and Mohan Kankanhalli},
+ github_url = {https://github.com/zhuchen03/FreeLB},
+ title = {An LLM can Fool Itself: A Prompt-Based Adversarial Attack},
+ year = {2023}
+}
+
+@article{yan-2023-parafuzz,
+ abstract = {Backdoor attacks have emerged as a prominent threat to natural language
+processing (NLP) models, where the presence of specific triggers in the input
+can lead poisoned models to misclassify these inputs to predetermined target
+classes. Current detection mechanisms are limited by their inability to address
+more covert backdoor strategies, such as style-based attacks. In this work, we
+propose an innovative test-time poisoned sample detection framework that hinges
+on the interpretability of model predictions, grounded in the semantic meaning
+of inputs. We contend that triggers (e.g., infrequent words) are not supposed
+to fundamentally alter the underlying semantic meanings of poisoned samples as
+they want to stay stealthy. Based on this observation, we hypothesize that
+while the model's predictions for paraphrased clean samples should remain
+stable, predictions for poisoned samples should revert to their true labels
+upon the mutations applied to triggers during the paraphrasing process. We
+employ ChatGPT, a state-of-the-art large language model, as our paraphraser and
+formulate the trigger-removal task as a prompt engineering problem. We adopt
+fuzzing, a technique commonly used for unearthing software vulnerabilities, to
+discover optimal paraphrase prompts that can effectively eliminate triggers
+while concurrently maintaining input semantics. Experiments on 4 types of
+backdoor attacks, including the subtle style backdoors, and 4 distinct datasets
+demonstrate that our approach surpasses baseline methods, including STRIP, RAP,
+and ONION, in precision and recall.},
+ arxiv_url = {https://arxiv.org/pdf/2308.02122v2.pdf},
+ author = {Lu Yan and Zhuo Zhang and Guanhong Tao and Kaiyuan Zhang and Xuan Chen and Guangyu Shen and Xiangyu Zhang},
+ title = {ParaFuzz: An Interpretability-Driven Technique for Detecting Poisoned Samples in NLP},
+ year = {2023}
+}
+
+@article{yuan-2024-rigorllm,
+ abstract = {Recent advancements in Large Language Models (LLMs) have showcased remarkable
+capabilities across various tasks in different domains. However, the emergence
+of biases and the potential for generating harmful content in LLMs,
+particularly under malicious inputs, pose significant challenges. Current
+mitigation strategies, while effective, are not resilient under adversarial
+attacks. This paper introduces Resilient Guardrails for Large Language Models
+(RigorLLM), a novel framework designed to efficiently and effectively moderate
+harmful and unsafe inputs and outputs for LLMs. By employing a multi-faceted
+approach that includes energy-based training data augmentation through Langevin
+dynamics, optimizing a safe suffix for inputs via minimax optimization, and
+integrating a fusion-based model combining robust KNN with LLMs based on our
+data augmentation, RigorLLM offers a robust solution to harmful content
+moderation. Our experimental evaluations demonstrate that RigorLLM not only
+outperforms existing baselines like OpenAI API and Perspective API in detecting
+harmful content but also exhibits unparalleled resilience to jailbreaking
+attacks. The innovative use of constrained optimization and a fusion-based
+guardrail approach represents a significant step forward in developing more
+secure and reliable LLMs, setting a new standard for content moderation
+frameworks in the face of evolving digital threats.},
+ arxiv_url = {https://arxiv.org/pdf/2403.13031v2.pdf},
+ author = {Zhuowen Yuan and Zidi Xiong and Yi Zeng and Ning Yu and Ruoxi Jia and Dawn Song and Bo Li},
+ title = {RigorLLM: Resilient Guardrails for Large Language Models against Undesired Content},
+ year = {2024}
+}
+
+@article{zhang-2024-parden,
+ abstract = {Large language models (LLMs) have shown success in many natural language
+processing tasks. Despite rigorous safety alignment processes, supposedly
+safety-aligned LLMs like Llama 2 and Claude 2 are still susceptible to
+jailbreaks, leading to security risks and abuse of the models. One option to
+mitigate such risks is to augment the LLM with a dedicated "safeguard", which
+checks the LLM's inputs or outputs for undesired behaviour. A promising
+approach is to use the LLM itself as the safeguard. Nonetheless, baseline
+methods, such as prompting the LLM to self-classify toxic content, demonstrate
+limited efficacy. We hypothesise that this is due to domain shift: the
+alignment training imparts a self-censoring behaviour to the model ("Sorry I
+can't do that"), while the self-classify approach shifts it to a classification
+format ("Is this prompt malicious"). In this work, we propose PARDEN, which
+avoids this domain shift by simply asking the model to repeat its own outputs.
+PARDEN neither requires finetuning nor white box access to the model. We
+empirically verify the effectiveness of our method and show that PARDEN
+significantly outperforms existing jailbreak detection baselines for Llama-2
+and Claude-2. Code and data are available at https://github.com/Ed-Zh/PARDEN.
+  We find that PARDEN is particularly powerful in the relevant regime of high
+True Positive Rate (TPR) and low False Positive Rate (FPR). For instance, for
+Llama2-7B, at TPR equal to 90%, PARDEN accomplishes a roughly 11x reduction in
+the FPR from 24.8% to 2.0% on the harmful behaviours dataset.},
+ arxiv_url = {https://arxiv.org/pdf/2405.07932v2.pdf},
+ author = {Ziyang Zhang and Qizhen Zhang and Jakob Foerster},
+ github_url = {https://github.com/Ed-Zh/PARDEN},
+ title = {PARDEN, Can You Repeat That? Defending against Jailbreaks via Repetition},
+ year = {2024}
+}
+
+@article{zheng-2023-sglang,
+ abstract = {Large language models (LLMs) are increasingly used for complex tasks that
+require multiple generation calls, advanced prompting techniques, control flow,
+and structured inputs/outputs. However, efficient systems are lacking for
+programming and executing these applications. We introduce SGLang, a system for
+efficient execution of complex language model programs. SGLang consists of a
+frontend language and a runtime. The frontend simplifies programming with
+primitives for generation and parallelism control. The runtime accelerates
+execution with novel optimizations like RadixAttention for KV cache reuse and
+compressed finite state machines for faster structured output decoding.
+Experiments show that SGLang achieves up to 6.4x higher throughput compared to
+state-of-the-art inference systems on various large language and multi-modal
+models on tasks including agent control, logical reasoning, few-shot learning
+benchmarks, JSON decoding, retrieval-augmented generation pipelines, and
+multi-turn chat. The code is publicly available at
+https://github.com/sgl-project/sglang},
+ arxiv_url = {https://arxiv.org/pdf/2312.07104v2.pdf},
+ author = {Lianmin Zheng and Liangsheng Yin and Zhiqiang Xie and Chuyue Sun and Jeff Huang and Cody Hao Yu and Shiyi Cao and Christos Kozyrakis and Ion Stoica and Joseph E. Gonzalez and Clark Barrett and Ying Sheng},
+ github_url = {https://github.com/sgl-project/sglang},
+ title = {SGLang: Efficient Execution of Structured Language Model Programs},
+ year = {2023}
+}
+
+@article{zheng-2024-improved,
+ abstract = {Recently, Anil et al. (2024) show that many-shot (up to hundreds of)
+demonstrations can jailbreak state-of-the-art LLMs by exploiting their
+long-context capability. Nevertheless, is it possible to use few-shot
+demonstrations to efficiently jailbreak LLMs within limited context sizes?
+While the vanilla few-shot jailbreaking may be inefficient, we propose improved
+techniques such as injecting special system tokens like [/INST] and employing
+demo-level random search from a collected demo pool. These simple techniques
+result in surprisingly effective jailbreaking against aligned LLMs (even with
+advanced defenses). For examples, our method achieves >80% (mostly >95%) ASRs
+on Llama-2-7B and Llama-3-8B without multiple restarts, even if the models are
+enhanced by strong defenses such as perplexity detection and/or SmoothLLM,
+which is challenging for suffix-based jailbreaking. In addition, we conduct
+comprehensive and elaborate (e.g., making sure to use correct system prompts)
+evaluations against other aligned LLMs and advanced defenses, where our method
+consistently achieves nearly 100% ASRs. Our code is available at
+https://github.com/sail-sg/I-FSJ.},
+ arxiv_url = {https://arxiv.org/pdf/2406.01288v2.pdf},
+ author = {Xiaosen Zheng and Tianyu Pang and Chao Du and Qian Liu and Jing Jiang and Min Lin},
+ github_url = {https://github.com/sail-sg/I-FSJ},
+ title = {Improved Few-Shot Jailbreaking Can Circumvent Aligned Language Models and Their Defenses},
+ year = {2024}
+}
+
+@article{zollo-2023-prompt,
+ abstract = {The recent explosion in the capabilities of large language models has led to
+a wave of interest in how best to prompt a model to perform a given task. While
+it may be tempting to simply choose a prompt based on average performance on a
+validation set, this can lead to a deployment where unexpectedly poor responses
+are generated, especially for the worst-off users. To mitigate this prospect,
+we propose Prompt Risk Control, a lightweight framework for selecting a prompt
+based on rigorous upper bounds on families of informative risk measures. We
+offer methods for producing bounds on a diverse set of metrics, including
+quantities that measure worst-case responses and disparities in generation
+quality across the population of users. In addition, we extend the underlying
+statistical bounding techniques to accommodate the possibility of distribution
+shifts in deployment. Experiments on applications such as open-ended chat,
+medical question summarization, and code generation highlight how such a
+framework can foster responsible deployment by reducing the risk of the worst
+outcomes.},
+ arxiv_url = {https://arxiv.org/pdf/2311.13628v2.pdf},
+ author = {Thomas P. Zollo and Todd Morrill and Zhun Deng and Jake C. Snell and Toniann Pitassi and Richard Zemel},
+ github_url = {https://github.com/thomaspzollo/prompt_risk},
+ title = {Prompt Risk Control: A Rigorous Framework for Responsible Deployment of Large Language Models},
+ year = {2023}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{alon-2023-detecting,
+ abstract = {A novel hack involving Large Language Models (LLMs) has emerged, exploiting
+adversarial suffixes to deceive models into generating perilous responses. Such
+jailbreaks can trick LLMs into providing intricate instructions to a malicious
+user for creating explosives, orchestrating a bank heist, or facilitating the
+creation of offensive content. By evaluating the perplexity of queries with
+adversarial suffixes using an open-source LLM (GPT-2), we found that they have
+exceedingly high perplexity values. As we explored a broad range of regular
+(non-adversarial) prompt varieties, we concluded that false positives are a
+significant challenge for plain perplexity filtering. A Light-GBM trained on
+perplexity and token length resolved the false positives and correctly detected
+most adversarial attacks in the test set.},
+ arxiv_url = {https://arxiv.org/pdf/2308.14132v3.pdf},
+ author = {Gabriel Alon and Michael Kamfonas},
+ title = {Detecting language model attacks with perplexity},
+ year = {2023}
+}
+
+@article{author-year-claude,
+ title = {Claude 2 — anthropic.com}
+}
+
+@article{bai-2022-constitutional,
+ abstract = {As AI systems become more capable, we would like to enlist their help to
+supervise other AIs. We experiment with methods for training a harmless AI
+assistant through self-improvement, without any human labels identifying
+harmful outputs. The only human oversight is provided through a list of rules
+or principles, and so we refer to the method as 'Constitutional AI'. The
+process involves both a supervised learning and a reinforcement learning phase.
+In the supervised phase we sample from an initial model, then generate
+self-critiques and revisions, and then finetune the original model on revised
+responses. In the RL phase, we sample from the finetuned model, use a model to
+evaluate which of the two samples is better, and then train a preference model
+from this dataset of AI preferences. We then train with RL using the preference
+model as the reward signal, i.e. we use 'RL from AI Feedback' (RLAIF). As a
+result we are able to train a harmless but non-evasive AI assistant that
+engages with harmful queries by explaining its objections to them. Both the SL
+and RL methods can leverage chain-of-thought style reasoning to improve the
+human-judged performance and transparency of AI decision making. These methods
+make it possible to control AI behavior more precisely and with far fewer human
+labels.},
+ arxiv_url = {https://arxiv.org/pdf/2212.08073v1.pdf},
+ author = {Yuntao Bai and Saurav Kadavath and Sandipan Kundu and Amanda Askell and Jackson Kernion and Andy Jones and Anna Chen and Anna Goldie and Azalia Mirhoseini and Cameron McKinnon and Carol Chen and Catherine Olsson and Christopher Olah and Danny Hernandez and Dawn Drain and Deep Ganguli and Dustin Li and Eli Tran-Johnson and Ethan Perez and Jamie Kerr and Jared Mueller and Jeffrey Ladish and Joshua Landau and Kamal Ndousse and Kamile Lukosuite and Liane Lovitt and Michael Sellitto and Nelson Elhage and Nicholas Schiefer and Noemi Mercado and Nova DasSarma and Robert Lasenby and Robin Larson and Sam Ringer and Scott Johnston and Shauna Kravec and Sheer El Showk and Stanislav Fort and Tamera Lanham and Timothy Telleen-Lawton and Tom Conerly and Tom Henighan and Tristan Hume and Samuel R. Bowman and Zac Hatfield-Dodds and Ben Mann and Dario Amodei and Nicholas Joseph and Sam McCandlish and Tom Brown and Jared Kaplan},
+ title = {Constitutional ai: Harmlessness from ai feedback},
+ year = {2022}
+}
+
+@article{bommasani-2021-the,
+ abstract = {AI is undergoing a paradigm shift with the rise of models (e.g., BERT,
+DALL-E, GPT-3) that are trained on broad data at scale and are adaptable to a
+wide range of downstream tasks. We call these models foundation models to
+underscore their critically central yet incomplete character. This report
+provides a thorough account of the opportunities and risks of foundation
+models, ranging from their capabilities (e.g., language, vision, robotics,
+reasoning, human interaction) and technical principles(e.g., model
+architectures, training procedures, data, systems, security, evaluation,
+theory) to their applications (e.g., law, healthcare, education) and societal
+impact (e.g., inequity, misuse, economic and environmental impact, legal and
+ethical considerations). Though foundation models are based on standard deep
+learning and transfer learning, their scale results in new emergent
+capabilities,and their effectiveness across so many tasks incentivizes
+homogenization. Homogenization provides powerful leverage but demands caution,
+as the defects of the foundation model are inherited by all the adapted models
+downstream. Despite the impending widespread deployment of foundation models,
+we currently lack a clear understanding of how they work, when they fail, and
+what they are even capable of due to their emergent properties. To tackle these
+questions, we believe much of the critical research on foundation models will
+require deep interdisciplinary collaboration commensurate with their
+fundamentally sociotechnical nature.},
+ arxiv_url = {https://arxiv.org/pdf/2108.07258v3.pdf},
+ author = {Rishi Bommasani and Drew A. Hudson and Ehsan Adeli and Russ Altman and Simran Arora and Sydney von Arx and Michael S. Bernstein and Jeannette Bohg and Antoine Bosselut and Emma Brunskill and Erik Brynjolfsson and Shyamal Buch and Dallas Card and Rodrigo Castellon and Niladri Chatterji and Annie Chen and Kathleen Creel and Jared Quincy Davis and Dora Demszky and Chris Donahue and Moussa Doumbouya and Esin Durmus and Stefano Ermon and John Etchemendy and Kawin Ethayarajh and Li Fei-Fei and Chelsea Finn and Trevor Gale and Lauren Gillespie and Karan Goel and Noah Goodman and Shelby Grossman and Neel Guha and Tatsunori Hashimoto and Peter Henderson and John Hewitt and Daniel E. Ho and Jenny Hong and Kyle Hsu and Jing Huang and Thomas Icard and Saahil Jain and Dan Jurafsky and Pratyusha Kalluri and Siddharth Karamcheti and Geoff Keeling and Fereshte Khani and Omar Khattab and Pang Wei Koh and Mark Krass and Ranjay Krishna and Rohith Kuditipudi and Ananya Kumar and Faisal Ladhak and Mina Lee and Tony Lee and Jure Leskovec and Isabelle Levent and Xiang Lisa Li and Xuechen Li and Tengyu Ma and Ali Malik and Christopher D. Manning and Suvir Mirchandani and Eric Mitchell and Zanele Munyikwa and Suraj Nair and Avanika Narayan and Deepak Narayanan and Ben Newman and Allen Nie and Juan Carlos Niebles and Hamed Nilforoshan and Julian Nyarko and Giray Ogut and Laurel Orr and Isabel Papadimitriou and Joon Sung Park and Chris Piech and Eva Portelance and Christopher Potts and Aditi Raghunathan and Rob Reich and Hongyu Ren and Frieda Rong and Yusuf Roohani and Camilo Ruiz and Jack Ryan and Christopher Ré and Dorsa Sadigh and Shiori Sagawa and Keshav Santhanam and Andy Shih and Krishnan Srinivasan and Alex Tamkin and Rohan Taori and Armin W. Thomas and Florian Tramèr and Rose E. Wang and William Wang and Bohan Wu and Jiajun Wu and Yuhuai Wu and Sang Michael Xie and Michihiro Yasunaga and Jiaxuan You and Matei Zaharia and Michael Zhang and Tianyi Zhang and Xikun Zhang and Yuhui Zhang and Lucia Zheng and Kaitlyn Zhou and Percy Liang},
+ title = {On the opportunities and risks of foundation models},
+ year = {2021}
+}
+
+@article{brown-2020-language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners},
+ year = {2020}
+}
+
+@article{ganguli-2022-red,
+ abstract = {We describe our early efforts to red team language models in order to
+simultaneously discover, measure, and attempt to reduce their potentially
+harmful outputs. We make three main contributions. First, we investigate
+scaling behaviors for red teaming across 3 model sizes (2.7B, 13B, and 52B
+parameters) and 4 model types: a plain language model (LM); an LM prompted to
+be helpful, honest, and harmless; an LM with rejection sampling; and a model
+trained to be helpful and harmless using reinforcement learning from human
+feedback (RLHF). We find that the RLHF models are increasingly difficult to red
+team as they scale, and we find a flat trend with scale for the other model
+types. Second, we release our dataset of 38,961 red team attacks for others to
+analyze and learn from. We provide our own analysis of the data and find a
+variety of harmful outputs, which range from offensive language to more subtly
+harmful non-violent unethical outputs. Third, we exhaustively describe our
+instructions, processes, statistical methodologies, and uncertainty about red
+teaming. We hope that this transparency accelerates our ability to work
+together as a community in order to develop shared norms, practices, and
+technical standards for how to red team language models.},
+ arxiv_url = {https://arxiv.org/pdf/2209.07858v2.pdf},
+ author = {Deep Ganguli and Liane Lovitt and Jackson Kernion and Amanda Askell and Yuntao Bai and Saurav Kadavath and Ben Mann and Ethan Perez and Nicholas Schiefer and Kamal Ndousse and Andy Jones and Sam Bowman and Anna Chen and Tom Conerly and Nova DasSarma and Dawn Drain and Nelson Elhage and Sheer El-Showk and Stanislav Fort and Zac Hatfield-Dodds and Tom Henighan and Danny Hernandez and Tristan Hume and Josh Jacobson and Scott Johnston and Shauna Kravec and Catherine Olsson and Sam Ringer and Eli Tran-Johnson and Dario Amodei and Tom Brown and Nicholas Joseph and Sam McCandlish and Chris Olah and Jared Kaplan and Jack Clark},
+ title = {Red teaming language models to reduce harms: Methods, scaling behaviors, and lessons learned},
+ year = {2022}
+}
+
+@article{inan-2023-llama,
+ abstract = {We introduce Llama Guard, an LLM-based input-output safeguard model geared
+towards Human-AI conversation use cases. Our model incorporates a safety risk
+taxonomy, a valuable tool for categorizing a specific set of safety risks found
+in LLM prompts (i.e., prompt classification). This taxonomy is also
+instrumental in classifying the responses generated by LLMs to these prompts, a
+process we refer to as response classification. For the purpose of both prompt
+and response classification, we have meticulously gathered a dataset of high
+quality. Llama Guard, a Llama2-7b model that is instruction-tuned on our
+collected dataset, albeit low in volume, demonstrates strong performance on
+existing benchmarks such as the OpenAI Moderation Evaluation dataset and
+ToxicChat, where its performance matches or exceeds that of currently available
+content moderation tools. Llama Guard functions as a language model, carrying
+out multi-class classification and generating binary decision scores.
+Furthermore, the instruction fine-tuning of Llama Guard allows for the
+customization of tasks and the adaptation of output formats. This feature
+enhances the model's capabilities, such as enabling the adjustment of taxonomy
+categories to align with specific use cases, and facilitating zero-shot or
+few-shot prompting with diverse taxonomies at the input. We are making Llama
+Guard model weights available and we encourage researchers to further develop
+and adapt them to meet the evolving needs of the community for AI safety.},
+ arxiv_url = {https://arxiv.org/pdf/2312.06674v1.pdf},
+ author = {Hakan Inan and Kartikeya Upasani and Jianfeng Chi and Rashi Rungta and Krithika Iyer and Yuning Mao and Michael Tontchev and Qing Hu and Brian Fuller and Davide Testuggine and Madian Khabsa},
+ title = {Llama guard: Llm-based input-output safeguard for human-ai conversations},
+ year = {2023}
+}
+
+@article{loper-2002-nltk,
+ abstract = {NLTK, the Natural Language Toolkit, is a suite of open source program
+modules, tutorials and problem sets, providing ready-to-use computational
+linguistics courseware. NLTK covers symbolic and statistical natural language
+processing, and is interfaced to annotated corpora. Students augment and
+replace existing components, learn structured programming by example, and
+manipulate sophisticated models from the outset.},
+ arxiv_url = {https://arxiv.org/pdf/0205028v1.pdf},
+ author = {Edward Loper and Steven Bird},
+ title = {NLTK: The natural language toolkit},
+ year = {2002}
+}
+
+@article{phute-2023-llm,
+ abstract = {Large language models (LLMs) are popular for high-quality text generation but
+can produce harmful content, even when aligned with human values through
+reinforcement learning. Adversarial prompts can bypass their safety measures.
+We propose LLM Self Defense, a simple approach to defend against these attacks
+by having an LLM screen the induced responses. Our method does not require any
+fine-tuning, input preprocessing, or iterative output generation. Instead, we
+incorporate the generated content into a pre-defined prompt and employ another
+instance of an LLM to analyze the text and predict whether it is harmful. We
+test LLM Self Defense on GPT 3.5 and Llama 2, two of the current most prominent
+LLMs against various types of attacks, such as forcefully inducing affirmative
+responses to prompts and prompt engineering attacks. Notably, LLM Self Defense
+succeeds in reducing the attack success rate to virtually 0 using both GPT 3.5
+and Llama 2. The code is publicly available at
+https://github.com/poloclub/llm-self-defense},
+ arxiv_url = {https://arxiv.org/pdf/2308.07308v4.pdf},
+ author = {Mansi Phute and Alec Helbling and Matthew Hull and ShengYun Peng and Sebastian Szyller and Cory Cornelius and Duen Horng Chau},
+ title = {Llm self defense: By self examination, llms know they are being tricked},
+ year = {2023}
+}
