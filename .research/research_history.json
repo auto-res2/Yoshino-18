@@ -1,0 +1,10 @@
+{
+  "research_topic": "プロンプトベース防御メカニズム（LLM Guard）のリアルタイムジェイルブレーク検出精度改善を目的とし、現在のプロンプトベース防御が本番シナリオにおいて高い計算オーバーヘッドと準最適な精度／再現率トレードオフを示しているという問題に対して、100ms未満のレイテンシを維持しながら多層プロンプト防御システム（Rebuff／LLM Guardアーキテクチャ）の検出精度を約80%から95%以上に改善することを具体的目標とし、利用可能なリソースとしてGitHub上の実装（https://github.com/protectai/rebuff, https://github.com/laiyer-ai/llm-guard）、HarmBenchおよびSafetyBench評価フレームワークをベンチマーク、本番対応ミドルウェア実装をフレームワーク、最小限の計算オーバーヘッドでリアルタイム動作可能な計算環境を前提とし、研究の革新性として語彙・意味・意図ベース検出層を組み合わせたMLベースプロンプト分析による階層フィルタリングの開発にある。",
+  "queries": [
+    "real-time jailbreak detection",
+    "multi-layer prompt defense",
+    "hierarchical prompt filtering",
+    "low-latency LLM guard",
+    "ML-based prompt analysis"
+  ]
+}
