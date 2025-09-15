@@ -6,5 +6,157 @@
     "semantic consistency watermark",
     "real-time watermark detection",
     "transformers text watermarking"
+  ],
+  "research_study_list": [
+    {
+      "title": "Disentangled Style Domain for Implicit $z$-Watermark Towards Copyright Protection"
+    },
+    {
+      "title": "Tree-Rings Watermarks: Invisible Fingerprints for Diffusion Images"
+    },
+    {
+      "title": "ROBIN: Robust and Invisible Watermarks for Diffusion Models with Adversarial Optimization"
+    },
+    {
+      "title": "Protecting Language Generation Models via Invisible Watermarking"
+    },
+    {
+      "title": "Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models"
+    },
+    {
+      "title": "Certified Neural Network Watermarks with Randomized Smoothing"
+    },
+    {
+      "title": "Certified Neural Network Watermarks with Randomized Smoothing"
+    },
+    {
+      "title": "An Unforgeable Publicly Verifiable Watermark for Large Language Models"
+    },
+    {
+      "title": "Towards Codable Watermarking for Injecting Multi-Bits Information to LLMs"
+    },
+    {
+      "title": "WaterMax: breaking the LLM watermark detectability-robustness-quality trade-off"
+    },
+    {
+      "title": "Paraphrasing evades detectors of AI-generated text, but retrieval is an effective defense"
+    },
+    {
+      "title": "ParaFuzz: An Interpretability-Driven Technique for Detecting Poisoned Samples in NLP"
+    },
+    {
+      "title": "Punctuation-level Attack: Single-shot and Single Punctuation Can Fool Text Models"
+    },
+    {
+      "title": "Towards Robustness Against Natural Language Word Substitutions"
+    },
+    {
+      "title": "On the Reliability of Watermarks for Large Language Models"
+    },
+    {
+      "title": "TextGrad: Advancing Robustness Evaluation in NLP by Gradient-Driven Optimization"
+    },
+    {
+      "title": "GAPX: Generalized Autoregressive Paraphrase-Identification X"
+    },
+    {
+      "title": "RADAR: Robust AI-Text Detection via Adversarial Learning"
+    },
+    {
+      "title": "HQA-Attack: Toward High Quality Black-Box Hard-Label Adversarial Attack on Text"
+    },
+    {
+      "title": "Generating Adversarial Computer Programs using Optimized Obfuscations"
+    },
+    {
+      "title": "A Semantic Invariant Robust Watermark for Large Language Models"
+    },
+    {
+      "title": "Adaptive Text Watermark for Large Language Models"
+    },
+    {
+      "title": "A Resilient and Accessible Distribution-Preserving Watermark for Large Language Models"
+    },
+    {
+      "title": "Countering Personalized Text-to-Image Generation with Influence Watermarks"
+    },
+    {
+      "title": "Markpainting: Adversarial Machine Learning meets Inpainting"
+    },
+    {
+      "title": "Certified Neural Network Watermarks with Randomized Smoothing"
+    },
+    {
+      "title": "Certified Neural Network Watermarks with Randomized Smoothing"
+    },
+    {
+      "title": "Token-Specific Watermarking with Enhanced Detectability and Semantic Coherence for Large Language Models"
+    },
+    {
+      "title": "Unbiased Watermark for Large Language Models"
+    },
+    {
+      "title": "ProMark: Proactive Diffusion Watermarking for Causal Attribution"
+    },
+    {
+      "title": "RAW: A Robust and Agile Plug-and-Play Watermark Framework for AI-Generated Images with Provable Guarantees"
+    },
+    {
+      "title": "A Watermark for Large Language Models"
+    },
+    {
+      "title": "A Watermark for Large Language Models"
+    },
+    {
+      "title": "WaterMax: breaking the LLM watermark detectability-robustness-quality trade-off"
+    },
+    {
+      "title": "Segmenting Watermarked Texts From Language Models"
+    },
+    {
+      "title": "A Resilient and Accessible Distribution-Preserving Watermark for Large Language Models"
+    },
+    {
+      "title": "Proactive Detection of Voice Cloning with Localized Watermarking"
+    },
+    {
+      "title": "An Unforgeable Publicly Verifiable Watermark for Large Language Models"
+    },
+    {
+      "title": "Can Simple Averaging Defeat Modern Watermarks?"
+    },
+    {
+      "title": "Inevitable Trade-off between Watermark Strength and Speculative Sampling Efficiency for Language Models"
+    },
+    {
+      "title": "Token-Specific Watermarking with Enhanced Detectability and Semantic Coherence for Large Language Models"
+    },
+    {
+      "title": "A Resilient and Accessible Distribution-Preserving Watermark for Large Language Models"
+    },
+    {
+      "title": "WaterMax: breaking the LLM watermark detectability-robustness-quality trade-off"
+    },
+    {
+      "title": "Tree-Rings Watermarks: Invisible Fingerprints for Diffusion Images"
+    },
+    {
+      "title": "Adaptive Text Watermark for Large Language Models"
+    },
+    {
+      "title": "On the Learnability of Watermarks for Language Models"
+    },
+    {
+      "title": "Towards Codable Watermarking for Injecting Multi-Bits Information to LLMs"
+    },
+    {
+      "title": "A Watermark for Large Language Models"
+    },
+    {
+      "title": "A Watermark for Large Language Models"
+    },
+    {
+      "title": "An Unforgeable Publicly Verifiable Watermark for Large Language Models"
+    }
   ]
 }
