@@ -5,8 +5,8 @@ entering extended mode
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 
-LaTeX Info: File `references.bib' already exists on the system.
-            Not generating it from this source.
+LaTeX Warning: Writing or overwriting file `references.bib'.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
@@ -496,24 +496,6 @@ This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-I was expecting a `,' or a `}'---line 1034 of file references.bib
- : 
- : % ===========================================
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-Warning--empty journal in andriushchenko-2020-understanding
-Warning--empty journal in dai-2023-multirobustbench
-Warning--empty journal in daras-2022-multitasking
-Warning--empty journal in jorge-2022-make
-Warning--empty journal in jia-2022-multiguard
-Warning--empty journal in kim-2020-understanding
-Warning--empty journal in rocamora-2024-efficient
-Warning--empty journal in stutz-2019-confidence
-Warning--empty journal in wong-2020-fast
-Warning--empty journal in xhonneux-2024-efficient
-Warning--empty journal in xu-2023-autolora
-Warning--empty journal in zhang-2024-multitrust
-(There was 1 error message)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -521,8 +503,8 @@ entering extended mode
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 
-LaTeX Info: File `references.bib' already exists on the system.
-            Not generating it from this source.
+LaTeX Warning: Writing or overwriting file `references.bib'.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
@@ -948,8 +930,9 @@ blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (4 pages, 134720 bytes).
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (4 pages, 148156 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -958,8 +941,8 @@ entering extended mode
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 
-LaTeX Info: File `references.bib' already exists on the system.
-            Not generating it from this source.
+LaTeX Warning: Writing or overwriting file `references.bib'.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
@@ -1311,6 +1294,7 @@ blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (4 pages, 135443 bytes).
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (4 pages, 148994 bytes).
 Transcript written on paper.log.
