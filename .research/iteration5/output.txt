@@ -1,0 +1,20 @@
+=== [PHASE 2/2] Full experiment start Mon Sep 15 05:30:54 AM UTC 2025 ===
+Experiment #1 – Long-Context, High-Entropy Robustness Test (DADS).
+WARNING: could not load tokenizer for mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7a494-6fab734d3415feb31daef479;c6968999-2a45-4def-8245-bd2b54cee60b)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2 tokenizer.
+WARNING: could not load mistralai/Mixtral-8x7B-Instruct-v0.1 (
+You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1.
+401 Client Error. (Request ID: Root=1-68c7a495-207c0c616633018b005ae1ff;0d8756a7-3f52-4dbb-9cc7-ed5e80a8b029)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1/resolve/main/config.json.
+Access to model mistralai/Mixtral-8x7B-Instruct-v0.1 is restricted. You must have access to it and be authenticated to access it. Please log in.
+). Falling back to sshleifer/tiny-gpt2.
+Downloading dataset SafetyResearch/HarmBench split=train
+WARNING: failed to download SafetyResearch/HarmBench (Dataset 'SafetyResearch/HarmBench' doesn't exist on the Hub or cannot be accessed.). Using dummy dataset instead.

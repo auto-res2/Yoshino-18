@@ -1,0 +1,61 @@
+warning: No `requires-python` value found in the workspace. Defaulting to `>=3.11`.
+Map:   0%|          | 0/2 [00:00<?, ? examples/s]Map: 100%|██████████| 2/2 [00:00<00:00, 416.76 examples/s]
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1478: indexSelectSmallIndex: block: [0,0,0], thread: [0,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+/pytorch/aten/src/ATen/native/cuda/Indexing.cu:1478: indexSelectSmallIndex: block: [0,0,0], thread: [1,0,0] Assertion `srcIndex < srcSelectDimSize` failed.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/src/main.py", line 57, in <module>
+    main()
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/src/main.py", line 49, in main
+    run_exp1_long_context(exps_cfg["exp1_long_context"], accelerator)
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/src/evaluate.py", line 124, in run_exp1_long_context
+    outputs = model.generate(
+              ^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/src/train.py", line 50, in generate
+    outputs = self.model.generate(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/generation/utils.py", line 2539, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/generation/utils.py", line 2870, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 1070, in forward
+    transformer_outputs = self.transformer(
+                          ^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py", line 875, in forward
+    causal_mask = create_causal_mask(
+                  ^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/masking_utils.py", line 822, in create_causal_mask
+    causal_mask = mask_interface(
+                  ^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/masking_utils.py", line 374, in sdpa_mask_recent_torch
+    if allow_is_causal_skip and _ignore_causal_mask_sdpa(padding_mask, q_length, kv_length, kv_offset, local_size):
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt80-1-a-28/_work/Yoshino-18/Yoshino-18/.venv/lib/python3.11/site-packages/transformers/masking_utils.py", line 255, in _ignore_causal_mask_sdpa
+    if not _is_torch_xpu_available or query_length == 1
+                                      ^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
