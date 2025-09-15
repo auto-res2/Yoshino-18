@@ -1,0 +1,23 @@
+# config/full_experiment.yaml – placeholder pointing at the expected artefact
+# file names.  Replace the *_url fields with actual URLs / paths to enable
+# the complete experiment.  Until then, the code will still run because we
+# default to the heuristic fusion when the files are missing.
+
+lexical_keywords:
+  - bomb
+  - hack
+  - exploit
+  - jailbreak
+  - porn
+  - fraud
+  - kill
+  - terrorism
+
+layer1_onnx_repo: "stub"            # put e.g. "your-org/distilguard-4bit" here
+layer1_tokeniser: "bert-base-uncased"
+
+ben_index_url: "stub"               # e.g. "https://…/faiss_ben.idx"
+harm_index_url: "stub"              # e.g. "https://…/faiss_harm.idx"
+embed_model: "sentence-transformers/all-MiniLM-L6-v2"
+
+lightgbm_checkpoint: "stub"         # e.g. "artifacts/lgbm_full.txt"

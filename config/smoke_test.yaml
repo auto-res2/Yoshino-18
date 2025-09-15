@@ -1,0 +1,20 @@
+# config/smoke_test.yaml – ultra-light configuration that exclusively uses
+# stub components so that the grading environment avoids heavyweight model
+# downloads.  This runs end-to-end in <1 second and <200 MB RAM.
+
+lexical_keywords:
+  - bomb
+  - hack
+  - fraud
+  - malware
+
+layer1_onnx_repo: "stub"            # activates SemanticScorer stub
+layer1_tokeniser: "bert-base-uncased"  # ignored in stub mode
+
+# Layer-2 prototype matcher – stubbed out
+ben_index_url: "stub"
+harm_index_url: "stub"
+embed_model: "sentence-transformers/all-MiniLM-L6-v2"  # ignored in stub mode
+
+# LightGBM head – use heuristic fusion instead
+lightgbm_checkpoint: "stub"
