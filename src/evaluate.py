@@ -21,10 +21,17 @@ __all__ = ["run_evaluation"]
 #  Public API
 # ---------------------------------------------------------------------
 
+def _split_item(item: Union[str, Tuple[str, int], List[Union[str, int]]]):
+    """Normalise dataset entries – accept tuple or 2-element list."""
+    if isinstance(item, (tuple, list)) and len(item) == 2:
+        prompt, label = item
+        return str(prompt), int(label)
+    return str(item), None
+
 
 def run_evaluation(
     guard: HAGuard,
-    samples: Sequence[Union[str, Tuple[str, int]]],
+    samples: Sequence[Union[str, Tuple[str, int], List[Union[str, int]]]],
     save_path: Path,
 ) -> None:
     """Run *samples* through *guard* and write a JSON report to *save_path*."""
@@ -33,11 +40,9 @@ def run_evaluation(
     latency: List[float] = []
 
     for item in samples:
-        if isinstance(item, tuple):
-            prompt, label = item
-            gts.append(int(label))
-        else:
-            prompt = str(item)
+        prompt, label = _split_item(item)
+        if label is not None:
+            gts.append(label)
         pred, meta = guard.predict(prompt)
         preds.append(pred)
         latency.append(float(meta["latency_ms"]))
@@ -45,14 +50,17 @@ def run_evaluation(
     report = {
         "num_samples": len(samples),
         "predictions": preds,
-        "avg_latency_ms": sum(latency) / len(latency),
+        "avg_latency_ms": sum(latency) / len(latency) if latency else 0.0,
     }
     if gts:
         correct = sum(int(p == t) for p, t in zip(preds, gts))
         report["accuracy"] = correct / len(gts)
 
-    save_path.parent.mkdir(parents=True, exist_ok=True)
-    save_path.write_text(json.dumps(report, indent=2))
+    try:
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        save_path.write_text(json.dumps(report, indent=2))
+    except OSError as exc:  # pragma: no cover – I/O errors
+        print(f"[WARN] Could not write results file: {exc}")
 
     # Print for grader visibility
     print(json.dumps(report, indent=2))

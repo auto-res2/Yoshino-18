@@ -21,7 +21,6 @@ import torch
 try:
     import lightgbm as lgb
 except ModuleNotFoundError:  # pragma: no cover – safe in stub mode
-    # Keep the name in the module scope for runtime checks.
     lgb = None  # LightGBM is unavailable in the minimal environment.
 
 from .preprocess import MODEL_DIR
