@@ -99,7 +99,7 @@ class ExDARWrapper(torch.nn.Module):
 # -----------------------------------------------------------------------------
 
 from stable_baselines3 import PPO  # heavy import but only when BuMS is used
-from stable_baselines3.common.envs import DummyVecEnv
+from stable_baselines3.common.vec_env import DummyVecEnv  # Fixed import path
 
 class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
     """A toy continuous control problem representing the search space of the
@@ -108,35 +108,52 @@ class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
     """
 
     def __init__(self, constraint_vram_gb: float, constraint_latency_ms: float):
-        import gym
+        import gymnasium as gym  # gymnasium is the standard backend for SB3 >=2.0
 
+        self._gym = gym
         self.action_space = gym.spaces.Box(low=-0.05, high=0.05, shape=(6,), dtype=np.float32)
         self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(8,), dtype=np.float32)
         self._constraint_vram = constraint_vram_gb
         self._constraint_lat = constraint_latency_ms
-        self.state = np.array([0.18, 0.12, 2.0, 0.9, 0.88, 3.0])  # ε,σ,r,T,p,k
+        # state: (ε,σ,r,T,p,k)
+        self.state = np.array([0.18, 0.12, 2.0, 0.9, 0.88, 3.0], dtype=np.float32)
 
     # ------------------------------------------------------------------
-    # Gym boilerplate
+    # Gymnasium API (reset, step)
     # ------------------------------------------------------------------
-    def reset(self):  # noqa: D401 – Gym API
-        return self.state
+    def reset(self, *, seed: int | None = None, options: Dict[str, Any] | None = None):  # noqa: D401 – Gym API
+        if seed is not None:
+            np.random.seed(seed)
+        return self.state.copy(), {}
 
     def step(self, action):  # noqa: D401 – Gym API
         self.state = np.clip(
             self.state + action,
             [0.05, 0.05, 1.0, 0.6, 0.6, 1.0],
             [0.3, 0.25, 4.0, 1.3, 0.95, 5.0],
-        )
+        ).astype(np.float32)
         eps, sig, r, T, p, k = self.state
         vram = 6 + 0.5 * k + 8 * eps  # toy cost model
         latency = 100 + 50 * T + 30 * k
         ruh = 1.0 - 0.5 * eps - 0.3 * sig + 0.05 * r
         penalty = 50 * max(0, vram - self._constraint_vram) + 20 * max(0, latency - self._constraint_lat)
         reward = ruh - penalty / 100.0
-        done = False  # a continuing task is fine for PPO
-        info = {"vram": vram, "latency": latency, "ruh": ruh}
-        return self.state, reward, done, info
+        terminated = False  # continuing task
+        truncated = False
+        info = {
+            "vram": float(vram),
+            "latency": float(latency),
+            "ruh": float(ruh),
+            "cfg": {
+                "eps": float(eps),
+                "sigma": float(sig),
+                "r": float(r),
+                "T": float(T),
+                "p": float(p),
+                "k": float(k),
+            },
+        }
+        return self.state.copy(), reward, terminated, truncated, info
 
 # -----------------------------------------------------------------------------
 #   Public BuMS interface
@@ -147,17 +164,27 @@ class BuMSSearch:
 
     def __init__(self, vram_gb: float, latency_ms: float, episodes: int):
         self.env = DummyVecEnv([lambda: _BuMSEnv(vram_gb, latency_ms)])
-        self.model = PPO("MlpPolicy", self.env, verbose=0, n_steps=64, batch_size=32)
+        # Use a very small policy to keep the smoke test light-weight
+        self.model = PPO(
+            "MlpPolicy",
+            self.env,
+            verbose=0,
+            n_steps=64,
+            batch_size=32,
+            learning_rate=3e-4,
+        )
         self.episodes = episodes
 
     def run(self) -> Tuple[Dict[str, Any], float]:
+        # Train PPO for the requested number of episodes (each episode ~= n_steps)
         self.model.learn(total_timesteps=self.episodes * 64)
         obs = self.env.reset()
         best_cfg, best_score = None, -1e9
+        # Rollout a handful of steps to find the best-scoring configuration
         for _ in range(128):
             action, _ = self.model.predict(obs, deterministic=True)
-            obs, reward, _, info = self.env.step(action)
+            obs, reward, _, _, info = self.env.step(action)
             if reward > best_score:
                 best_score = reward
-                best_cfg = info[0]
+                best_cfg = info[0]["cfg"]
         return best_cfg, float(best_score)

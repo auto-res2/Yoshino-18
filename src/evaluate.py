@@ -26,7 +26,7 @@ from .preprocess import DataModule
 # -----------------------------------------------------------------------------
 #   Global paths – follow the directory specification from the instructions.
 # -----------------------------------------------------------------------------
-RESULTS_DIR = Path(".research/iteration1")
+RESULTS_DIR = Path(".research/iteration2")
 IMAGES_DIR = RESULTS_DIR / "images"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -41,9 +41,12 @@ disable_caching()
 # -----------------------------------------------------------------------------
 
 def save_json(obj: Dict[str, Any], fname: str) -> Path:
+    """Save *obj* into RESULTS_DIR/fname and echo the contents to stdout."""
     path = RESULTS_DIR / fname
     with open(path, "w") as fp:
         json.dump(obj, fp, indent=2)
+    # Echo to stdout for verification as required
+    print(json.dumps(obj, indent=2))
     return path
 
 
@@ -87,7 +90,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
 
     tokenizer = AutoTokenizer.from_pretrained(cfg["model_hf_id"], use_auth_token=os.getenv("HF_TOKEN"))
     base_model = _safe_load_model(cfg["model_hf_id"])
-    dads_cfg = cfg["training"].get("dads", {"sigma": 0.12, "steps": 4})
+    dads_cfg = cfg.get("training", {}).get("dads", {"sigma": 0.12, "steps": 4})
     model = DADSWrap(base_model, **dads_cfg).eval()
 
     dm = DataModule(cfg["dataset"])
@@ -114,8 +117,8 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
         if idx >= 31:  # quick smoke runtime
             break
 
-    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"])}
-    save_json({"description": description, "stats": stats}, "exp1_results.json")
+    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"]) }
+    save_json({"description": description, "stats": stats, "samples": results["prompt_id"]}, "exp1_results.json")
     fig_name = line_plot({"c-ASR": results["c_asr"]}, "Certified ASR", "exp1_c_asr")
     print(json.dumps({"description": description, "stats": stats, "figures": [fig_name]}, indent=2))
 
@@ -131,8 +134,8 @@ def run_exp2_exdar(cfg: Dict[str, Any], accelerator: Accelerator):
     base_model = _safe_load_model(cfg["model_hf_id"])
     model = ExDARWrapper(
         base_model,
-        votes=cfg["exdar"].get("votes", 3),
-        alpha=cfg["exdar"].get("dirichlet_alpha", 1.0),
+        votes=cfg.get("exdar", {}).get("votes", 3),
+        alpha=cfg.get("exdar", {}).get("dirichlet_alpha", 1.0),
     )
 
     dm = DataModule(cfg["dataset"])
@@ -148,7 +151,7 @@ def run_exp2_exdar(cfg: Dict[str, Any], accelerator: Accelerator):
         if len(tok_speeds) >= 32:
             break
 
-    stats = {"throughput_tok_s_mean": float(np.mean(tok_speeds))}
+    stats = {"throughput_tok_s_mean": float(np.mean(tok_speeds)) }
     save_json({"description": description, "stats": stats}, "exp2_results.json")
     fig_name = line_plot({"tok/s": tok_speeds}, "Tokens per second", "exp2_throughput")
     print(json.dumps({"description": description, "stats": stats, "figures": [fig_name]}, indent=2))
@@ -161,7 +164,7 @@ def run_exp3_bums(cfg: Dict[str, Any], _accelerator: Accelerator):
     description = "Experiment #3 – Edge-Budget Auto-Tuning Challenge (BuMS)."
     print(description)
 
-    search = BuMSSearch(vram_gb=11.8, latency_ms=350, episodes=cfg["bums"]["episodes"])
+    search = BuMSSearch(vram_gb=11.8, latency_ms=350, episodes=cfg.get("bums", {}).get("episodes", 10))
     best_cfg, best_score = search.run()
 
     stats = {"best_cfg": best_cfg, "best_score": best_score}
