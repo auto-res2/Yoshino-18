@@ -1232,6 +1232,53 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Detecting language model attacks with perplexity"
+    },
+    {
+      "title": "Claude 2 — anthropic.com"
+    },
+    {
+      "title": "Training a helpful and harmless assistant with reinforcement learning from human feedback"
+    },
+    {
+      "title": "Constitutional ai: Harmlessness from ai feedback"
+    },
+    {
+      "title": "NLTK: The natural language toolkit"
+    },
+    {
+      "title": "On the opportunities and risks of foundation models"
+    },
+    {
+      "title": "Language models are few-shot learners"
+    },
+    {
+      "title": "Defending against alignment-breaking attacks via robustly aligned llm"
+    },
+    {
+      "title": "Jailbreaking black box large language models in twenty queries"
+    },
+    {
+      "title": "Red teaming language models to reduce harms: Methods, scaling behaviors, and lessons learned"
+    },
+    {
+      "title": "Llm self defense: By self examination, llms know they are being tricked"
+    },
+    {
+      "title": "Llama guard: Llm-based input-output safeguard for human-ai conversations"
+    },
+    {
+      "title": "Baseline defenses for adversarial attacks against aligned language models"
+    },
+    {
+      "title": "Mistral 7b"
+    },
+    {
+      "title": "Challenges and applications of large language models"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: 1. Present prompt-level defenses (Rebuff / LLM-Guard) lean on single-stage heuristics (regex, perplexity, classifier) that plateau around 75-85 % balanced accuracy and miss subtle or obfuscated jailbreaks.\n2. Attempts to push accuracy rely on larger LLM judges, adding 200-500 ms latency—unacceptable for production (< 100 ms SLA).\n3. Lack of systematic fusion of heterogeneous evidence (lexical patterns, semantics, user intent) and poor calibration cause either high false positives (blocking benign prompts) or misses.\n4. Limited labelled data for new jailbreak styles and fast attacker adaptation hinder generalisation.\nMethods: We propose HAGuard (Hierarchical Adaptive Guard): a three-layer, low-latency cascade that progressively refines the safety verdict.\nLayer-0: Ultra-fast lexical gate – trie-based keyword / unicode-trick detector + character-level Bloom filter (~5 µs).\nLayer-1: Lightweight semantic scorer – a 60 M-param DistilBERT distilled from Llama-Guard, quantised to 4-bit INT and served with ONNX-RT; outputs probability of malicious intent and taxonomy label (~18 ms/CPU).\nLayer-2: Prototype-intent matcher – we build a 128-dim sentence embedding space (MiniLM) with two ANN indexes (Faiss HNSW) of benign vs. harmful prototypes. A Jaccard-weighted margin and intent consistency score complete the feature vector. The final decision is taken by a calibrated LightGBM (500 trees) trained on concatenated scores from all layers.\nTraining strategy:\n• Multi-view contrastive learning on HarmBench + JailbreakBench + StrongREJECT + newly mined Rebuff logs to align paraphrases of the same intent.\n• Hard-negative mining via online adversarial generator (RL-Breaker) to simulate emerging jailbreaks.\n• Plug-and-play continual learning: misclassified samples entering Layer-2 are stored and periodically fine-tuned using LoRA Δ-updates (<2 minutes downtime).\nOptimisation:\n• All models exported to ONNX, 4-bit weight-only quantisation, vectorised CPU ops.\n• Pipeline executes in parallel threads; if Layer-0 accepts, later layers are skipped (≈70 % of traffic).\nExperimental Setup: Datasets: HarmBench, SafetyBench, StrongREJECT (313 prompts), JailbreakBench, 50 K production benign prompts, 5 K real jailbreak attempts from Rebuff logs.\nMetrics: TPR @ 0.5 % FPR, AUROC, median / p99 latency on AWS c7g.large (single vCPU) and GPU fall-back.\nBaselines: LLM-Guard v2 (7 B), Rebuff default, PARDEN, Perplexity filter.\nDeployment prototype: FastAPI middleware sitting before OpenAI/vLLM endpoint; micro-batch size 8.\nAblations: remove each layer, vary quantisation, cold-start continual learning.\nExpected Result: • HAGuard reaches 96.4 % TPR at 0.5 % FPR (↑ 15-20 pp over baselines) on unseen JailbreakBench prompts.\n• Median latency 27 ms, p99 78 ms; CPU-only.\n• 72 % of queries resolved in Layer-0/1; Layer-2 invoked for 28 % hardest cases.\n• Continual learning recovers 60 % of initially missed novel jailbreaks after 24 h with <1 pp FPR increase.\nExpected Conclusion: A carefully designed hierarchical cascade combining cheap lexical rules, compact distilled transformers, and prototype-based intent matching can lift jailbreak detection accuracy from ~80 % to >95 % while staying within strict <100 ms latency budgets. This validates that multi-evidence fusion and adaptive training, not larger models, are key to practical LLM guardrails. HAGuard’s modular design can plug into existing Rebuff / LLM-Guard stacks and provides a blueprint for future low-overhead, high-accuracy safety middleware.",
     "experimental_design": {
