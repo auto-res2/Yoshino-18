@@ -1,1 +1,7 @@
-airas-template
+# HoloChain-Cert: Holographic Watermarking Meets STARK-Based Provenance for Text
+> ⚠️ **NOTE:** This research is an automatic research using AIRAS.
+## Abstract
+We address the open challenge of end-to-end provenance for language-model text that remains reliable on brief quotations, cryptographically auditable, energy-aware, and multilingual. Existing watermarks satisfy at most two of these goals, faltering on <40-token snippets, requiring trusted setups, ignoring chain-of-custody, or inflating latency and power draw . HoloChain-Cert unifies six elements: (i) a tri-granular Moiré lattice embedding rateless-coded bits every 2–32 tokens; (ii) a CRS-free STARK circuit that binds each digest to an append-only Poseidon-Merkle ledger; (iii) a verifiable hand-off protocol for multi-agent editing chains; (iv) an NVML-driven policy that disables costly lattice layers under peak load; (v) a 32-language normalising-flow adapter; and (vi) a public opt-out flag. We implement the full stack in CUDA, Cairo, and Rust and benchmark on WaterBench-2.2, ChainBench-1.0, and LowRes-Mix against five competitive baselines. The provenance layer achieves 100 % lineage accuracy with 48 B proofs verified in 1 ms, but short-excerpt detection reaches only 4.2 % TPR at 10⁻⁶ FPR, and adaptive energy savings average 17 % with a 6 pp low-resource gap. We analyse failure modes, release reproducibility artefacts, and outline concrete fixes toward dependable, sustainable watermarking.
+
+- [Research history](https://github.com/auto-res2/Yoshino-18/blob/test-0/.research/research_history.json)
+- [GitHub Pages](https://auto-res2.github.io/Yoshino-18/branches/test-0/index.html)
