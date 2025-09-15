@@ -1,0 +1,43 @@
+=== [PHASE 2/2] Full experiment start Mon Sep 15 02:18:28 AM UTC 2025 ===
+=== Loaded config: config/full_experiment.yaml ===
+=== Experiment 1: Short-Excerpt Robustness ===
+[WARN] Requested max_samples=500 exceeds dataset size=60. Using full dataset.
+Saved results → .research/iteration5/experiment1_shortexcerpt_20250915_021832.json
+{
+  "TPR@1e-6": 0.0416666679084301,
+  "num_pos": 24,
+  "num_neg": 36
+}
+Figure saved → .research/iteration5/images/ber_length.pdf
+=== Experiment 2: Chain-of-Custody Proofs ===
+Saved results → .research/iteration5/experiment2_custody_20250915_021832.json
+{
+  "lineage_accuracy_%": 100.0,
+  "proof_size_bytes_mean": 48.675,
+  "verify_time_ms_mean": 1.0000000000000007
+}
+Figure saved → .research/iteration5/images/proof_size.pdf
+=== Experiment 3: Energy-adaptive Mode ===
+Saved results → .research/iteration5/experiment3_energy_lang_20250915_021834.json
+{
+  "energy_J_per_1k": {
+    "am": 92.9533105933265,
+    "id": 106.03737892159415,
+    "sw": 101.43528017226757,
+    "yo": 82.31995699098827,
+    "hi-en": 81.49982633767941,
+    "es-en": 82.79421694298476,
+    "en": 96.98076756570056
+  },
+  "TPR@1e-6": {
+    "am": 0.9120679339139601,
+    "id": 0.9057949029334035,
+    "sw": 0.9292551133530068,
+    "yo": 0.9405948586551536,
+    "hi-en": 0.9346916546929909,
+    "es-en": 0.9072570410675093,
+    "en": 0.9661481699737631
+  }
+}
+Figure saved → .research/iteration5/images/energy_per_lang.pdf
+=== [PHASE 2/2] Full experiment end Mon Sep 15 02:18:35 AM UTC 2025 ===
