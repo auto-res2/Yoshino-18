@@ -1221,6 +1221,53 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Combined DWT-DCT Digital Image Watermarking"
+    },
+    {
+      "title": "Certified Neural Network Watermarks with Randomized Smoothing"
+    },
+    {
+      "title": "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?"
+    },
+    {
+      "title": "Watermarking digital images for copyright protection"
+    },
+    {
+      "title": "SVD-based digital image watermarking scheme"
+    },
+    {
+      "title": "Reproducible scaling laws for contrastive language-image learning"
+    },
+    {
+      "title": "Secure spread spectrum watermarking for images, audio and video"
+    },
+    {
+      "title": "Digital Watermarking and Steganography"
+    },
+    {
+      "title": "Imagenet: A large-scale hierarchical image database"
+    },
+    {
+      "title": "Diffusion Models Beat GANs on Image Synthesis"
+    },
+    {
+      "title": "Supervised GAN Watermarking for Intellectual Property Protection"
+    },
+    {
+      "title": "The Stable Signature: Rooting Watermarks in Latent Diffusion Models"
+    },
+    {
+      "title": "Monte Carlo Methods in Financial Engineering"
+    },
+    {
+      "title": "Generative adversarial nets"
+    },
+    {
+      "title": "The Ethical Need for Watermarks in Machine-Generated Language"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: 1. Even the proposed holographic lattice leaves small gaps: (a) paraphrases that radically change discourse structure (e.g., faceted summaries) can still drive BER >7%; (b) short excerpts (<40 tokens) are below detection length. 2. zk-SNARK proofs require a trusted setup; revoking a compromised key means re-issuing the CRS. 3. Courts want provenance not only for the final text but also to pinpoint responsibility when multi-agent chains (LLM→human→LLM) occur. 4. Environmental cost of always-on lattice encoding has not been quantified. 5. Existing WaterBench lacks low-resource languages and code-switching within a single sentence.\nMethods: We propose HoloChain-Cert, an end-to-end provenance fabric that fuses holographic semantic watermarks with chain-of-custody hashes. A) Tri-granular Moiré Lattice • Keep the 32-token 3-D Hadamard lattice but super-impose two faster micro-grids at 8- and 2-token stride derived from a RoPE-harmonic basis. Each grid carries the same payload with rateless erasure coding. Short quotes get micro-grid bits; long texts average all three for ≤0.3 % BER even at 20 tokens. B) CRS-free STARK proof • Replace BLS12-381 zk-SNARK with a STARK-based proof (AIR <250 constraints). No trusted setup; proof size 15 kB but still <8 ms verification via WebAssembly SIMD. C) Verifiable hand-off ledger • Every time a text segment leaves an agent (human or model) its lattice digest (Poseidon hash of masked coefficients) is appended to an append-only Merkle log whose root is included in the STARK statement. The ledger thus records edit lineage and who did the last irreversible change. D) Energy-adaptive embedding • A lightweight profiler predicts GPU-utilisation; if load >80 % we down-shift to only the micro-grid, saving ~55 % energy while keeping ≥90 % robustness. E) Language-universal encoder mesh • Normalising-Flow Adapter now trained on 32 languages + code-switch corpus; exposes 128-d ISA-MAP space keyed once per deployment – no per-language tuning needed. F) Public opt-out tag • A 6-bit ‘policy flag’ in the payload lets publishers declare Creative-Commons, embargo, or private-draft. Detectors respect the flag before exposing proofs.\nExperimental Setup: Datasets: • WaterBench-2.2 plus new ChainBench (multi-edit provenance) – 12 k docs. • LowRes-Mix (am, id, sw, yo) & CodeSwitch-Sent (hi-en, es-en). Models: GPT-4o, Llama-3-70B, Mistral-7B, Phi-3-mini. Baselines: SynthID-Text, PHoW, HAWK-Flow, UPV, retrieval-only DIPPER defence. Metrics: (i) TPR @10⁻⁶ FPR on 20-token, 64-token, full-text; (ii) BER vs excerpt length; (iii) STARK proof size/time; (iv) lineage accuracy (% of edits correctly attributed); (v) energy per 1 k tokens; (vi) human MQM fluency; (vii) low-resource language gap ΔTPR. Ablations: disable micro-grid, remove STARK, ledger off, policy-flag off, switch encoder mesh to English-only.\nExpected Result: • 20-token excerpts: TPR 91 %, BER 2 %. 64-token: TPR 97 %, BER 0.4 %. • Full paraphrase + sentence fusion: detection 96 %, lineage correct in 92 % of edit hops. • STARK proof 14.8 kB, 7.9 ms verify (Chrome M3 CPU). • Energy-adaptive mode saves 48 % GPU-energy under peak load with <3 pp TPR drop. • Low-resource languages ΔTPR ≤-4 pp vs English. • Opt-out respected 100 %; policy-flag honoured by open-source verifier. • End-to-end overhead ≤6.5 % latency.\nExpected Conclusion: HoloChain-Cert extends holographic watermarks into a provenance fabric that works for 20-token snippets, removes trusted setups via STARKs, and delivers an auditable chain-of-custody – the first for text. Energy-adaptive embedding halves cost without large accuracy loss, and a language-universal mesh makes the scheme globally deployable. These advances close both practical (short-quote, key-revocation, sustainability) and policy (attribution, opt-out) gaps, shifting real-time LLM watermarking from single-shot detection to trustworthy, standard-ready provenance.",
     "experimental_design": {
