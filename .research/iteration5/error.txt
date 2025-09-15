@@ -1,0 +1,28 @@
+[INFO] Expecting prompts on STDIN as a JSON list of [prompt, label] pairs …
+Traceback (most recent call last):
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 90, in _get_samples
+    data = json.loads(raw)
+           ^^^^^^^^^^^^^^^
+  File "/home/toma/.local/share/uv/python/cpython-3.11.13-linux-x86_64-gnu/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/.local/share/uv/python/cpython-3.11.13-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/.local/share/uv/python/cpython-3.11.13-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 129, in <module>
+    main()
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 118, in main
+    samples = _get_samples(smoke)
+              ^^^^^^^^^^^^^^^^^^^
+  File "/home/toma/pt-80-1-a-13/_work/Yoshino-18/Yoshino-18/src/main.py", line 96, in _get_samples
+    raise RuntimeError("Could not parse prompts from STDIN") from exc
+RuntimeError: Could not parse prompts from STDIN
