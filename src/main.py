@@ -1,9 +1,9 @@
 """src/main.py
-Entry-point that orchestrates smoke-test and full-scale runs via command-line
-flags.  Usage::
+Entry-point that orchestrates smoke-test and full-scale runs via CLI flags.
 
-    python -m src.main --smoke-test        # quick CI run
-    python -m src.main --full-experiment   # heavier, but still synthetic
+Command-line usage:
+    uv run python -m src.main --smoke-test
+    uv run python -m src.main --full-experiment
 """
 from __future__ import annotations
 
@@ -14,9 +14,7 @@ from typing import Dict
 
 import yaml
 
-# Local imports (absolute to *src*)
-from src.evaluate import run_experiment_1, run_experiment_2, run_experiment_3
-
+from .evaluate import run_experiment_1, run_experiment_2, run_experiment_3
 
 _CONFIG_DIR = Path("config")
 _SMOKE_YAML = _CONFIG_DIR / "smoke_test.yaml"
@@ -40,16 +38,16 @@ def _parse_args(argv) -> argparse.Namespace:
 # -----------------------------------------------------------------------------
 
 def _load_yaml(path: Path) -> Dict:
-    with open(path, "r") as f:
+    with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
 
 # -----------------------------------------------------------------------------
-#  Main
+#  Runner
 # -----------------------------------------------------------------------------
 
 def _run(cfg: Dict):
-    # For this refactor we always run the three experiments sequentially.
+    """Sequentially executes the three experiment pipelines."""
     run_experiment_1(cfg)
     run_experiment_2(cfg)
     run_experiment_3(cfg)

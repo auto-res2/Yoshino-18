@@ -46,12 +46,11 @@ class DatasetLoader:
         self.seed = cfg.get("seed", 0)
         set_seed(self.seed)
 
-    # ----------------------------------------------------------------------
-    #  Main public API
-    # ----------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    #  Public API
+    # ------------------------------------------------------------------
 
-    def load_waterbench(self) -> DatasetDict:
-        """Returns a *datasets* `DatasetDict` with train / val / test keys."""
+    def load_waterbench(self):  # -> DatasetDict
         size = self.cfg.get("dataset_size", {}).get("waterbench", 600)
         return _build_synthetic_dataset(size)
 
@@ -60,13 +59,11 @@ class DatasetLoader:
 #  Helper – synthetic corpus construction
 # -----------------------------------------------------------------------------
 
-
-def _build_synthetic_dataset(total_size: int = 600) -> DatasetDict:
+def _build_synthetic_dataset(total_size: int = 600):
     """Creates a simple corpus with 50 % marked samples and trivial text."""
     texts = [f"Sample text number {i}" for i in range(total_size)]
     labels = [i % 2 for i in range(total_size)]  # alternate 0/1
 
-    # Shuffle once for randomness
     idx = list(range(total_size))
     random.shuffle(idx)
     texts = [texts[i] for i in idx]

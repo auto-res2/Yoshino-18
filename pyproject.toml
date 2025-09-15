@@ -5,6 +5,7 @@ description = "Re-structured HoloChain-Cert experimental code base"
 readme = "README.md"
 requires-python = ">=3.10"
 
+# NOTE: list-style ``dependencies`` is required by the task description.
 dependencies = [
   "numpy>=1.21.0",
   "torch>=1.9.0",

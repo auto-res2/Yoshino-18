@@ -1,6 +1,6 @@
 """src/evaluate.py
 Evaluation utilities + concrete experiment pipelines.
-Updated for iteration **5** (mandatory path & robustness fixes).
+Updated for iteration **6** (path & runtime-robustness fixes).
 """
 from __future__ import annotations
 
@@ -13,20 +13,23 @@ from typing import Dict, List
 import matplotlib
 import torch
 from matplotlib import pyplot as plt
-from sklearn.metrics import roc_auc_score  # noqa: F401  # (kept for completeness)
+from sklearn.metrics import roc_auc_score  # noqa: F401  (kept for completeness)
 from tqdm.auto import tqdm
 
 from .train import HoloChainCertModel
 from .preprocess import DatasetLoader, set_seed
-from .preprocess import sliding_windows, generate_summaries  # noqa – may be used externally
+from .preprocess import (
+    sliding_windows,  # re-export for external users
+    generate_summaries,
+)
 
-# Matplotlib head-less backend
+# Use a head-less backend for CI environments
 matplotlib.use("Agg")
 
 # -----------------------------------------------------------------------------
-#  Mandatory research directory paths (iteration **5**)
+#  Research directory paths (iteration **6**)
 # -----------------------------------------------------------------------------
-_RESEARCH_DIR = Path(".research") / "iteration5"
+_RESEARCH_DIR = Path(".research") / "iteration6"
 _IMAGES_DIR = _RESEARCH_DIR / "images"
 _IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -82,16 +85,23 @@ def _plot_line(xs, ys, title: str, xlabel: str, ylabel: str, tag: str):
 
 
 # -----------------------------------------------------------------------------
-#  Simple local tokenizer & embeddings (no external downloads)
+#  Simple local tokenizer & embeddings (keeps smoke tests offline-safe)
 # -----------------------------------------------------------------------------
 
 class _SimpleTokenizer:
-    """Whitespace tokenizer with a growable vocabulary."""
+    """Whitespace tokenizer with a growable vocabulary (CPU-only)."""
 
     def __init__(self):
         self.vocab: Dict[str, int] = {"<unk>": 0}
 
-    def __call__(self, text: str, *, return_tensors: str = "pt", truncation: bool = False, max_length: int = 256):
+    def __call__(
+        self,
+        text: str,
+        *,
+        return_tensors: str = "pt",
+        truncation: bool = False,
+        max_length: int = 256,
+    ):
         tokens = text.strip().split()
         if truncation:
             tokens = tokens[: max_length]
@@ -105,12 +115,20 @@ class _SimpleTokenizer:
 
 
 class _RandomEmbedding(torch.nn.Module):
+    """Deterministic random embeddings; clamps OOV indices to <unk>."""
+
     def __init__(self, vocab_size: int, dim: int = 64, seed: int = 0):
         super().__init__()
         g = torch.Generator().manual_seed(seed)
-        self.emb = torch.nn.Embedding(vocab_size, dim, _weight=torch.randn(vocab_size, dim, generator=g))
+        self.emb = torch.nn.Embedding(
+            vocab_size, dim, _weight=torch.randn(vocab_size, dim, generator=g)
+        )
 
-    def forward(self, ids):
+    def forward(self, ids: torch.Tensor):  # noqa: D401
+        # Clamp out-of-range indices to 0 ("<unk>") to avoid runtime errors.
+        if ids.max() >= self.emb.num_embeddings:
+            ids = ids.clone()
+            ids[ids >= self.emb.num_embeddings] = 0
         return self.emb(ids)
 
 
@@ -122,10 +140,6 @@ def run_experiment_1(cfg: dict):
     print("=== Experiment 1: Short-Excerpt Robustness ===")
     set_seed(cfg["seed"])
 
-    # ------------------------------------------------------------------
-    # Device must be chosen *before* we instantiate any torch modules so
-    # that every tensor & parameter lives on the same accelerator / CPU.
-    # ------------------------------------------------------------------
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # Data --------------------------------------------------------------
@@ -136,7 +150,9 @@ def run_experiment_1(cfg: dict):
         requested = cfg["exp1"]["max_samples"]
         actual = len(waterbench)
         if requested > actual:
-            print(f"[WARN] Requested max_samples={requested} exceeds dataset size={actual}. Using full dataset.")
+            print(
+                f"[WARN] Requested max_samples={requested} exceeds dataset size={actual}. Using full dataset."
+            )
             requested = actual
         waterbench = waterbench.select(range(requested))
 
@@ -145,19 +161,19 @@ def run_experiment_1(cfg: dict):
 
     if base_name == "simple":
         tokenizer = _SimpleTokenizer()
-        # NOTE: the vocabulary grows on the fly – we use an oversized matrix.
-        vocab_cap = 50_000
+        vocab_cap = 50_000  # oversized matrix; OOV indices are clamped
         embedding_layer = _RandomEmbedding(vocab_cap, dim=64).to(device)
 
-        def emb_fn(ids):  # noqa: D401 – simple closure
-            # Make sure parameters and inputs are on the same device (robust to accidental moves).
+        def emb_fn(ids):  # noqa: D401
             return embedding_layer(ids.to(embedding_layer.emb.weight.device))
 
-    else:
+    else:  # full model path (requires internet & >2 GB VRAM)
         from transformers import AutoTokenizer, AutoModel
 
         tokenizer = AutoTokenizer.from_pretrained(base_name)
-        base_model = AutoModel.from_pretrained(base_name, torch_dtype=torch.bfloat16).to(device)
+        base_model = AutoModel.from_pretrained(
+            base_name, torch_dtype=torch.bfloat16
+        ).to(device)
 
         def emb_fn(ids):
             with torch.no_grad():
@@ -208,7 +224,6 @@ class _DummyStarkVerifier:
         return proof == f"proof_for_{digest}".encode()
 
 
-
 def run_experiment_2(cfg: dict):
     print("=== Experiment 2: Chain-of-Custody Proofs ===")
     set_seed(cfg["seed"])
@@ -232,11 +247,18 @@ def run_experiment_2(cfg: dict):
     }
     save_results(results, "experiment2_custody")
 
-    _plot_line(list(range(len(proof_sizes))), proof_sizes, "Proof size per doc", "doc", "bytes", "proof_size")
+    _plot_line(
+        list(range(len(proof_sizes))),
+        proof_sizes,
+        "Proof size per doc",
+        "doc",
+        "bytes",
+        "proof_size",
+    )
 
 
 # -----------------------------------------------------------------------------
-#  Experiment 3 – Energy adaptive & language coverage
+#  Experiment 3 – Energy-adaptive mode & language coverage
 # -----------------------------------------------------------------------------
 
 def run_experiment_3(cfg: dict):
