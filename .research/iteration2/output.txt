@@ -1,0 +1,4 @@
+=== uv sync start Mon Sep 15 04:37:01 AM UTC 2025 ===
+=== uv install end Mon Sep 15 04:38:18 AM UTC 2025 ===
+=== [PHASE 1/2] Smoke test start Mon Sep 15 04:38:18 AM UTC 2025 ===
+Experiment #1 – Long-Context, High-Entropy Robustness Test (DADS).
