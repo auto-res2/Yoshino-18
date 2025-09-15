@@ -6,5 +6,157 @@
     "continuous adversarial training",
     "LoRA adapter adversarial robustness",
     "AdvGLUE multitask robustness"
+  ],
+  "research_study_list": [
+    {
+      "title": "On Adversarial Training without Perturbing all Examples"
+    },
+    {
+      "title": "Fast is better than free: Revisiting adversarial training"
+    },
+    {
+      "title": "Efficient local linearity regularization to overcome catastrophic overfitting"
+    },
+    {
+      "title": "Attacks Which Do Not Kill Training Make Adversarial Learning Stronger"
+    },
+    {
+      "title": "Towards Efficient and Effective Adversarial Training"
+    },
+    {
+      "title": "Why adversarial training can hurt robust accuracy"
+    },
+    {
+      "title": "Balance, Imbalance, and Rebalance: Understanding Robust Overfitting from a Minimax Game Perspective"
+    },
+    {
+      "title": "Improving Accuracy-robustness Trade-off via Pixel Reweighted Adversarial Training"
+    },
+    {
+      "title": "Rapid Plug-in Defenders"
+    },
+    {
+      "title": "Boosting Adversarial Training via Fisher-Rao Norm-based Regularization"
+    },
+    {
+      "title": "Efficient Adversarial Training in LLMs with Continuous Attacks"
+    },
+    {
+      "title": "Adversarial Self-Supervised Contrastive Learning"
+    },
+    {
+      "title": "Adversarial Training with Complementary Labels: On the Benefit of Gradually Informative Attacks"
+    },
+    {
+      "title": "Adversarial Training with Complementary Labels: On the Benefit of Gradually Informative Attacks"
+    },
+    {
+      "title": "Contrastive Learning with Adversarial Examples "
+    },
+    {
+      "title": "ARMOURED: Adversarially Robust MOdels using Unlabeled data by REgularizing Diversity"
+    },
+    {
+      "title": "When does Contrastive Learning Preserve Adversarial Robustness from Pretraining to Finetuning?"
+    },
+    {
+      "title": "Adversarially Robust Few-shot Learning via Parameter Co-distillation of Similarity and Class Concept Learners"
+    },
+    {
+      "title": "The Pitfalls and Promise of Conformal Inference Under Adversarial Attacks"
+    },
+    {
+      "title": "Robust Pre-Training by Adversarial Contrastive Learning"
+    },
+    {
+      "title": "Defense without Forgetting: Continual Adversarial Defense with Anisotropic & Isotropic Pseudo Replay"
+    },
+    {
+      "title": "Efficient Adversarial Training in LLMs with Continuous Attacks"
+    },
+    {
+      "title": "Confidence-Calibrated Adversarial Training: Generalizing to Unseen Attacks"
+    },
+    {
+      "title": "Randomized Adversarial Training via Taylor Expansion"
+    },
+    {
+      "title": "Resurrecting Old Classes with New Data for Exemplar-Free Continual Learning"
+    },
+    {
+      "title": "Revisiting and Advancing Fast Adversarial Training Through The Lens of Bi-Level Optimization"
+    },
+    {
+      "title": "Revisiting and Advancing Fast Adversarial Training Through The Lens of Bi-Level Optimization"
+    },
+    {
+      "title": "On Adversarial Training without Perturbing all Examples"
+    },
+    {
+      "title": "Stability and Generalization of Adversarial Training for Shallow Neural Networks with Smooth Activation"
+    },
+    {
+      "title": "The Enemy of My Enemy Is My Friend: Exploring Inverse Adversaries for Improving Adversarial Training"
+    },
+    {
+      "title": "AutoLoRa: An Automated Robust Fine-Tuning Framework"
+    },
+    {
+      "title": "Benchmarking Robustness of Adaptation Methods on Pre-trained Vision-Language Models"
+    },
+    {
+      "title": "Understanding Zero-shot Adversarial Robustness for Large-Scale Models"
+    },
+    {
+      "title": "Revisiting adapters with adversarial training"
+    },
+    {
+      "title": "Language-Driven Anchors for Zero-Shot Adversarial Robustness"
+    },
+    {
+      "title": "Few-Shot Adversarial Prompt Learning on Vision-Language Models"
+    },
+    {
+      "title": "Efficient Adversarial Training in LLMs with Continuous Attacks"
+    },
+    {
+      "title": "Initialization Matters for Adversarial Transfer Learning"
+    },
+    {
+      "title": "TARP-VP: Towards Evaluation of Transferred  Adversarial Robustness and Privacy on Label  Mapping Visual Prompting Models"
+    },
+    {
+      "title": "Robust CLIP: Unsupervised Adversarial Fine-Tuning of Vision Embeddings for Robust Large Vision-Language Models"
+    },
+    {
+      "title": "MultiRobustBench: Benchmarking Robustness Against Multiple Attacks"
+    },
+    {
+      "title": "TextGrad: Advancing Robustness Evaluation in NLP by Gradient-Driven Optimization"
+    },
+    {
+      "title": "MultiTrust: A Comprehensive Benchmark Towards Trustworthy Multimodal Large Language Models"
+    },
+    {
+      "title": "BERT Lost Patience Won't Be Robust to Adversarial Slowdown"
+    },
+    {
+      "title": "Multitasking Models are Robust to Structural Failure: A Neural Model for Bilingual Cognitive Reserve"
+    },
+    {
+      "title": "Toward Adversarial Training on Contextualized Language Representation"
+    },
+    {
+      "title": "VLATTACK: Multimodal Adversarial Attacks on Vision-Language Tasks via Pre-trained Models"
+    },
+    {
+      "title": "FreeLB: Enhanced Adversarial Training for Natural Language Understanding"
+    },
+    {
+      "title": "Robustness to Programmable String Transformations via Augmented Abstract Training"
+    },
+    {
+      "title": "MultiGuard: Provably Robust Multi-label Classification against Adversarial Examples"
+    }
   ]
 }
