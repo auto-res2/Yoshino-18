@@ -1,5 +1,6 @@
 """src/preprocess.py
-Updated: Respect tokenizer.model_max_length to avoid sequence length overflow.
+Dataset downloading and tokenisation helpers.
+Now respects `tokenizer.model_max_length` to avoid sequence overflow.
 """
 from __future__ import annotations
 

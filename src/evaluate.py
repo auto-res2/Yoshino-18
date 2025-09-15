@@ -1,11 +1,11 @@
 """src/evaluate.py
-Updated: switched output directories to iteration7 as required and kept new
-`import os` for env-variable access.
+Evaluation utilities & experiment orchestration.
+Switched result paths to `.research/iteration8` per current specification.
 """
 from __future__ import annotations
 
 import json
-import os  # environment-variable access
+import os
 import random
 import time
 from pathlib import Path
@@ -14,7 +14,7 @@ from typing import Dict, Any, List
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt  # noqa: E402  (matplotlib backend set before import)
+import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 import torch  # noqa: E402
 from accelerate import Accelerator  # noqa: E402
@@ -25,9 +25,9 @@ from .train import DADSWrap, ExDARWrapper, BuMSSearch  # noqa: E402
 from .preprocess import DataModule  # noqa: E402
 
 # -----------------------------------------------------------------------------
-#   Global paths – adhere to iteration7 directory spec
+#   Global paths – adhere to *iteration8* directory spec
 # -----------------------------------------------------------------------------
-RESULTS_DIR = Path(".research/iteration7")
+RESULTS_DIR = Path(".research/iteration8")
 IMAGES_DIR = RESULTS_DIR / "images"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -65,7 +65,7 @@ def _line_plot(series: Dict[str, List[float]], title: str, fname: str) -> str:
     return pdf_name
 
 # -----------------------------------------------------------------------------
-#   Safe HF loading helpers
+#   Safe HF loading helpers (gracefully downgrade on OOM / auth errors)
 # -----------------------------------------------------------------------------
 
 def _safe_load_model(model_id: str):
@@ -74,7 +74,7 @@ def _safe_load_model(model_id: str):
         return AutoModelForCausalLM.from_pretrained(
             model_id, torch_dtype=dtype, use_auth_token=os.getenv("HF_TOKEN")
         )
-    except Exception as exc:  # noqa: BLE001 – broad fallback per instructions
+    except Exception as exc:  # noqa: BLE001 – broad fallback per project guidelines
         print(
             f"WARNING: could not load {model_id} (\n{exc}\n). Falling back to sshleifer/tiny-gpt2."
         )
@@ -130,7 +130,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
         if idx >= 31:  # bound runtime for smoke test
             break
 
-    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"]) }
+    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"])}
     _save_json({"description": desc, "stats": stats, "samples": results["prompt_id"]}, "exp1_results.json")
     fig_name = _line_plot({"c-ASR": results["c_asr"]}, "Certified ASR", "exp1_c_asr")
     print(json.dumps({"description": desc, "stats": stats, "figures": [fig_name]}, indent=2))

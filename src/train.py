@@ -1,10 +1,10 @@
 """src/train.py
-Updated: Removed unnecessary and now-flagged `# type: ignore` comments that
-triggered `unused-ignore` static-analysis errors.  No functional changes.
+Minimal training-side utilities and wrappers used across experiments.
+No functional changes beyond directory refactor.
 """
 from __future__ import annotations
 
-import os  # Only required if future extensions need env vars; kept for parity
+import os  # kept for potential future use of env vars such as HF_TOKEN
 from typing import Tuple, Dict, Any, ClassVar
 
 import numpy as np
@@ -12,12 +12,17 @@ import torch
 import gymnasium as gym  # lightweight; only used for action/obs spaces
 
 # -----------------------------------------------------------------------------
-#   DADSWrap – Decoding-Aware Diffused Smoothing
+#   DADSWrap – Decoding-Aware Diffused Smoothing (greatly simplified)
 # -----------------------------------------------------------------------------
 
 
 class DADSWrap(torch.nn.Module):
-    """Minimal diffusion-noise wrapper for smoke tests (not a full DADS impl)."""
+    """Very small diffusion-noise wrapper for smoke / CI tests.
+
+    A *real* DADS implementation would be far more complex; this stub is just
+    enough to keep the refactored project executable and self-contained during
+    automated validation.
+    """
 
     def __init__(self, base_model: torch.nn.Module, sigma: float = 0.12, steps: int = 4):
         super().__init__()
@@ -25,13 +30,16 @@ class DADSWrap(torch.nn.Module):
         self.sigma = sigma
         self.steps = steps
 
+        # identity "recovery" layer – lets us re-use HF logits w/o size changes
         self.recover_layer = torch.nn.Linear(
             base_model.config.vocab_size, base_model.config.vocab_size, bias=False
         )
         torch.nn.init.eye_(self.recover_layer.weight)
         self.recover_layer.requires_grad_(False)
 
-    # LM forward is untouched ------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    #   Public API (mirror HuggingFace behaviour where possible)
+    # ------------------------------------------------------------------
     def forward(self, *args, **kwargs):  # noqa: D401
         return self.model.forward(*args, **kwargs)
 
@@ -85,7 +93,7 @@ class ExDARWrapper(torch.nn.Module):
 
 
 # -----------------------------------------------------------------------------
-#   BuMS – lightweight random search (Stable-Baselines3 removed)
+#   BuMS – ultra-lightweight random search (no external RL deps)
 # -----------------------------------------------------------------------------
 
 
@@ -101,9 +109,7 @@ class _BuMSEnv:
         self._constraint_lat = constraint_latency_ms
         self.state = np.array([0.18, 0.12, 2.0, 0.9, 0.88, 3.0], dtype=np.float32)
 
-    # ------------------------------------------------------------------
-    #   Env API (minimal – just enough for random search)
-    # ------------------------------------------------------------------
+    # ------------------------------ Env API ------------------------------
     def reset(self):
         return self.state.copy()
 

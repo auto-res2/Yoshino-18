@@ -7,6 +7,8 @@ authors = [
   { name = "Researcher", email = "research@example.com" }
 ]
 
+# IMPORTANT: list-style dependencies to avoid circular-import issues in some
+# installers as required by the spec.
 dependencies = [
   "torch>=2.0.0",
   "transformers>=4.35.0",
