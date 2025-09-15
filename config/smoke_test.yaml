@@ -1,0 +1,44 @@
+experiments:
+  exp1_long_context:
+    active: true
+    model_hf_id: mistralai/Mixtral-8x7B-Instruct-v0.1
+    ours_wrapper: true
+    dataset:
+      name: HarmBench
+      hf_repo: SafetyResearch/HarmBench
+      split: train
+      limit: 64
+    decoding:
+      temperatures: [1.2]
+      top_ps: [0.9]
+      beams: [1]
+      max_new_tokens: 256
+    training:
+      epochs: 1
+      micro_batch_size: 1
+      grad_accum: 1
+
+  exp2_exdar_stress:
+    active: true
+    model_hf_id: mistralai/Mixtral-8x7B-Instruct-v0.1
+    ours_wrapper: true
+    dataset:
+      name: UltraChat
+      hf_repo: OpenAssistant/UltraChat
+      split: train
+      limit: 64
+    exdar:
+      dirichlet_alpha: 1.0
+      votes: 3
+
+  exp3_edge_bums:
+    active: true
+    model_hf_id: TinyLlama/TinyLlama-1.1B-Chat-v0.6
+    ours_wrapper: true
+    dataset:
+      name: HarmBench
+      hf_repo: SafetyResearch/HarmBench
+      split: train
+      limit: 64
+    bums:
+      episodes: 10

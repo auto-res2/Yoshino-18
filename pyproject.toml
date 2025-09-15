@@ -1,1 +1,27 @@
-# Please list the required python packages.
+[project]
+name = "minotaur-research"
+version = "0.1.0"
+description = "Refactored project structure for MINOTAUR experimental code"
+readme = "README.md"
+authors = [
+  { name = "Researcher", email = "research@example.com" }
+]
+
+# -----------------------------------------------------------------------------
+# Dependencies – keep them lean; torchvision not required.  We pin conservative
+# versions that are still compatible with A100 CUDA 12 images used by *uv*.
+# -----------------------------------------------------------------------------
+dependencies = [
+  "torch>=2.0.0",
+  "transformers>=4.35.0",
+  "datasets>=2.10.0",
+  "accelerate>=0.21.0",
+  "pyyaml>=6.0",
+  "matplotlib>=3.8.0",
+  "numpy>=1.21.0",
+  "stable-baselines3>=2.0.0",
+  "gymnasium>=0.29.0",
+]
+
+[build-system]
+requires = ["setuptools>=67.0", "wheel"]
