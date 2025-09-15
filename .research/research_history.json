@@ -1,0 +1,10 @@
+{
+  "research_topic": "リアルタイム透かし検出（SynthID-Text）のパラフレーズ攻撃に対する堅牢性改善を目的とし、現在の透かしが高い検出精度を達成する一方でパラフレーズや翻訳攻撃下で著しく劣化するという問題に対して、生成品質を維持しながらパラフレーズ攻撃下でのSynthID-Text透かしの検出精度を現在のおよそ60%から85%以上に改善することを具体的目標とし、利用可能なリソースとしてTransformers v4.46.0+およびMarkLLMツールキットに統合された実装、制御評価のためのWaterBenchをベンチマーク、GitHub上のMarkLLMフレームワーク（https://github.com/THU-BPM/MarkLLM）を基盤とし、計算要件としてリアルタイム生成と検出を最小限のオーバーヘッドで実現し、研究の革新性として意味的一貫性制約を用いて言語的変換全体にわたり検出可能な意味保持透かしを開発する点にある。",
+  "queries": [
+    "SynthID-Text watermarking",
+    "paraphrase attack robustness",
+    "semantic consistency watermark",
+    "real-time watermark detection",
+    "transformers text watermarking"
+  ]
+}
