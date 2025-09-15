@@ -1,0 +1,14 @@
+{
+  "description": "Experiment #3 \u2013 Edge-Budget Auto-Tuning Challenge (BuMS).",
+  "stats": {
+    "best_cfg": {
+      "eps": 0.05,
+      "sigma": 0.05,
+      "r": 4.0,
+      "T": 1.1179595521669399,
+      "p": 0.8723589724861085,
+      "k": 1.7072276195358427
+    },
+    "best_score": 1.16
+  }
+}
