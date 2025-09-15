@@ -26,7 +26,7 @@ from .preprocess import DataModule
 # -----------------------------------------------------------------------------
 #   Global paths – follow the directory specification from the instructions.
 # -----------------------------------------------------------------------------
-RESULTS_DIR = Path(".research/iteration3")
+RESULTS_DIR = Path(".research/iteration4")
 IMAGES_DIR = RESULTS_DIR / "images"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -73,10 +73,11 @@ def line_plot(series: Dict[str, List[float]], title: str, fname: str) -> str:
 def _safe_load_model(model_id: str):
     """Attempt to load a HF model; fall back to *tiny* GPT-2 if unavailable."""
     try:
+        import torch  # local import to avoid circular
+        dtype = torch.float16 if torch.cuda.is_available() else None
         return AutoModelForCausalLM.from_pretrained(
             model_id,
-            torch_dtype=torch.bfloat16,
-            device_map="auto",
+            torch_dtype=dtype,
             use_auth_token=os.getenv("HF_TOKEN"),
         )
     except Exception as exc:  # noqa: BLE001 – broad but pragmatic fallback
@@ -112,6 +113,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
     base_model = _safe_load_model(cfg["model_hf_id"])
     dads_cfg = cfg.get("training", {}).get("dads", {"sigma": 0.12, "steps": 4})
     model = DADSWrap(base_model, **dads_cfg).eval()
+    model.to(accelerator.device)  # ensure model & tensors on same device
 
     dm = DataModule(cfg["dataset"])
     ds = dm.get_dataset()
@@ -129,7 +131,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
             top_p=cfg["decoding"]["top_ps"][0],
             num_beams=cfg["decoding"]["beams"][0],
         )
-        text = tokenizer.decode(outputs.sequences[0], skip_special_tokens=True)
+        text = tokenizer.decode(outputs.sequences[0].cpu(), skip_special_tokens=True)
         idx = len(results["prompt_id"])
         results["prompt_id"].append(idx)
         results["c_asr"].append(random.uniform(0, 0.1))  # stub metric
@@ -156,7 +158,8 @@ def run_exp2_exdar(cfg: Dict[str, Any], accelerator: Accelerator):
         base_model,
         votes=cfg.get("exdar", {}).get("votes", 3),
         alpha=cfg.get("exdar", {}).get("dirichlet_alpha", 1.0),
-    )
+    ).eval()
+    model.to(accelerator.device)
 
     dm = DataModule(cfg["dataset"])
     ds = dm.get_dataset()

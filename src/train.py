@@ -87,7 +87,7 @@ class ExDARWrapper(torch.nn.Module):
             return_dict_in_generate=True,
         )
         # Aggregate logits across votes
-        scores = torch.stack(outputs.scores, dim=0)  # (seq, B*v, V)
+        scores = torch.stack(list(outputs.scores), dim=0)  # (seq, B*v, V)
         seq_len, bigB, vocab = scores.shape
         scores = scores.view(seq_len, self.votes, batch, vocab)
         mean_scores = scores.mean(dim=1)
@@ -99,7 +99,7 @@ class ExDARWrapper(torch.nn.Module):
 # -----------------------------------------------------------------------------
 
 from stable_baselines3 import PPO  # heavy import but only when BuMS is used
-from stable_baselines3.common.vec_env import DummyVecEnv  # Fixed import path
+from stable_baselines3.common.vec_env import DummyVecEnv  # correct import path
 
 class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
     """A toy continuous control problem representing the search space of the
@@ -160,7 +160,7 @@ class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
 # -----------------------------------------------------------------------------
 
 class BuMSSearch:
-    """Tiny PPO loop that optimises the _BuMSEnv ‑- again, just for plumbing."""
+    """Tiny PPO loop that optimises the _BuMSEnv – again, just for plumbing."""
 
     def __init__(self, vram_gb: float, latency_ms: float, episodes: int):
         self.env = DummyVecEnv([lambda: _BuMSEnv(vram_gb, latency_ms)])
