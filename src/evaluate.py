@@ -1,5 +1,6 @@
 """src/evaluate.py
 Evaluation utilities + concrete experiment pipelines.
+Updated for iteration **4** (mandatory path & robustness fixes).
 """
 from __future__ import annotations
 
@@ -23,9 +24,9 @@ from .preprocess import sliding_windows, generate_summaries  # noqa – may be u
 matplotlib.use("Agg")
 
 # -----------------------------------------------------------------------------
-#  Mandatory research directory paths (iteration **3**)
+#  Mandatory research directory paths (iteration **4**)
 # -----------------------------------------------------------------------------
-_RESEARCH_DIR = Path(".research") / "iteration3"
+_RESEARCH_DIR = Path(".research") / "iteration4"
 _IMAGES_DIR = _RESEARCH_DIR / "images"
 _IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -39,8 +40,10 @@ def tpr_at_fpr(y_true: List[int], y_score: List[float], max_fpr: float = 1e-6):
     y_score_t = torch.tensor(y_score)
     pos = y_score_t[y_true_t == 1]
     neg = y_score_t[y_true_t == 0]
-    threshold = torch.quantile(neg, 1 - max_fpr)
-    tpr = (pos >= threshold).float().mean().item()
+    if len(neg) == 0:  # edge-case guard
+        return float("nan")
+    threshold = torch.quantile(neg, max(0.0, 1 - max_fpr))
+    tpr = (pos >= threshold).float().mean().item() if len(pos) else 0.0
     return tpr
 
 
@@ -88,7 +91,7 @@ class _SimpleTokenizer:
     def __init__(self):
         self.vocab: Dict[str, int] = {"<unk>": 0}
 
-    def __call__(self, text: str, return_tensors: str = "pt", truncation: bool = False, max_length: int = 256):
+    def __call__(self, text: str, *, return_tensors: str = "pt", truncation: bool = False, max_length: int = 256):
         tokens = text.strip().split()
         if truncation:
             tokens = tokens[: max_length]
@@ -128,8 +131,14 @@ def run_experiment_1(cfg: dict):
     # Data --------------------------------------------------------------
     dl = DatasetLoader(cfg)
     waterbench = dl.load_waterbench()["test"]
+
     if cfg["exp1"].get("max_samples"):
-        waterbench = waterbench.select(range(cfg["exp1"]["max_samples"]))
+        requested = cfg["exp1"]["max_samples"]
+        actual = len(waterbench)
+        if requested > actual:
+            print(f"[WARN] Requested max_samples={requested} exceeds dataset size={actual}. Using full dataset.")
+            requested = actual
+        waterbench = waterbench.select(range(requested))
 
     # Embedding stack ---------------------------------------------------
     base_name = cfg["exp1"].get("embed_model", "simple")
@@ -141,7 +150,9 @@ def run_experiment_1(cfg: dict):
         embedding_layer = _RandomEmbedding(vocab_cap, dim=64).to(device)
 
         def emb_fn(ids):  # noqa: D401 – simple closure
-            return embedding_layer(ids)
+            # Make sure parameters and inputs are on the same device (robust to accidental moves).
+            return embedding_layer(ids.to(embedding_layer.emb.weight.device))
+
     else:
         from transformers import AutoTokenizer, AutoModel
 
@@ -150,7 +161,7 @@ def run_experiment_1(cfg: dict):
 
         def emb_fn(ids):
             with torch.no_grad():
-                return base_model.embeddings.word_embeddings(ids)
+                return base_model.embeddings.word_embeddings(ids.to(device))
 
     # Detector ----------------------------------------------------------
     hcc = HoloChainCertModel(cfg, tokenizer).to(device)
