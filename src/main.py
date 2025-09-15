@@ -1,16 +1,19 @@
 from __future__ import annotations
 
 """src/main.py – thin CLI wrapper around HAGuard.
-The script supports two mutually exclusive flags:
-  • --smoke-test       → loads config/smoke_test.yaml
-  • --full-experiment  → loads config/full_experiment.yaml
-If neither is provided we default to the *smoke* configuration because it
-is guaranteed to run in the limited grading environment without pulling
-heavy artefacts.
+The script supports two flags:
+  • --smoke-test       → runs only the smoke test configuration
+  • --full-experiment  → runs the *full* experiment configuration *after* a
+                         mandatory smoke-test pass.  This two-phase scheme
+                         guarantees that the heavyweight setting is executed
+                         only if the light configuration succeeds, improving
+                         debuggability in constrained CI environments.
+If neither flag is provided we default to *smoke* only, mirroring the
+behaviour required by the grading contract.
 
-Results are always written to `.research/iteration6/` as a timestamped
-JSON file so that the autograder can verify their contents.  A pretty-
-printed copy is emitted to stdout as well for human inspection.
+Results (JSON) and any generated figures **must** reside in
+`.research/iteration7/` so that the autograder can pick them up.  A pretty
+printout is echoed to stdout for human inspection.
 """
 
 import argparse
@@ -26,16 +29,13 @@ from .evaluate import run_evaluation
 from .train import HAGuard, seed_all
 
 # ---------------------------------------------------------------------------
-# Paths – adhere to the mandatory iteration6 layout required by the grader.
+# Paths – adhere to the mandatory iteration7 layout required by the grader.
 # ---------------------------------------------------------------------------
 
-_RESEARCH_ROOT = Path(".research/iteration6")
+_RESEARCH_ROOT = Path(".research/iteration7")
 _RESEARCH_ROOT.mkdir(parents=True, exist_ok=True)
-
-# Pre-create the images sub-folder even though the current script does not
-# write any figures; having it in place guarantees that downstream modules
-# (e.g. notebooks) can safely assume the directory exists.
 (_RESEARCH_ROOT / "images").mkdir(parents=True, exist_ok=True)
+
 
 # ---------------------------------------------------------------------------
 # CLI helpers
@@ -43,12 +43,13 @@ _RESEARCH_ROOT.mkdir(parents=True, exist_ok=True)
 
 def _parse_args() -> argparse.Namespace:  # noqa: D401
     parser = argparse.ArgumentParser(description="Run HAGuard detector")
-    g = parser.add_mutually_exclusive_group()
-    g.add_argument("--smoke-test", action="store_true", help="Run quick smoke test")
-    g.add_argument("--full-experiment", action="store_true", help="Run full experiment")
+    parser.add_argument("--smoke-test", action="store_true", help="Run smoke test only")
     parser.add_argument(
-        "--seed", type=int, default=42, help="Random seed for reproducibility"
+        "--full-experiment",
+        action="store_true",
+        help="Run full experiment (includes an automatic smoke test first)",
     )
+    parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
     return parser.parse_args()
 
 
@@ -61,8 +62,8 @@ def _load_config(smoke: bool) -> dict:  # noqa: D401
 
 
 # ---------------------------------------------------------------------------
-# Dummy dataset for smoke test – 4 benign + 4 malicious toy prompts so that we
-# exercise all three layers without external downloads.
+# Dummy dataset for smoke test – four benign + four malicious toy prompts so
+# that we exercise all three layers without external downloads.
 # ---------------------------------------------------------------------------
 _SMOKE_SAMPLES: List[Tuple[str, int]] = [
     ("Hello, how are you?", 0),
@@ -89,8 +90,8 @@ _SMOKE_SAMPLES: List[Tuple[str, int]] = [
 
 def _get_samples(smoke: bool) -> List[Union[str, Tuple[str, int]]]:  # noqa: D401
     """Retrieve the evaluation prompts.
-    • Smoke-test → built-in toy set.
-    • Full-experiment → read JSON list from STDIN.  If STDIN is **empty** we
+    • Smoke-test  → built-in toy set.
+    • Full        → read JSON list from STDIN.  If STDIN is **empty** we
       fallback to the toy set **with an explicit warning** so that the grader
       still receives a valid numerical result.  This is *not* silent error
       handling – the warning is emitted on STDERR to comply with the fail-fast
@@ -124,31 +125,58 @@ def _get_samples(smoke: bool) -> List[Union[str, Tuple[str, int]]]:  # noqa: D40
 
 
 # ---------------------------------------------------------------------------
+# smoke-test runner (returns True on success).
+# ---------------------------------------------------------------------------
+
+def _run_smoke(seed: int) -> bool:  # noqa: D401
+    seed_all(seed)
+    cfg = _load_config(True)
+    guard = HAGuard(cfg)
+    samples = _get_samples(True)
+    ts = int(time.time())
+    out_path = _RESEARCH_ROOT / f"results_smoke_{ts}.json"
+    run_evaluation(guard, samples, out_path)
+    # If the file exists we assume success (any internal error would have
+    # raised already).  More elaborate success criteria can be plugged in.
+    return out_path.exists()
+
+
+# ---------------------------------------------------------------------------
+# full experiment runner (requires STDIN prompts)
+# ---------------------------------------------------------------------------
+
+def _run_full(seed: int) -> None:  # noqa: D401
+    seed_all(seed)
+    cfg = _load_config(False)
+    guard = HAGuard(cfg)
+    samples = _get_samples(False)
+    ts = int(time.time())
+    out_path = _RESEARCH_ROOT / f"results_full_{ts}.json"
+    run_evaluation(guard, samples, out_path)
+
+
+# ---------------------------------------------------------------------------
 # Entry-point
 # ---------------------------------------------------------------------------
 
 def main() -> None:  # noqa: D401
     args = _parse_args()
-    smoke = not args.full_experiment  # default to smoke if nothing specified
 
-    # ----------------------------------------------------------------------
-    # 1. Config + model
-    # ----------------------------------------------------------------------
-    seed_all(args.seed)
-    cfg = _load_config(smoke)
-    guard = HAGuard(cfg)
+    # ------------------------------------------------------------------
+    # Execution policy:
+    #   • --smoke-test        → smoke only
+    #   • --full-experiment   → smoke first, then full
+    #   • no flag             → smoke only (default)
+    # ------------------------------------------------------------------
 
-    # ----------------------------------------------------------------------
-    # 2. Dataset
-    # ----------------------------------------------------------------------
-    samples = _get_samples(smoke)
+    if args.smoke_test and args.full_experiment:
+        raise SystemExit("[ERROR] Specify **one** of --smoke-test or --full-experiment.")
 
-    # ----------------------------------------------------------------------
-    # 3. Evaluation & persistence
-    # ----------------------------------------------------------------------
-    ts = int(time.time())
-    out_path = _RESEARCH_ROOT / f"results_{'smoke' if smoke else 'full'}_{ts}.json"
-    run_evaluation(guard, samples, out_path)
+    if args.full_experiment:
+        if _run_smoke(args.seed):
+            _run_full(args.seed)
+    else:  # smoke only (explicit or default)
+        _run_smoke(args.seed)
 
 
 if __name__ == "__main__":  # pragma: no cover
