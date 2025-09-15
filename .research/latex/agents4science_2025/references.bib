@@ -5,3 +5,822 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{asnani-2024-promark,
+ abstract = {Generative AI (GenAI) is transforming creative workflows through the
+capability to synthesize and manipulate images via high-level prompts. Yet
+creatives are not well supported to receive recognition or reward for the use
+of their content in GenAI training. To this end, we propose ProMark, a causal
+attribution technique to attribute a synthetically generated image to its
+training data concepts like objects, motifs, templates, artists, or styles. The
+concept information is proactively embedded into the input training images
+using imperceptible watermarks, and the diffusion models (unconditional or
+conditional) are trained to retain the corresponding watermarks in generated
+images. We show that we can embed as many as $2^{16}$ unique watermarks into
+the training data, and each training image can contain more than one watermark.
+ProMark can maintain image quality whilst outperforming correlation-based
+attribution. Finally, several qualitative examples are presented, providing the
+confidence that the presence of the watermark conveys a causative relationship
+between training data and synthetic images.},
+ arxiv_url = {https://arxiv.org/pdf/2403.09914v1.pdf},
+ author = {Vishal Asnani and John Collomosse and Tu Bui and Xiaoming Liu and Shruti Agarwal},
+ title = {ProMark: Proactive Diffusion Watermarking for Causal Attribution},
+ year = {2024}
+}
+
+@article{author-year-countering,
+ title = {Countering Personalized Text-to-Image Generation with Influence Watermarks}
+}
+
+@article{author-year-disentangled,
+ title = {Disentangled Style Domain for Implicit $z$-Watermark Towards Copyright Protection}
+}
+
+@article{author-year-punctuation,
+ title = {Punctuation-level Attack: Single-shot and Single Punctuation Can Fool Text Models}
+}
+
+@article{bansal-2022-certified,
+ abstract = {Watermarking is a commonly used strategy to protect creators' rights to
+digital images, videos and audio. Recently, watermarking methods have been
+extended to deep learning models -- in principle, the watermark should be
+preserved when an adversary tries to copy the model. However, in practice,
+watermarks can often be removed by an intelligent adversary. Several papers
+have proposed watermarking methods that claim to be empirically resistant to
+different types of removal attacks, but these new techniques often fail in the
+face of new or better-tuned adversaries. In this paper, we propose a
+certifiable watermarking method. Using the randomized smoothing technique
+proposed in Chiang et al., we show that our watermark is guaranteed to be
+unremovable unless the model parameters are changed by more than a certain l2
+threshold. In addition to being certifiable, our watermark is also empirically
+more robust compared to previous watermarking methods. Our experiments can be
+reproduced with code at https://github.com/arpitbansal297/Certified_Watermarks},
+ arxiv_url = {https://arxiv.org/pdf/2207.07972v1.pdf},
+ author = {Arpit Bansal and Ping-yeh Chiang and Michael Curry and Rajiv Jain and Curtis Wigington and Varun Manjunatha and John P Dickerson and Tom Goldstein},
+ journal = {ICML 2022},
+ title = {Certified Neural Network Watermarks with Randomized Smoothing},
+ year = {2022}
+}
+
+@article{dong-2021-towards,
+ abstract = {Robustness against word substitutions has a well-defined and widely
+acceptable form, i.e., using semantically similar words as substitutions, and
+thus it is considered as a fundamental stepping-stone towards broader
+robustness in natural language processing. Previous defense methods capture
+word substitutions in vector space by using either $l_2$-ball or
+hyper-rectangle, which results in perturbation sets that are not inclusive
+enough or unnecessarily large, and thus impedes mimicry of worst cases for
+robust training. In this paper, we introduce a novel \textit{Adversarial Sparse
+Convex Combination} (ASCC) method. We model the word substitution attack space
+as a convex hull and leverages a regularization term to enforce perturbation
+towards an actual substitution, thus aligning our modeling better with the
+discrete textual space. Based on the ASCC method, we further propose
+ASCC-defense, which leverages ASCC to generate worst-case perturbations and
+incorporates adversarial training towards robustness. Experiments show that
+ASCC-defense outperforms the current state-of-the-arts in terms of robustness
+on two prevailing NLP tasks, \emph{i.e.}, sentiment analysis and natural
+language inference, concerning several attacks across multiple model
+architectures. Besides, we also envision a new class of defense towards
+robustness in NLP, where our robustly trained word vectors can be plugged into
+a normally trained model and enforce its robustness without applying any other
+defense techniques.},
+ arxiv_url = {https://arxiv.org/pdf/2107.13541v1.pdf},
+ author = {Xinshuai Dong and Anh Tuan Luu and Rongrong Ji and Hong Liu},
+ github_url = {https://github.com/dongxinshuai/ASCC},
+ title = {Towards Robustness Against Natural Language Word Substitutions},
+ year = {2021}
+}
+
+@article{giboulot-2024-watermax,
+ abstract = {Watermarking is a technical means to dissuade malfeasant usage of Large
+Language Models. This paper proposes a novel watermarking scheme, so-called
+WaterMax, that enjoys high detectability while sustaining the quality of the
+generated text of the original LLM. Its new design leaves the LLM untouched (no
+modification of the weights, logits, temperature, or sampling technique).
+WaterMax balances robustness and complexity contrary to the watermarking
+techniques of the literature inherently provoking a trade-off between quality
+and robustness. Its performance is both theoretically proven and experimentally
+validated. It outperforms all the SotA techniques under the most complete
+benchmark suite. Code available at https://github.com/eva-giboulot/WaterMax.},
+ arxiv_url = {https://arxiv.org/pdf/2403.04808v3.pdf},
+ author = {Eva Giboulot and Teddy Furon},
+ title = {WaterMax: breaking the LLM watermark detectability-robustness-quality trade-off},
+ year = {2024}
+}
+
+@article{gu-2023-the,
+ abstract = {Watermarking of language model outputs enables statistical detection of
+model-generated text, which can mitigate harms and misuses of language models.
+Existing watermarking strategies operate by altering the decoder of an existing
+language model. In this paper, we ask whether language models can directly
+learn to generate watermarked text, which would have significant implications
+for the real-world deployment of watermarks. First, learned watermarks could be
+used to build open models that naturally generate watermarked text, enabling
+watermarking for open models, where users can control the decoding procedure.
+Second, if watermarking is used to determine the provenance of generated text,
+an adversary can hurt the reputation of a victim model by spoofing its
+watermark and generating damaging watermarked text. To investigate the
+learnability of watermarks, we propose watermark distillation, which trains a
+student model to behave like a teacher model that uses decoding-based
+watermarking. We test our approach on three decoding-based watermarking
+strategies and various hyperparameter settings, finding that models can learn
+to generate watermarked text with high detectability. We also find limitations
+to learnability, including the loss of watermarking capabilities under
+fine-tuning on normal text and high sample complexity when learning
+low-distortion watermarks.},
+ arxiv_url = {https://arxiv.org/pdf/2312.04469v3.pdf},
+ author = {Chenchen Gu and Xiang Lisa Li and Percy Liang and Tatsunori Hashimoto},
+ github_url = {https://github.com/chenchenygu/watermark-learnability},
+ title = {On the Learnability of Watermarks for Language Models},
+ year = {2023}
+}
+
+@article{hou-2022-textgrad,
+ abstract = {Robustness evaluation against adversarial examples has become increasingly
+important to unveil the trustworthiness of the prevailing deep models in
+natural language processing (NLP). However, in contrast to the computer vision
+domain where the first-order projected gradient descent (PGD) is used as the
+benchmark approach to generate adversarial examples for robustness evaluation,
+there lacks a principled first-order gradient-based robustness evaluation
+framework in NLP. The emerging optimization challenges lie in 1) the discrete
+nature of textual inputs together with the strong coupling between the
+perturbation location and the actual content, and 2) the additional constraint
+that the perturbed text should be fluent and achieve a low perplexity under a
+language model. These challenges make the development of PGD-like NLP attacks
+difficult. To bridge the gap, we propose TextGrad, a new attack generator using
+gradient-driven optimization, supporting high-accuracy and high-quality
+assessment of adversarial robustness in NLP. Specifically, we address the
+aforementioned challenges in a unified optimization framework. And we develop
+an effective convex relaxation method to co-optimize the continuously-relaxed
+site selection and perturbation variables and leverage an effective sampling
+method to establish an accurate mapping from the continuous optimization
+variables to the discrete textual perturbations. Moreover, as a first-order
+attack generation method, TextGrad can be baked into adversarial training to
+further improve the robustness of NLP models. Extensive experiments are
+provided to demonstrate the effectiveness of TextGrad not only in attack
+generation for robustness evaluation but also in adversarial defense.},
+ arxiv_url = {https://arxiv.org/pdf/2212.09254v1.pdf},
+ author = {Bairu Hou and Jinghan Jia and Yihua Zhang and Guanhua Zhang and Yang Zhang and Sijia Liu and Shiyu Chang},
+ github_url = {https://github.com/UCSB-NLP-Chang/TextGrad},
+ title = {TextGrad: Advancing Robustness Evaluation in NLP by Gradient-Driven Optimization},
+ year = {2022}
+}
+
+@article{hu-2023-radar,
+ abstract = {Recent advances in large language models (LLMs) and the intensifying
+popularity of ChatGPT-like applications have blurred the boundary of
+high-quality text generation between humans and machines. However, in addition
+to the anticipated revolutionary changes to our technology and society, the
+difficulty of distinguishing LLM-generated texts (AI-text) from human-generated
+texts poses new challenges of misuse and fairness, such as fake content
+generation, plagiarism, and false accusations of innocent writers. While
+existing works show that current AI-text detectors are not robust to LLM-based
+paraphrasing, this paper aims to bridge this gap by proposing a new framework
+called RADAR, which jointly trains a robust AI-text detector via adversarial
+learning. RADAR is based on adversarial training of a paraphraser and a
+detector. The paraphraser's goal is to generate realistic content to evade
+AI-text detection. RADAR uses the feedback from the detector to update the
+paraphraser, and vice versa. Evaluated with 8 different LLMs (Pythia, Dolly
+2.0, Palmyra, Camel, GPT-J, Dolly 1.0, LLaMA, and Vicuna) across 4 datasets,
+experimental results show that RADAR significantly outperforms existing AI-text
+detection methods, especially when paraphrasing is in place. We also identify
+the strong transferability of RADAR from instruction-tuned LLMs to other LLMs,
+and evaluate the improved capability of RADAR via GPT-3.5-Turbo.},
+ arxiv_url = {https://arxiv.org/pdf/2307.03838v2.pdf},
+ author = {Xiaomeng Hu and Pin-Yu Chen and Tsung-Yi Ho},
+ title = {RADAR: Robust AI-Text Detection via Adversarial Learning},
+ year = {2023}
+}
+
+@article{hu-2023-unbiased,
+ abstract = {The recent advancements in large language models (LLMs) have sparked a
+growing apprehension regarding the potential misuse. One approach to mitigating
+this risk is to incorporate watermarking techniques into LLMs, allowing for the
+tracking and attribution of model outputs. This study examines a crucial aspect
+of watermarking: how significantly watermarks impact the quality of
+model-generated outputs. Previous studies have suggested a trade-off between
+watermark strength and output quality. However, our research demonstrates that
+it is possible to integrate watermarks without affecting the output probability
+distribution with appropriate implementation. We refer to this type of
+watermark as an unbiased watermark. This has significant implications for the
+use of LLMs, as it becomes impossible for users to discern whether a service
+provider has incorporated watermarks or not. Furthermore, the presence of
+watermarks does not compromise the performance of the model in downstream
+tasks, ensuring that the overall utility of the language model is preserved.
+Our findings contribute to the ongoing discussion around responsible AI
+development, suggesting that unbiased watermarks can serve as an effective
+means of tracking and attributing model outputs without sacrificing output
+quality.},
+ arxiv_url = {https://arxiv.org/pdf/2310.10669v2.pdf},
+ author = {Zhengmian Hu and Lichang Chen and Xidong Wu and Yihan Wu and Hongyang Zhang and Heng Huang},
+ title = {Unbiased Watermark for Large Language Models},
+ year = {2023}
+}
+
+@article{hu-2024-inevitable,
+ abstract = {Large language models are probabilistic models, and the process of generating
+content is essentially sampling from the output distribution of the language
+model. Existing watermarking techniques inject watermarks into the generated
+content without altering the output quality. On the other hand, existing
+acceleration techniques, specifically speculative sampling, leverage a draft
+model to speed up the sampling process while preserving the output
+distribution. However, there is no known method to simultaneously accelerate
+the sampling process and inject watermarks into the generated content. In this
+paper, we investigate this direction and find that the integration of
+watermarking and acceleration is non-trivial. We prove a no-go theorem, which
+states that it is impossible to simultaneously maintain the highest watermark
+strength and the highest sampling efficiency. Furthermore, we propose two
+methods that maintain either the sampling efficiency or the watermark strength,
+but not both. Our work provides a rigorous theoretical foundation for
+understanding the inherent trade-off between watermark strength and sampling
+efficiency in accelerating the generation of watermarked tokens for large
+language models. We also conduct numerical experiments to validate our
+theoretical findings and demonstrate the effectiveness of the proposed methods.},
+ arxiv_url = {https://arxiv.org/pdf/2410.20418v1.pdf},
+ author = {Zhengmian Hu and Heng Huang},
+ title = {Inevitable Trade-off between Watermark Strength and Speculative Sampling Efficiency for Language Models},
+ year = {2024}
+}
+
+@article{huang-2024-robin,
+ abstract = {Watermarking generative content serves as a vital tool for authentication,
+ownership protection, and mitigation of potential misuse. Existing watermarking
+methods face the challenge of balancing robustness and concealment. They
+empirically inject a watermark that is both invisible and robust and passively
+achieve concealment by limiting the strength of the watermark, thus reducing
+the robustness. In this paper, we propose to explicitly introduce a watermark
+hiding process to actively achieve concealment, thus allowing the embedding of
+stronger watermarks. To be specific, we implant a robust watermark in an
+intermediate diffusion state and then guide the model to hide the watermark in
+the final generated image. We employ an adversarial optimization algorithm to
+produce the optimal hiding prompt guiding signal for each watermark. The prompt
+embedding is optimized to minimize artifacts in the generated image, while the
+watermark is optimized to achieve maximum strength. The watermark can be
+verified by reversing the generation process. Experiments on various diffusion
+models demonstrate the watermark remains verifiable even under significant
+image tampering and shows superior invisibility compared to other
+state-of-the-art robust watermarking methods. Code is available at
+https://github.com/Hannah1102/ROBIN.},
+ arxiv_url = {https://arxiv.org/pdf/2411.03862v2.pdf},
+ author = {Huayang Huang and Yu Wu and Qian Wang},
+ github_url = {https://github.com/Hannah1102/ROBIN},
+ title = {ROBIN: Robust and Invisible Watermarks for Diffusion Models with Adversarial Optimization},
+ year = {2024}
+}
+
+@article{huo-2024-token,
+ abstract = {Large language models generate high-quality responses with potential
+misinformation, underscoring the need for regulation by distinguishing
+AI-generated and human-written texts. Watermarking is pivotal in this context,
+which involves embedding hidden markers in texts during the LLM inference
+phase, which is imperceptible to humans. Achieving both the detectability of
+inserted watermarks and the semantic quality of generated texts is challenging.
+While current watermarking algorithms have made promising progress in this
+direction, there remains significant scope for improvement. To address these
+challenges, we introduce a novel multi-objective optimization (MOO) approach
+for watermarking that utilizes lightweight networks to generate token-specific
+watermarking logits and splitting ratios. By leveraging MOO to optimize for
+both detection and semantic objective functions, our method simultaneously
+achieves detectability and semantic integrity. Experimental results show that
+our method outperforms current watermarking techniques in enhancing the
+detectability of texts generated by LLMs while maintaining their semantic
+coherence. Our code is available at https://github.com/mignonjia/TS_watermark.},
+ arxiv_url = {https://arxiv.org/pdf/2402.18059v3.pdf},
+ author = {Mingjia Huo and Sai Ashish Somayajula and Youwei Liang and Ruisi Zhang and Farinaz Koushanfar and Pengtao Xie},
+ title = {Token-Specific Watermarking with Enhanced Detectability and Semantic Coherence for Large Language Models},
+ year = {2024}
+}
+
+@article{khachaturov-2021-markpainting,
+ abstract = {Inpainting is a learned interpolation technique that is based on generative
+modeling and used to populate masked or missing pieces in an image; it has wide
+applications in picture editing and retouching. Recently, inpainting started
+being used for watermark removal, raising concerns. In this paper we study how
+to manipulate it using our markpainting technique. First, we show how an image
+owner with access to an inpainting model can augment their image in such a way
+that any attempt to edit it using that model will add arbitrary visible
+information. We find that we can target multiple different models
+simultaneously with our technique. This can be designed to reconstitute a
+watermark if the editor had been trying to remove it. Second, we show that our
+markpainting technique is transferable to models that have different
+architectures or were trained on different datasets, so watermarks created
+using it are difficult for adversaries to remove. Markpainting is novel and can
+be used as a manipulation alarm that becomes visible in the event of
+inpainting.},
+ arxiv_url = {https://arxiv.org/pdf/2106.00660v1.pdf},
+ author = {David Khachaturov and Ilia Shumailov and Yiren Zhao and Nicolas Papernot and Ross Anderson},
+ title = {Markpainting: Adversarial Machine Learning meets Inpainting},
+ year = {2021}
+}
+
+@article{kirchenbauer-2023-the,
+ abstract = {As LLMs become commonplace, machine-generated text has the potential to flood
+the internet with spam, social media bots, and valueless content. Watermarking
+is a simple and effective strategy for mitigating such harms by enabling the
+detection and documentation of LLM-generated text. Yet a crucial question
+remains: How reliable is watermarking in realistic settings in the wild? There,
+watermarked text may be modified to suit a user's needs, or entirely rewritten
+to avoid detection. We study the robustness of watermarked text after it is
+re-written by humans, paraphrased by a non-watermarked LLM, or mixed into a
+longer hand-written document. We find that watermarks remain detectable even
+after human and machine paraphrasing. While these attacks dilute the strength
+of the watermark, paraphrases are statistically likely to leak n-grams or even
+longer fragments of the original text, resulting in high-confidence detections
+when enough tokens are observed. For example, after strong human paraphrasing
+the watermark is detectable after observing 800 tokens on average, when setting
+a 1e-5 false positive rate. We also consider a range of new detection schemes
+that are sensitive to short spans of watermarked text embedded inside a large
+document, and we compare the robustness of watermarking to other kinds of
+detectors.},
+ arxiv_url = {https://arxiv.org/pdf/2306.04634v4.pdf},
+ author = {John Kirchenbauer and Jonas Geiping and Yuxin Wen and Manli Shu and Khalid Saifullah and Kezhi Kong and Kasun Fernando and Aniruddha Saha and Micah Goldblum and Tom Goldstein},
+ title = {On the Reliability of Watermarks for Large Language Models},
+ year = {2023}
+}
+
+@article{kirchenbauer-2023-watermark,
+ abstract = {Potential harms of large language models can be mitigated by watermarking
+model output, i.e., embedding signals into generated text that are invisible to
+humans but algorithmically detectable from a short span of tokens. We propose a
+watermarking framework for proprietary language models. The watermark can be
+embedded with negligible impact on text quality, and can be detected using an
+efficient open-source algorithm without access to the language model API or
+parameters. The watermark works by selecting a randomized set of "green" tokens
+before a word is generated, and then softly promoting use of green tokens
+during sampling. We propose a statistical test for detecting the watermark with
+interpretable p-values, and derive an information-theoretic framework for
+analyzing the sensitivity of the watermark. We test the watermark using a
+multi-billion parameter model from the Open Pretrained Transformer (OPT)
+family, and discuss robustness and security.},
+ arxiv_url = {https://arxiv.org/pdf/2301.10226v4.pdf},
+ author = {John Kirchenbauer and Jonas Geiping and Yuxin Wen and Jonathan Katz and Ian Miers and Tom Goldstein},
+ title = {A Watermark for Large Language Models},
+ year = {2023}
+}
+
+@article{krishna-2023-paraphrasing,
+ abstract = {The rise in malicious usage of large language models, such as fake content
+creation and academic plagiarism, has motivated the development of approaches
+that identify AI-generated text, including those based on watermarking or
+outlier detection. However, the robustness of these detection algorithms to
+paraphrases of AI-generated text remains unclear. To stress test these
+detectors, we build a 11B parameter paraphrase generation model (DIPPER) that
+can paraphrase paragraphs, condition on surrounding context, and control
+lexical diversity and content reordering. Using DIPPER to paraphrase text
+generated by three large language models (including GPT3.5-davinci-003)
+successfully evades several detectors, including watermarking, GPTZero,
+DetectGPT, and OpenAI's text classifier. For example, DIPPER drops detection
+accuracy of DetectGPT from 70.3% to 4.6% (at a constant false positive rate of
+1%), without appreciably modifying the input semantics.
+  To increase the robustness of AI-generated text detection to paraphrase
+attacks, we introduce a simple defense that relies on retrieving
+semantically-similar generations and must be maintained by a language model API
+provider. Given a candidate text, our algorithm searches a database of
+sequences previously generated by the API, looking for sequences that match the
+candidate text within a certain threshold. We empirically verify our defense
+using a database of 15M generations from a fine-tuned T5-XXL model and find
+that it can detect 80% to 97% of paraphrased generations across different
+settings while only classifying 1% of human-written sequences as AI-generated.
+We open-source our models, code and data.},
+ arxiv_url = {https://arxiv.org/pdf/2303.13408v2.pdf},
+ author = {Kalpesh Krishna and Yixiao Song and Marzena Karpinska and John Wieting and Mohit Iyyer},
+ github_url = {https://github.com/martiansideofthemoon/ai-detection-paraphrases},
+ title = {Paraphrasing evades detectors of AI-generated text, but retrieval is an effective defense},
+ year = {2023}
+}
+
+@article{li-2024-segmenting,
+ abstract = {Watermarking is a technique that involves embedding nearly unnoticeable
+statistical signals within generated content to help trace its source. This
+work focuses on a scenario where an untrusted third-party user sends prompts to
+a trusted language model (LLM) provider, who then generates a text from their
+LLM with a watermark. This setup makes it possible for a detector to later
+identify the source of the text if the user publishes it. The user can modify
+the generated text by substitutions, insertions, or deletions. Our objective is
+to develop a statistical method to detect if a published text is LLM-generated
+from the perspective of a detector. We further propose a methodology to segment
+the published text into watermarked and non-watermarked sub-strings. The
+proposed approach is built upon randomization tests and change point detection
+techniques. We demonstrate that our method ensures Type I and Type II error
+control and can accurately identify watermarked sub-strings by finding the
+corresponding change point locations. To validate our technique, we apply it to
+texts generated by several language models with prompts extracted from Google's
+C4 dataset and obtain encouraging numerical results. We release all code
+publicly at https://github.com/doccstat/llm-watermark-cpd.},
+ arxiv_url = {https://arxiv.org/pdf/2410.20670v1.pdf},
+ author = {Xingchi Li and Guanxun Li and Xianyang Zhang},
+ github_url = {https://github.com/doccstat/llm-watermark-cpd},
+ title = {Segmenting Watermarked Texts From Language Models},
+ year = {2024}
+}
+
+@article{liu-2023-semantic,
+ abstract = {Watermark algorithms for large language models (LLMs) have achieved extremely
+high accuracy in detecting text generated by LLMs. Such algorithms typically
+involve adding extra watermark logits to the LLM's logits at each generation
+step. However, prior algorithms face a trade-off between attack robustness and
+security robustness. This is because the watermark logits for a token are
+determined by a certain number of preceding tokens; a small number leads to low
+security robustness, while a large number results in insufficient attack
+robustness. In this work, we propose a semantic invariant watermarking method
+for LLMs that provides both attack robustness and security robustness. The
+watermark logits in our work are determined by the semantics of all preceding
+tokens. Specifically, we utilize another embedding LLM to generate semantic
+embeddings for all preceding tokens, and then these semantic embeddings are
+transformed into the watermark logits through our trained watermark model.
+Subsequent analyses and experiments demonstrated the attack robustness of our
+method in semantically invariant settings: synonym substitution and text
+paraphrasing settings. Finally, we also show that our watermark possesses
+adequate security robustness. Our code and data are available at
+\href{https://github.com/THU-BPM/Robust_Watermark}{https://github.com/THU-BPM/Robust\_Watermark}.
+Additionally, our algorithm could also be accessed through MarkLLM
+\citep{pan2024markllm} \footnote{https://github.com/THU-BPM/MarkLLM}.},
+ arxiv_url = {https://arxiv.org/pdf/2310.06356v3.pdf},
+ author = {Aiwei Liu and Leyi Pan and Xuming Hu and Shiao Meng and Lijie Wen},
+ github_url = {https://github.com/THU-BPM/Robust_Watermark},
+ title = {A Semantic Invariant Robust Watermark for Large Language Models},
+ year = {2023}
+}
+
+@article{liu-2023-unforgeable,
+ abstract = {Recently, text watermarking algorithms for large language models (LLMs) have
+been proposed to mitigate the potential harms of text generated by LLMs,
+including fake news and copyright issues. However, current watermark detection
+algorithms require the secret key used in the watermark generation process,
+making them susceptible to security breaches and counterfeiting during public
+detection. To address this limitation, we propose an unforgeable publicly
+verifiable watermark algorithm named UPV that uses two different neural
+networks for watermark generation and detection, instead of using the same key
+at both stages. Meanwhile, the token embedding parameters are shared between
+the generation and detection networks, which makes the detection network
+achieve a high accuracy very efficiently. Experiments demonstrate that our
+algorithm attains high detection accuracy and computational efficiency through
+neural networks. Subsequent analysis confirms the high complexity involved in
+forging the watermark from the detection network. Our code is available at
+\href{https://github.com/THU-BPM/unforgeable_watermark}{https://github.com/THU-BPM/unforgeable\_watermark}.
+Additionally, our algorithm could also be accessed through MarkLLM
+\citep{pan2024markllm} \footnote{https://github.com/THU-BPM/MarkLLM}.},
+ arxiv_url = {https://arxiv.org/pdf/2307.16230v7.pdf},
+ author = {Aiwei Liu and Leyi Pan and Xuming Hu and Shu'ang Li and Lijie Wen and Irwin King and Philip S. Yu},
+ github_url = {https://github.com/THU-BPM/unforgeable_watermark},
+ title = {An Unforgeable Publicly Verifiable Watermark for Large Language Models},
+ year = {2023}
+}
+
+@article{liu-2024-adaptive,
+ abstract = {The advancement of Large Language Models (LLMs) has led to increasing
+concerns about the misuse of AI-generated text, and watermarking for
+LLM-generated text has emerged as a potential solution. However, it is
+challenging to generate high-quality watermarked text while maintaining strong
+security, robustness, and the ability to detect watermarks without prior
+knowledge of the prompt or model. This paper proposes an adaptive watermarking
+strategy to address this problem. To improve the text quality and maintain
+robustness, we adaptively add watermarking to token distributions with high
+entropy measured using an auxiliary model and keep the low entropy token
+distributions untouched. For the sake of security and to further minimize the
+watermark's impact on text quality, instead of using a fixed green/red list
+generated from a random secret key, which can be vulnerable to decryption and
+forgery, we adaptively scale up the output logits in proportion based on the
+semantic embedding of previously generated text using a well designed semantic
+mapping model. Our experiments involving various LLMs demonstrate that our
+approach achieves comparable robustness performance to existing watermark
+methods. Additionally, the text generated by our method has perplexity
+comparable to that of \emph{un-watermarked} LLMs while maintaining security
+even under various attacks.},
+ arxiv_url = {https://arxiv.org/pdf/2401.13927v2.pdf},
+ author = {Yepeng Liu and Yuheng Bu},
+ title = {Adaptive Text Watermark for Large Language Models},
+ year = {2024}
+}
+
+@article{liu-2024-hqa,
+ abstract = {Black-box hard-label adversarial attack on text is a practical and
+challenging task, as the text data space is inherently discrete and
+non-differentiable, and only the predicted label is accessible. Research on
+this problem is still in the embryonic stage and only a few methods are
+available. Nevertheless, existing methods rely on the complex heuristic
+algorithm or unreliable gradient estimation strategy, which probably fall into
+the local optimum and inevitably consume numerous queries, thus are difficult
+to craft satisfactory adversarial examples with high semantic similarity and
+low perturbation rate in a limited query budget. To alleviate above issues, we
+propose a simple yet effective framework to generate high quality textual
+adversarial examples under the black-box hard-label attack scenarios, named
+HQA-Attack. Specifically, after initializing an adversarial example randomly,
+HQA-attack first constantly substitutes original words back as many as
+possible, thus shrinking the perturbation rate. Then it leverages the synonym
+set of the remaining changed words to further optimize the adversarial example
+with the direction which can improve the semantic similarity and satisfy the
+adversarial condition simultaneously. In addition, during the optimizing
+procedure, it searches a transition synonym word for each changed word, thus
+avoiding traversing the whole synonym set and reducing the query number to some
+extent. Extensive experimental results on five text classification datasets,
+three natural language inference datasets and two real-world APIs have shown
+that the proposed HQA-Attack method outperforms other strong baselines
+significantly.},
+ arxiv_url = {https://arxiv.org/pdf/2402.01806v1.pdf},
+ author = {Han Liu and Zhi Xu and Xiaotong Zhang and Feng Zhang and Fenglong Ma and Hongyang Chen and Hong Yu and Xianchao Zhang},
+ github_url = {https://github.com/HQA-Attack/HQAAttack-demo},
+ title = {HQA-Attack: Toward High Quality Black-Box Hard-Label Adversarial Attack on Text},
+ year = {2024}
+}
+
+@article{roman-2024-proactive,
+ abstract = {In the rapidly evolving field of speech generative models, there is a
+pressing need to ensure audio authenticity against the risks of voice cloning.
+We present AudioSeal, the first audio watermarking technique designed
+specifically for localized detection of AI-generated speech. AudioSeal employs
+a generator/detector architecture trained jointly with a localization loss to
+enable localized watermark detection up to the sample level, and a novel
+perceptual loss inspired by auditory masking, that enables AudioSeal to achieve
+better imperceptibility. AudioSeal achieves state-of-the-art performance in
+terms of robustness to real life audio manipulations and imperceptibility based
+on automatic and human evaluation metrics. Additionally, AudioSeal is designed
+with a fast, single-pass detector, that significantly surpasses existing models
+in speed - achieving detection up to two orders of magnitude faster, making it
+ideal for large-scale and real-time applications.},
+ arxiv_url = {https://arxiv.org/pdf/2401.17264v2.pdf},
+ author = {Robin San Roman and Pierre Fernandez and Alexandre Défossez and Teddy Furon and Tuan Tran and Hady Elsahar},
+ title = {Proactive Detection of Voice Cloning with Localized Watermarking},
+ year = {2024}
+}
+
+@article{srikant-2021-generating,
+ abstract = {Machine learning (ML) models that learn and predict properties of computer
+programs are increasingly being adopted and deployed. These models have
+demonstrated success in applications such as auto-completing code, summarizing
+large programs, and detecting bugs and malware in programs. In this work, we
+investigate principled ways to adversarially perturb a computer program to fool
+such learned models, and thus determine their adversarial robustness. We use
+program obfuscations, which have conventionally been used to avoid attempts at
+reverse engineering programs, as adversarial perturbations. These perturbations
+modify programs in ways that do not alter their functionality but can be
+crafted to deceive an ML model when making a decision. We provide a general
+formulation for an adversarial program that allows applying multiple
+obfuscation transformations to a program in any language. We develop
+first-order optimization algorithms to efficiently determine two key aspects --
+which parts of the program to transform, and what transformations to use. We
+show that it is important to optimize both these aspects to generate the best
+adversarially perturbed program. Due to the discrete nature of this problem, we
+also propose using randomized smoothing to improve the attack loss landscape to
+ease optimization. We evaluate our work on Python and Java programs on the
+problem of program summarization. We show that our best attack proposal
+achieves a $52\%$ improvement over a state-of-the-art attack generation
+approach for programs trained on a seq2seq model. We further show that our
+formulation is better at training models that are robust to adversarial
+attacks.},
+ arxiv_url = {https://arxiv.org/pdf/2103.11882v1.pdf},
+ author = {Shashank Srikant and Sijia Liu and Tamara Mitrovska and Shiyu Chang and Quanfu Fan and Gaoyuan Zhang and Una-May O'Reilly},
+ github_url = {https://github.com/ALFA-group/adversarial-code-generation},
+ title = {Generating Adversarial Computer Programs using Optimized Obfuscations},
+ year = {2021}
+}
+
+@article{wang-2023-towards,
+ abstract = {As large language models (LLMs) generate texts with increasing fluency and
+realism, there is a growing need to identify the source of texts to prevent the
+abuse of LLMs. Text watermarking techniques have proven reliable in
+distinguishing whether a text is generated by LLMs by injecting hidden
+patterns. However, we argue that existing LLM watermarking methods are
+encoding-inefficient and cannot flexibly meet the diverse information encoding
+needs (such as encoding model version, generation time, user id, etc.). In this
+work, we conduct the first systematic study on the topic of Codable Text
+Watermarking for LLMs (CTWL) that allows text watermarks to carry multi-bit
+customizable information. First of all, we study the taxonomy of LLM
+watermarking technologies and give a mathematical formulation for CTWL.
+Additionally, we provide a comprehensive evaluation system for CTWL: (1)
+watermarking success rate, (2) robustness against various corruptions, (3)
+coding rate of payload information, (4) encoding and decoding efficiency, (5)
+impacts on the quality of the generated text. To meet the requirements of these
+non-Pareto-improving metrics, we follow the most prominent vocabulary
+partition-based watermarking direction, and devise an advanced CTWL method
+named Balance-Marking. The core idea of our method is to use a proxy language
+model to split the vocabulary into probability-balanced parts, thereby
+effectively maintaining the quality of the watermarked text. Our code is
+available at https://github.com/lancopku/codable-watermarking-for-llm.},
+ arxiv_url = {https://arxiv.org/pdf/2307.15992v3.pdf},
+ author = {Lean Wang and Wenkai Yang and Deli Chen and Hao Zhou and Yankai Lin and Fandong Meng and Jie Zhou and Xu Sun},
+ title = {Towards Codable Watermarking for Injecting Multi-Bits Information to LLMs},
+ year = {2023}
+}
+
+@article{wen-2023-tree,
+ abstract = {Watermarking the outputs of generative models is a crucial technique for
+tracing copyright and preventing potential harm from AI-generated content. In
+this paper, we introduce a novel technique called Tree-Ring Watermarking that
+robustly fingerprints diffusion model outputs. Unlike existing methods that
+perform post-hoc modifications to images after sampling, Tree-Ring Watermarking
+subtly influences the entire sampling process, resulting in a model fingerprint
+that is invisible to humans. The watermark embeds a pattern into the initial
+noise vector used for sampling. These patterns are structured in Fourier space
+so that they are invariant to convolutions, crops, dilations, flips, and
+rotations. After image generation, the watermark signal is detected by
+inverting the diffusion process to retrieve the noise vector, which is then
+checked for the embedded signal. We demonstrate that this technique can be
+easily applied to arbitrary diffusion models, including text-conditioned Stable
+Diffusion, as a plug-in with negligible loss in FID. Our watermark is
+semantically hidden in the image space and is far more robust than watermarking
+alternatives that are currently deployed. Code is available at
+https://github.com/YuxinWenRick/tree-ring-watermark.},
+ arxiv_url = {https://arxiv.org/pdf/2305.20030v3.pdf},
+ author = {Yuxin Wen and John Kirchenbauer and Jonas Geiping and Tom Goldstein},
+ github_url = {https://github.com/YuxinWenRick/tree-ring-watermark},
+ title = {Tree-Rings Watermarks: Invisible Fingerprints for Diffusion Images},
+ year = {2023}
+}
+
+@article{wu-2023-resilient,
+ abstract = {Watermarking techniques offer a promising way to identify machine-generated
+content via embedding covert information into the contents generated from
+language models. A challenge in the domain lies in preserving the distribution
+of original generated content after watermarking. Our research extends and
+improves upon existing watermarking framework, placing emphasis on the
+importance of a \textbf{Di}stribution-\textbf{P}reserving (DiP) watermark.
+Contrary to the current strategies, our proposed DiPmark simultaneously
+preserves the original token distribution during watermarking
+(distribution-preserving), is detectable without access to the language model
+API and prompts (accessible), and is provably robust to moderate changes of
+tokens (resilient). DiPmark operates by selecting a random set of tokens prior
+to the generation of a word, then modifying the token distribution through a
+distribution-preserving reweight function to enhance the probability of these
+selected tokens during the sampling process. Extensive empirical evaluation on
+various language models and tasks demonstrates our approach's
+distribution-preserving property, accessibility, and resilience, making it a
+effective solution for watermarking tasks that demand impeccable quality
+preservation.},
+ arxiv_url = {https://arxiv.org/pdf/2310.07710v2.pdf},
+ author = {Yihan Wu and Zhengmian Hu and Junfeng Guo and Hongyang Zhang and Heng Huang},
+ github_url = {https://github.com/yihwu/DiPmark},
+ title = {A Resilient and Accessible Distribution-Preserving Watermark for Large Language Models},
+ year = {2023}
+}
+
+@article{xian-2024-raw,
+ abstract = {Safeguarding intellectual property and preventing potential misuse of
+AI-generated images are of paramount importance. This paper introduces a robust
+and agile plug-and-play watermark detection framework, dubbed as RAW. As a
+departure from traditional encoder-decoder methods, which incorporate fixed
+binary codes as watermarks within latent representations, our approach
+introduces learnable watermarks directly into the original image data.
+Subsequently, we employ a classifier that is jointly trained with the watermark
+to detect the presence of the watermark. The proposed framework is compatible
+with various generative architectures and supports on-the-fly watermark
+injection after training. By incorporating state-of-the-art smoothing
+techniques, we show that the framework provides provable guarantees regarding
+the false positive rate for misclassifying a watermarked image, even in the
+presence of certain adversarial attacks targeting watermark removal.
+Experiments on a diverse range of images generated by state-of-the-art
+diffusion models reveal substantial performance enhancements compared to
+existing approaches. For instance, our method demonstrates a notable increase
+in AUROC, from 0.48 to 0.82, when compared to state-of-the-art approaches in
+detecting watermarked images under adversarial attacks, while maintaining image
+quality, as indicated by closely aligned FID and CLIP scores.},
+ arxiv_url = {https://arxiv.org/pdf/2403.18774v1.pdf},
+ author = {Xun Xian and Ganghua Wang and Xuan Bi and Jayanth Srinivasa and Ashish Kundu and Mingyi Hong and Jie Ding},
+ title = {RAW: A Robust and Agile Plug-and-Play Watermark Framework for AI-Generated Images with Provable Guarantees},
+ year = {2024}
+}
+
+@article{yan-2023-parafuzz,
+ abstract = {Backdoor attacks have emerged as a prominent threat to natural language
+processing (NLP) models, where the presence of specific triggers in the input
+can lead poisoned models to misclassify these inputs to predetermined target
+classes. Current detection mechanisms are limited by their inability to address
+more covert backdoor strategies, such as style-based attacks. In this work, we
+propose an innovative test-time poisoned sample detection framework that hinges
+on the interpretability of model predictions, grounded in the semantic meaning
+of inputs. We contend that triggers (e.g., infrequent words) are not supposed
+to fundamentally alter the underlying semantic meanings of poisoned samples as
+they want to stay stealthy. Based on this observation, we hypothesize that
+while the model's predictions for paraphrased clean samples should remain
+stable, predictions for poisoned samples should revert to their true labels
+upon the mutations applied to triggers during the paraphrasing process. We
+employ ChatGPT, a state-of-the-art large language model, as our paraphraser and
+formulate the trigger-removal task as a prompt engineering problem. We adopt
+fuzzing, a technique commonly used for unearthing software vulnerabilities, to
+discover optimal paraphrase prompts that can effectively eliminate triggers
+while concurrently maintaining input semantics. Experiments on 4 types of
+backdoor attacks, including the subtle style backdoors, and 4 distinct datasets
+demonstrate that our approach surpasses baseline methods, including STRIP, RAP,
+and ONION, in precision and recall.},
+ arxiv_url = {https://arxiv.org/pdf/2308.02122v2.pdf},
+ author = {Lu Yan and Zhuo Zhang and Guanhong Tao and Kaiyuan Zhang and Xuan Chen and Guangyu Shen and Xiangyu Zhang},
+ title = {ParaFuzz: An Interpretability-Driven Technique for Detecting Poisoned Samples in NLP},
+ year = {2023}
+}
+
+@article{yang-2024-can,
+ abstract = {Digital watermarking techniques are crucial for copyright protection and
+source identification of images, especially in the era of generative AI models.
+However, many existing watermarking methods, particularly content-agnostic
+approaches that embed fixed patterns regardless of image content, are
+vulnerable to steganalysis attacks that can extract and remove the watermark
+with minimal perceptual distortion. In this work, we categorize watermarking
+algorithms into content-adaptive and content-agnostic ones, and demonstrate how
+averaging a collection of watermarked images could reveal the underlying
+watermark pattern. We then leverage this extracted pattern for effective
+watermark removal under both graybox and blackbox settings, even when the
+collection contains multiple watermark patterns. For some algorithms like
+Tree-Ring watermarks, the extracted pattern can also forge convincing
+watermarks on clean images. Our quantitative and qualitative evaluations across
+twelve watermarking methods highlight the threat posed by steganalysis to
+content-agnostic watermarks and the importance of designing watermarking
+techniques resilient to such analytical attacks. We propose security guidelines
+calling for using content-adaptive watermarking strategies and performing
+security evaluation against steganalysis. We also suggest multi-key assignments
+as potential mitigations against steganalysis vulnerabilities.},
+ arxiv_url = {https://arxiv.org/pdf/2406.09026v1.pdf},
+ author = {Pei Yang and Hai Ci and Yiren Song and Mike Zheng Shou},
+ title = {Can Simple Averaging Defeat Modern Watermarks?},
+ year = {2024}
+}
+
+@article{yang-2024-gaussian,
+ abstract = {Ethical concerns surrounding copyright protection and inappropriate content
+generation pose challenges for the practical implementation of diffusion
+models. One effective solution involves watermarking the generated images.
+However, existing methods often compromise the model performance or require
+additional training, which is undesirable for operators and users. To address
+this issue, we propose Gaussian Shading, a diffusion model watermarking
+technique that is both performance-lossless and training-free, while serving
+the dual purpose of copyright protection and tracing of offending content. Our
+watermark embedding is free of model parameter modifications and thus is
+plug-and-play. We map the watermark to latent representations following a
+standard Gaussian distribution, which is indistinguishable from latent
+representations obtained from the non-watermarked diffusion model. Therefore we
+can achieve watermark embedding with lossless performance, for which we also
+provide theoretical proof. Furthermore, since the watermark is intricately
+linked with image semantics, it exhibits resilience to lossy processing and
+erasure attempts. The watermark can be extracted by Denoising Diffusion
+Implicit Models (DDIM) inversion and inverse sampling. We evaluate Gaussian
+Shading on multiple versions of Stable Diffusion, and the results demonstrate
+that Gaussian Shading not only is performance-lossless but also outperforms
+existing methods in terms of robustness.},
+ arxiv_url = {https://arxiv.org/pdf/2404.04956v3.pdf},
+ author = {Zijin Yang and Kai Zeng and Kejiang Chen and Han Fang and Weiming Zhang and Nenghai Yu},
+ title = {Gaussian Shading: Provable Performance-Lossless Image Watermarking for Diffusion Models},
+ year = {2024}
+}
+
+@article{zhao-2023-protecting,
+ abstract = {Language generation models have been an increasingly powerful enabler for
+many applications. Many such models offer free or affordable API access, which
+makes them potentially vulnerable to model extraction attacks through
+distillation. To protect intellectual property (IP) and ensure fair use of
+these models, various techniques such as lexical watermarking and synonym
+replacement have been proposed. However, these methods can be nullified by
+obvious countermeasures such as "synonym randomization". To address this issue,
+we propose GINSEW, a novel method to protect text generation models from being
+stolen through distillation. The key idea of our method is to inject secret
+signals into the probability vector of the decoding steps for each target
+token. We can then detect the secret message by probing a suspect model to tell
+if it is distilled from the protected one. Experimental results show that
+GINSEW can effectively identify instances of IP infringement with minimal
+impact on the generation quality of protected APIs. Our method demonstrates an
+absolute improvement of 19 to 29 points on mean average precision (mAP) in
+detecting suspects compared to previous methods against watermark removal
+attacks.},
+ arxiv_url = {https://arxiv.org/pdf/2302.03162v3.pdf},
+ author = {Xuandong Zhao and Yu-Xiang Wang and Lei Li},
+ title = {Protecting Language Generation Models via Invisible Watermarking},
+ year = {2023}
+}
+
+@article{zhou-2022-gapx,
+ abstract = {Paraphrase Identification is a fundamental task in Natural Language
+Processing. While much progress has been made in the field, the performance of
+many state-of-the-art models often suffer from distribution shift during
+inference time. We verify that a major source of this performance drop comes
+from biases introduced by negative examples. To overcome these biases, we
+propose in this paper to train two separate models, one that only utilizes the
+positive pairs and the other the negative pairs. This enables us the option of
+deciding how much to utilize the negative model, for which we introduce a
+perplexity based out-of-distribution metric that we show can effectively and
+automatically determine how much weight it should be given during inference. We
+support our findings with strong empirical results.},
+ arxiv_url = {https://arxiv.org/pdf/2210.01979v1.pdf},
+ author = {Yifei Zhou and Renyu Li and Hayden Housen and Ser-Nam Lim},
+ title = {GAPX: Generalized Autoregressive Paraphrase-Identification X},
+ year = {2022}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author-year-combined,
+ title = {Combined DWT-DCT Digital Image Watermarking}
+}
+
+@article{author-year-svd,
+ title = {SVD-based digital image watermarking scheme}
+}
+
+@article{author-year-the,
+ title = {On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?}
+}
