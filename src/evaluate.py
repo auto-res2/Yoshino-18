@@ -23,9 +23,9 @@ from .preprocess import sliding_windows, generate_summaries  # noqa – may be u
 matplotlib.use("Agg")
 
 # -----------------------------------------------------------------------------
-#  Mandatory research directory paths (iteration **2**)
+#  Mandatory research directory paths (iteration **3**)
 # -----------------------------------------------------------------------------
-_RESEARCH_DIR = Path(".research") / "iteration2"
+_RESEARCH_DIR = Path(".research") / "iteration3"
 _IMAGES_DIR = _RESEARCH_DIR / "images"
 _IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -119,20 +119,26 @@ def run_experiment_1(cfg: dict):
     print("=== Experiment 1: Short-Excerpt Robustness ===")
     set_seed(cfg["seed"])
 
-    # Data --------------------------------------------------------------------
+    # ------------------------------------------------------------------
+    # Device must be chosen *before* we instantiate any torch modules so
+    # that every tensor & parameter lives on the same accelerator / CPU.
+    # ------------------------------------------------------------------
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    # Data --------------------------------------------------------------
     dl = DatasetLoader(cfg)
     waterbench = dl.load_waterbench()["test"]
     if cfg["exp1"].get("max_samples"):
         waterbench = waterbench.select(range(cfg["exp1"]["max_samples"]))
 
-    # Embedding stack ---------------------------------------------------------
+    # Embedding stack ---------------------------------------------------
     base_name = cfg["exp1"].get("embed_model", "simple")
 
     if base_name == "simple":
         tokenizer = _SimpleTokenizer()
         # NOTE: the vocabulary grows on the fly – we use an oversized matrix.
         vocab_cap = 50_000
-        embedding_layer = _RandomEmbedding(vocab_cap, dim=64)
+        embedding_layer = _RandomEmbedding(vocab_cap, dim=64).to(device)
 
         def emb_fn(ids):  # noqa: D401 – simple closure
             return embedding_layer(ids)
@@ -140,15 +146,13 @@ def run_experiment_1(cfg: dict):
         from transformers import AutoTokenizer, AutoModel
 
         tokenizer = AutoTokenizer.from_pretrained(base_name)
-        device = "cuda" if torch.cuda.is_available() else "cpu"
         base_model = AutoModel.from_pretrained(base_name, torch_dtype=torch.bfloat16).to(device)
 
         def emb_fn(ids):
             with torch.no_grad():
                 return base_model.embeddings.word_embeddings(ids)
 
-    # Detector ----------------------------------------------------------------
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    # Detector ----------------------------------------------------------
     hcc = HoloChainCertModel(cfg, tokenizer).to(device)
 
     positives: List[float] = []
@@ -173,7 +177,7 @@ def run_experiment_1(cfg: dict):
     }
     save_results(results, "experiment1_shortexcerpt")
 
-    # Dummy BER curve ---------------------------------------------------------
+    # Dummy BER curve ---------------------------------------------------
     lengths = [4, 8, 16, 32, 64, 128]
     ber = [5.2, 3.1, 2.0, 1.1, 0.5, 0.3]
     _plot_line(lengths, ber, "BER vs excerpt length", "tokens", "BER %", "ber_length")
