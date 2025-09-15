@@ -1,6 +1,6 @@
 """src/evaluate.py
 Evaluation utilities + concrete experiment pipelines.
-Updated for iteration **4** (mandatory path & robustness fixes).
+Updated for iteration **5** (mandatory path & robustness fixes).
 """
 from __future__ import annotations
 
@@ -24,9 +24,9 @@ from .preprocess import sliding_windows, generate_summaries  # noqa – may be u
 matplotlib.use("Agg")
 
 # -----------------------------------------------------------------------------
-#  Mandatory research directory paths (iteration **4**)
+#  Mandatory research directory paths (iteration **5**)
 # -----------------------------------------------------------------------------
-_RESEARCH_DIR = Path(".research") / "iteration4"
+_RESEARCH_DIR = Path(".research") / "iteration5"
 _IMAGES_DIR = _RESEARCH_DIR / "images"
 _IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -206,6 +206,7 @@ class _DummyStarkProver:
 class _DummyStarkVerifier:
     def verify(self, digest: int, proof: bytes):
         return proof == f"proof_for_{digest}".encode()
+
 
 
 def run_experiment_2(cfg: dict):
