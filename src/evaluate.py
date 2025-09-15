@@ -24,9 +24,9 @@ from .train import DADSWrap, ExDARWrapper, BuMSSearch
 from .preprocess import DataModule
 
 # -----------------------------------------------------------------------------
-#   Global paths – follow the directory specification from the instructions.
+#   Global paths – comply with the mandatory directory spec from instructions.
 # -----------------------------------------------------------------------------
-RESULTS_DIR = Path(".research/iteration4")
+RESULTS_DIR = Path(".research/iteration5")
 IMAGES_DIR = RESULTS_DIR / "images"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -112,8 +112,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
     tokenizer = _safe_load_tokenizer(cfg["model_hf_id"])
     base_model = _safe_load_model(cfg["model_hf_id"])
     dads_cfg = cfg.get("training", {}).get("dads", {"sigma": 0.12, "steps": 4})
-    model = DADSWrap(base_model, **dads_cfg).eval()
-    model.to(accelerator.device)  # ensure model & tensors on same device
+    model = DADSWrap(base_model, **dads_cfg).eval().to(accelerator.device)
 
     dm = DataModule(cfg["dataset"])
     ds = dm.get_dataset()
@@ -124,9 +123,9 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
         input_ids = torch.tensor(example["input_ids"], device=accelerator.device).unsqueeze(0)
         outputs = model.generate(
             input_ids=input_ids,
-            max_new_tokens=cfg["decoding"]["max_new_tokens"][-1]
-            if isinstance(cfg["decoding"]["max_new_tokens"], list)
-            else cfg["decoding"]["max_new_tokens"],
+            max_new_tokens=cfg["decoding"]["max_new_tokens"]
+            if isinstance(cfg["decoding"]["max_new_tokens"], int)
+            else cfg["decoding"]["max_new_tokens"][-1],
             temperature=cfg["decoding"]["temperatures"][0],
             top_p=cfg["decoding"]["top_ps"][0],
             num_beams=cfg["decoding"]["beams"][0],
@@ -139,7 +138,10 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
         if idx >= 31:  # quick smoke runtime
             break
 
-    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"]) }
+    stats = {
+        "mean_c_asr": float(np.mean(results["c_asr"])),
+        "n_samples": len(results["prompt_id"]),
+    }
     save_json({"description": description, "stats": stats, "samples": results["prompt_id"]}, "exp1_results.json")
     fig_name = line_plot({"c-ASR": results["c_asr"]}, "Certified ASR", "exp1_c_asr")
     print(json.dumps({"description": description, "stats": stats, "figures": [fig_name]}, indent=2))
@@ -158,8 +160,7 @@ def run_exp2_exdar(cfg: Dict[str, Any], accelerator: Accelerator):
         base_model,
         votes=cfg.get("exdar", {}).get("votes", 3),
         alpha=cfg.get("exdar", {}).get("dirichlet_alpha", 1.0),
-    ).eval()
-    model.to(accelerator.device)
+    ).eval().to(accelerator.device)
 
     dm = DataModule(cfg["dataset"])
     ds = dm.get_dataset()
@@ -174,7 +175,7 @@ def run_exp2_exdar(cfg: Dict[str, Any], accelerator: Accelerator):
         if len(tok_speeds) >= 32:
             break
 
-    stats = {"throughput_tok_s_mean": float(np.mean(tok_speeds)) }
+    stats = {"throughput_tok_s_mean": float(np.mean(tok_speeds))}
     save_json({"description": description, "stats": stats}, "exp2_results.json")
     fig_name = line_plot({"tok/s": tok_speeds}, "Tokens per second", "exp2_throughput")
     print(json.dumps({"description": description, "stats": stats, "figures": [fig_name]}, indent=2))

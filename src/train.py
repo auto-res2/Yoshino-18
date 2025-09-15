@@ -8,10 +8,12 @@ from __future__ import annotations
 import os
 import time
 from pathlib import Path
-from typing import Tuple, Dict, Any
+from typing import Tuple, Dict, Any, ClassVar
 
 import numpy as np
 import torch
+import gymnasium as gym  # Gym-style API (SB3 2.x expects Gymnasium)
+from gymnasium import Env as GymnasiumEnv  # explicit for SB3 type check
 
 # -----------------------------------------------------------------------------
 #   DADSWrap – Decoding-Aware Diffused Smoothing
@@ -101,45 +103,58 @@ class ExDARWrapper(torch.nn.Module):
 from stable_baselines3 import PPO  # heavy import but only when BuMS is used
 from stable_baselines3.common.vec_env import DummyVecEnv  # correct import path
 
-class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
-    """A toy continuous control problem representing the search space of the
-    budgeted meta-sampler.  The physics are *not* meaningful; they are a compact
-    stand-in so every code path of the paper runs during smoke tests.
+
+class _BuMSEnv(GymnasiumEnv):  # noqa: D401 – conforms to Gymnasium interface
+    """A toy continuous-control environment that encodes the hyper-parameter search
+    space for the budgeted meta-sampler.  The dynamics/costs are intentionally
+    *toy* – they merely execute quickly so smoke tests complete under the time
+    budget while exercising every code path.
     """
 
-    def __init__(self, constraint_vram_gb: float, constraint_latency_ms: float):
-        import gymnasium as gym  # gymnasium is the standard backend for SB3 >=2.0
+    # Gymnasium requires a *typed* class attribute for metadata
+    metadata: ClassVar[Dict[str, Any]] = {"render_modes": []}
 
-        self._gym = gym
+    def __init__(self, constraint_vram_gb: float, constraint_latency_ms: float):
+        super().__init__()
         self.action_space = gym.spaces.Box(low=-0.05, high=0.05, shape=(6,), dtype=np.float32)
-        self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(8,), dtype=np.float32)
+        self.observation_space = gym.spaces.Box(low=0.0, high=1.0, shape=(6,), dtype=np.float32)
+
         self._constraint_vram = constraint_vram_gb
         self._constraint_lat = constraint_latency_ms
-        # state: (ε,σ,r,T,p,k)
+
+        # state: (ε, σ, r, T, p, k)
         self.state = np.array([0.18, 0.12, 2.0, 0.9, 0.88, 3.0], dtype=np.float32)
 
     # ------------------------------------------------------------------
-    # Gymnasium API (reset, step)
+    # Gymnasium API (reset, step, render optional)
     # ------------------------------------------------------------------
-    def reset(self, *, seed: int | None = None, options: Dict[str, Any] | None = None):  # noqa: D401 – Gym API
+    def reset(self, *, seed: int | None = None, options: Dict[str, Any] | None = None):  # noqa: D401 – Gymnasium API
+        super().reset(seed=seed)
         if seed is not None:
             np.random.seed(seed)
         return self.state.copy(), {}
 
-    def step(self, action):  # noqa: D401 – Gym API
+    def step(self, action):  # noqa: D401 – Gymnasium API
+        # Clip action and update internal state within allowed search ranges
         self.state = np.clip(
             self.state + action,
             [0.05, 0.05, 1.0, 0.6, 0.6, 1.0],
             [0.3, 0.25, 4.0, 1.3, 0.95, 5.0],
         ).astype(np.float32)
         eps, sig, r, T, p, k = self.state
-        vram = 6 + 0.5 * k + 8 * eps  # toy cost model
-        latency = 100 + 50 * T + 30 * k
-        ruh = 1.0 - 0.5 * eps - 0.3 * sig + 0.05 * r
+
+        # Toy cost/quality model (kept deliberately simple)
+        vram = 6 + 0.5 * k + 8 * eps  # GB
+        latency = 100 + 50 * T + 30 * k  # ms/50-tokens
+        ruh = 1.0 - 0.5 * eps - 0.3 * sig + 0.05 * r  # proxy for Robust-Utility-Harm
+
+        # Constraint penalties
         penalty = 50 * max(0, vram - self._constraint_vram) + 20 * max(0, latency - self._constraint_lat)
-        reward = ruh - penalty / 100.0
-        terminated = False  # continuing task
+        reward = ruh - penalty / 100.0  # scaled so reward ~O(1)
+
+        terminated = False  # continuing task (infinite-horizon PPO)
         truncated = False
+
         info = {
             "vram": float(vram),
             "latency": float(latency),
@@ -155,16 +170,27 @@ class _BuMSEnv:  # noqa: D401 – Gym-style env, minimal interface
         }
         return self.state.copy(), reward, terminated, truncated, info
 
+    # Optional – not used but keeps Gym API complete
+    def render(self):  # noqa: D401 – noop
+        pass
+
+
 # -----------------------------------------------------------------------------
 #   Public BuMS interface
 # -----------------------------------------------------------------------------
 
 class BuMSSearch:
-    """Tiny PPO loop that optimises the _BuMSEnv – again, just for plumbing."""
+    """Tiny PPO loop that optimises the toy `_BuMSEnv`.
+
+    The goal is *not* to perform meaningful optimisation but simply to exercise
+    RL-based hyper-parameter tuning logic in the smoke test.
+    """
 
     def __init__(self, vram_gb: float, latency_ms: float, episodes: int):
+        # SB3 expects a vectorised environment; DummyVecEnv is the lightest.
         self.env = DummyVecEnv([lambda: _BuMSEnv(vram_gb, latency_ms)])
-        # Use a very small policy to keep the smoke test light-weight
+
+        # Extremely small network so the smoke test finishes in <30 s.
         self.model = PPO(
             "MlpPolicy",
             self.env,
@@ -176,15 +202,20 @@ class BuMSSearch:
         self.episodes = episodes
 
     def run(self) -> Tuple[Dict[str, Any], float]:
-        # Train PPO for the requested number of episodes (each episode ~= n_steps)
+        # Train PPO for the requested number of *episodes* (each of 64 steps)
         self.model.learn(total_timesteps=self.episodes * 64)
+
+        # Evaluate a short rollout to extract the best-scoring config observed
         obs = self.env.reset()
         best_cfg, best_score = None, -1e9
-        # Rollout a handful of steps to find the best-scoring configuration
         for _ in range(128):
             action, _ = self.model.predict(obs, deterministic=True)
-            obs, reward, _, _, info = self.env.step(action)
-            if reward > best_score:
-                best_score = reward
+            step_out = self.env.step(action)
+            obs = step_out[0]
+            reward = step_out[1]
+            info = step_out[-1]
+            scalar_reward = float(reward[0]) if isinstance(reward, np.ndarray) else float(reward)
+            if scalar_reward > best_score:
+                best_score = scalar_reward
                 best_cfg = info[0]["cfg"]
         return best_cfg, float(best_score)
