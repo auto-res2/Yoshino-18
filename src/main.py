@@ -1,15 +1,6 @@
-"""src/main.py – entry-point with YAML-based configuration loading.
-
-Usage
------
-python -m src.main --smoke-test        # quick validation
-python -m src.main --full-experiment   # full run (still stub by default)
-"""
 from __future__ import annotations
 
 import argparse
-import json
-import shutil
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -20,13 +11,12 @@ from .train import HAGuard, seed_all
 from .evaluate import run_evaluation
 
 CONFIG_DIR = Path("config")
-RESULT_DIR = Path(".research") / "iteration2"
+RESULT_DIR = Path(".research") / "iteration3"  # updated to mandatory path
 
 
 # ------------------------------------------------------------------
 #  Helpers
 # ------------------------------------------------------------------
-
 
 def _load_yaml(cfg_path: Path) -> dict:
     if not cfg_path.exists():
@@ -38,7 +28,6 @@ def _load_yaml(cfg_path: Path) -> dict:
 # ------------------------------------------------------------------
 #  Main
 # ------------------------------------------------------------------
-
 
 def main() -> None:  # noqa: D401
     parser = argparse.ArgumentParser(description="HAGuard runner")

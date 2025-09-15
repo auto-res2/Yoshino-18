@@ -5,20 +5,14 @@ description = "Minimal runnable subset of the HAGuard research codebase"
 authors = [ { name = "OpenAI", email = "research@example.com" } ]
 requires-python = ">=3.10"
 # ------------------------------------------------------------------
-#  Dependencies – kept intentionally slim. Heavyweights (faiss, ORT, etc.)
-#  are only needed in *real* mode. For the smoke-test (default in the
-#  automated grader) the code switches to stub mode and these packages
-#  are therefore declared *optional* to avoid costly downloads.
+#  Core dependencies – kept intentionally minimal. Heavy libraries are
+#  moved to the optional "full" extra to avoid resolution issues on
+#  Python versions where wheels may be unavailable (e.g. 3.12).
 # ------------------------------------------------------------------
 dependencies = [
   "numpy>=1.24",
   "pyyaml>=6.0",
-  "torch>=2.0",
-  "lightgbm>=4.0; extra == 'full'",
-  "transformers>=4.38; extra == 'full'",
-  "onnxruntime>=1.17; extra == 'full'",
-  "faiss-cpu>=1.7.4; extra == 'full'",
-  "bloom-filter2>=2.5; extra == 'full'",
+  "torch>=2.0"
 ]
 
 [project.optional-dependencies]
@@ -27,7 +21,9 @@ full = [
   "transformers>=4.38",
   "onnxruntime>=1.17",
   "faiss-cpu>=1.7.4",
-  "bloom-filter2>=2.5",
+  # bloom-filter2 wheels >2.0 are currently missing for Python 3.12.
+  # Version 2.0.0.post1 provides the required API across 3.10–3.12.
+  "bloom-filter2<=2.0.0.post1"
 ]
 
 [build-system]
