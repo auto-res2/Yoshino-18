@@ -1,11 +1,11 @@
 """src/evaluate.py
-Updated: Added missing `import os` required for environment-variable access in
-safe-loading helper functions, resolving static `name-defined` errors.
+Updated: switched output directories to iteration7 as required and kept new
+`import os` for env-variable access.
 """
 from __future__ import annotations
 
 import json
-import os  # <-- newly added
+import os  # environment-variable access
 import random
 import time
 from pathlib import Path
@@ -25,9 +25,9 @@ from .train import DADSWrap, ExDARWrapper, BuMSSearch  # noqa: E402
 from .preprocess import DataModule  # noqa: E402
 
 # -----------------------------------------------------------------------------
-#   Global paths – adhere to iteration6 directory spec
+#   Global paths – adhere to iteration7 directory spec
 # -----------------------------------------------------------------------------
-RESULTS_DIR = Path(".research/iteration6")
+RESULTS_DIR = Path(".research/iteration7")
 IMAGES_DIR = RESULTS_DIR / "images"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
@@ -130,7 +130,7 @@ def run_exp1_long_context(cfg: Dict[str, Any], accelerator: Accelerator):
         if idx >= 31:  # bound runtime for smoke test
             break
 
-    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"])}
+    stats = {"mean_c_asr": float(np.mean(results["c_asr"])), "n_samples": len(results["prompt_id"]) }
     _save_json({"description": desc, "stats": stats, "samples": results["prompt_id"]}, "exp1_results.json")
     fig_name = _line_plot({"c-ASR": results["c_asr"]}, "Certified ASR", "exp1_c_asr")
     print(json.dumps({"description": desc, "stats": stats, "figures": [fig_name]}, indent=2))
