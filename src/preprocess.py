@@ -1,6 +1,5 @@
 """src/preprocess.py
-Data loading & simple preprocessing utilities.  All dataset handling goes
-through this *single* module so the rest of the code base stays clean.
+Updated: Respect tokenizer.model_max_length to avoid sequence length overflow.
 """
 from __future__ import annotations
 
@@ -9,7 +8,6 @@ from typing import Dict, Any
 
 from datasets import load_dataset
 
-LANG_TAG_FIELD = "lang"
 
 class DataModule:  # noqa: D401 – simple container
     """Download, slice and tokenise datasets according to a YAML config."""
@@ -26,7 +24,6 @@ class DataModule:  # noqa: D401 – simple container
         try:
             return load_dataset(repo, split=split, use_auth_token=os.getenv("HF_TOKEN"))
         except Exception as exc:  # noqa: BLE001 – pragmatic fallback
-            # Many CI environments block large dataset downloads; create a tiny dummy set
             from datasets import Dataset
 
             print(f"WARNING: failed to download {repo} ({exc}). Using dummy dataset instead.")
@@ -36,16 +33,17 @@ class DataModule:  # noqa: D401 – simple container
     # Public helpers
     # ------------------------------------------------------------------
     def get_dataset(self):
-        main_ds = self._download_one(self.cfg["hf_repo"], self.cfg.get("split", "train"))
-        if self.cfg.get("limit"):
-            main_ds = main_ds.select(range(min(len(main_ds), self.cfg["limit"])))
-        return main_ds
+        ds = self._download_one(self.cfg["hf_repo"], self.cfg.get("split", "train"))
+        if self.cfg.get("limit") is not None:
+            ds = ds.select(range(min(len(ds), self.cfg["limit"])))
+        return ds
 
     @staticmethod
     def preprocess(ds, tokenizer):
-        def _proc(x):  # noqa: D401 – map helper
-            text = x["prompt"].strip()
-            text = " ".join(text.split())  # collapse whitespace
-            return {"input_ids": tokenizer(text, truncation=True, max_length=4096)["input_ids"]}
+        max_len = min(getattr(tokenizer, "model_max_length", 4096), 4096)
+
+        def _proc(x):  # noqa: D401
+            text = " ".join(x["prompt"].strip().split())
+            return {"input_ids": tokenizer(text, truncation=True, max_length=max_len)["input_ids"]}
 
         return ds.map(_proc, remove_columns=ds.column_names, batched=False)
